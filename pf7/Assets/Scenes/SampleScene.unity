@@ -163,6 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 111249043}
+  - component: {fileID: 111249044}
   m_Layer: 0
   m_Name: gunHolder
   m_TagString: Untagged
@@ -188,6 +189,18 @@ Transform:
   - {fileID: 1750013740}
   m_Father: {fileID: 390778649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &111249044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111249042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0bc23c58c419f41b389d31c0d3eab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &233734125
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,9 +727,14 @@ MonoBehaviour:
   speed: 10
   jumpingPower: 15
   coyote: 1
+  flip: {fileID: 10879910}
+  gunHold: {fileID: 111249043}
+  head: {fileID: 693699323}
+  body: {fileID: 10879910}
   jumpLeft: 0
   coyoteCount: 0
   jumpBuffer: 0
+  horizontal: 0
 --- !u!1 &497114538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,7 +1605,7 @@ Transform:
   m_GameObject: {fileID: 1960523215}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.545, y: -0.041, z: 0}
+  m_LocalPosition: {x: -0.446, y: -0.061, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
