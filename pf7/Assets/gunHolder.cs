@@ -12,11 +12,12 @@ public class gunHolder : MonoBehaviour
     //functions
     private void lookAtMouse()
     {
-        Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition)-gunTransform.position;
-        float angle = Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.Euler(transform.rotation.eulerAngles.x,transform.rotation.eulerAngles.y, angle-180);
-        gunTransform.rotation = rotation;
+        Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        float angle = Mathf.Atan2(dir.y * -1, dir.x * -1) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
+
+
 
 
     //defaults
@@ -24,6 +25,7 @@ public class gunHolder : MonoBehaviour
     {
 
         lookAtMouse();
+        
     }
     void Start()
     {

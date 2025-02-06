@@ -76,21 +76,21 @@ public class playerController : MonoBehaviour {
 
     public void Flip()
     {
+
         Vector3 mouseScreenPos = Input.mousePosition;
         Vector3 mouseWorldPos=Camera.main.ScreenToWorldPoint(mouseScreenPos);
 
         if (mouseWorldPos.x>transform.position.x)
         {
             body.rotation = Quaternion.Euler(0,180,0);
-            head.eulerAngles = new Vector3(180f, head.eulerAngles.y, head.eulerAngles.z);
         }
         if (mouseWorldPos.x < transform.position.x)
         {
             body.rotation = Quaternion.Euler(0, 0, 0);
-            head.eulerAngles = new Vector3(0f, head.eulerAngles.y, head.eulerAngles.z);
 
         }
 
-       
+
+  
     }
 }
