@@ -3,18 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class shotgun : MonoBehaviour
+public class shotgun : weapon
 {
-    //weapon-specific offset values
-    public float[] handCloseOffset = { 0, 0, 53 };
-    public float[] handFarOffset = { -0,863f, -0,162f, 0 };
-    public float[] weaponOffset = { -0,446f, -0,061f, 0 };
-    // Start is called before the first frame update
+    public override void Fire() {
+        //firing script, let it be 10 damage inflicted for self, now
+        gameObject.GetComponentInParent<playerHealth>().playerDamaged(10);
+        Debug.Log("shotgun fired with 'shotgun.cs'");
+    }
 
-    public void fire() { }
+    public override void AltFire()
+    {
+        Debug.Log("shotgun altFired with 'shotgun.cs'");
+    }
 
-    public void altfire() { }
-
+    public override void SetValues()
+    {
+        handCloseOffset = new float[] { 0,0, 53 };
+        handFarOffset = new float[] { -0.863f, -0.162f, 0 };
+        weaponOffset = new float[] { -0.446f, -0.061f, 0 };
+        transform.localPosition= Vector3.zero;
+        transform.localRotation = Quaternion.Euler(0,0,0);
+    }
     void Start()
     {
     }

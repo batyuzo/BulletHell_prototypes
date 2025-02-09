@@ -93,21 +93,26 @@ public class playerController : MonoBehaviour
     {
         if (context.performed)
         {
+            gameObject.GetComponentInChildren<weaponHandler>().Fire();
         }
-        Debug.Log(gameObject.name + " fired");
+
     }
 
     public void AltFire(InputAction.CallbackContext context)
     {
-        Debug.Log(gameObject.name + " altfired");
+        if (context.performed)
+        {
+            gameObject.GetComponentInChildren<weaponHandler>().AltFire();
+        }
+
     }
 
     public void Equip(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
+            gameObject.GetComponentInChildren<weaponHandler>().Equip();
             gameObject.GetComponentInChildren<gunHolder>().setOffset();
-
         }
 
     }

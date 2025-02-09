@@ -7,9 +7,11 @@ public class gunHolder : MonoBehaviour
 {
     [Header("offset-sheet")]
     //values: posY, posX, angleZ
-    public float[] handCloseOffset = new float[3];
-    public float[] handFarOffset = new float[3];
-    public float[] weaponOffset = new float[3];
+    public float[] HCO = new float[3];//hand close offset
+    public float[] HFO = new float[3];//hand far offset
+    public float[] WPO = new float[3];//weapon offset
+
+    weaponHandler wh;
 
 
     private void lookAtMouse()
@@ -17,14 +19,19 @@ public class gunHolder : MonoBehaviour
         Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
         float angle = Mathf.Atan2(dir.y * -1, dir.x * -1) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
     }
 
+
+    //executes on Equip
     public void setOffset()
     {
-        //grab values from 'weapon'
-        handCloseOffset = gameObject.GetComponentInChildren<shotgun>().handCloseOffset;
-        handFarOffset = gameObject.GetComponentInChildren<shotgun>().handFarOffset;
-        weaponOffset= gameObject.GetComponentInChildren<shotgun>().weaponOffset;
+        wh = gameObject.GetComponentInChildren<weaponHandler>();
+
+        //grab values from children
+        HCO = wh.grabHandCloseOffset();
+        HFO = wh.grabHandFarOffset();
+        WPO = wh.grabWeaponOffset();
 
 
         //set grabbed values to sprites
@@ -32,18 +39,18 @@ public class gunHolder : MonoBehaviour
         {
             if (child.name == "handClose")
             {
-                child.localRotation = Quaternion.Euler(0, 0, handCloseOffset[2]);
-                child.localPosition = new Vector3(handCloseOffset[0], handCloseOffset[1], 0);
+                child.localPosition = new Vector3(HCO[0], HCO[1], 0);
+                child.localRotation = Quaternion.Euler(0, 0, HCO[2]);
             }
             else if (child.name == "handFar")
             {
-                child.localRotation = Quaternion.Euler(0, 0, handFarOffset[2]);
-                child.localPosition = new Vector3(handCloseOffset[0], handCloseOffset[1], 0);
+                child.localPosition = new Vector3(HFO[0], HFO[1], 0);
+                child.localRotation = Quaternion.Euler(0, 0, HFO[2]);
             }
             else if (child.name == "weapon")
             {
-                child.localRotation = Quaternion.Euler(0, 0, weaponOffset[2]);
-                child.localPosition = new Vector3(weaponOffset[0], weaponOffset[1], 0);
+                child.localPosition = new Vector3(WPO[0], WPO[1], 0);
+                child.localRotation = Quaternion.Euler(0, 0, WPO[2]);
             }
         }
     }
@@ -58,10 +65,10 @@ public class gunHolder : MonoBehaviour
             foreach (Transform child in transform)
             {
                 child.GetComponentInChildren<SpriteRenderer>().flipY = false;
-                if (child.name == "handClose")
-                {
-                    child.localRotation = Quaternion.Euler(0, 0, 0);
-                }
+                //if (child.name == "handClose")
+                //{
+                //    child.localRotation = Quaternion.Euler(0, 0, 0);
+                //}
             }
         }
         else
@@ -69,12 +76,12 @@ public class gunHolder : MonoBehaviour
             foreach (Transform child in transform)
             {
                 child.GetComponentInChildren<SpriteRenderer>().flipY = true;
-                if (child.name == "handClose")
-                {
-                    child.localRotation = Quaternion.Euler(0, 0, 53);
-                    //can also just offset the transform
-                    //child.localPosition += new Vector3(1, 1, 1);
-                }
+                //if (child.name == "handClose")
+                //{
+                //    child.localRotation = Quaternion.Euler(0, 0, 53);
+                //    //can also just offset the transform
+                //    //child.localPosition += new Vector3(1, 1, 1);
+                //}
             }
         }
     }
