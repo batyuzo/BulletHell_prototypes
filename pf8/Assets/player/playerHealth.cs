@@ -22,4 +22,14 @@ public class playerHealth : MonoBehaviour
         }
     }
 
+    public void Death()
+    {
+        if (currentHealth <= 0) { Debug.Log(gameObject.name+"is dead"); }
+
+    }
+
+    public void Update()
+    {
+        Death();
+    }
 }

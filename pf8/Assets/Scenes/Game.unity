@@ -180,13 +180,13 @@ Transform:
   m_GameObject: {fileID: 111249042}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: 0.03, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1960523217}
   - {fileID: 497114540}
   - {fileID: 1750013740}
+  - {fileID: 1960523217}
   m_Father: {fileID: 390778649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &111249044
@@ -201,6 +201,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0bc23c58c419f41b389d31c0d3eab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handCloseOffset: []
+  handFarOffset:
+  - 0
+  - 0
+  - 0
+  gunOffset:
+  - 0
+  - 0
+  - 0
 --- !u!1 &179950980
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,6 +785,38 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 120ac075-3301-4a04-be7f-2aa3b6ba0ece
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 390778653}
+        m_TargetAssemblyTypeName: playerController, Assembly-CSharp
+        m_MethodName: Equip
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 988c888e-5443-4a6a-b01c-5295593efed8
+    m_ActionName: Player/Equip[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 390778653}
+        m_TargetAssemblyTypeName: playerController, Assembly-CSharp
+        m_MethodName: AltFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 17ed10d9-1437-4ce8-a0ad-bd823b5750cc
+    m_ActionName: Player/AltFire[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -811,6 +852,7 @@ MonoBehaviour:
   grounded: 0
   maxHealth: 200
   currentHealth: 200
+  forwardMotion: 0
 --- !u!114 &390778654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -837,7 +879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f7d0be31afe1b846b2c914565dee09d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  script: {fileID: 390778653}
+  player: {fileID: 390778653}
   stationary: {fileID: 21300000, guid: 4c4bad7aa15165f40b852812f7231d22, type: 3}
   playerBody: {fileID: 10879909}
   walk1: {fileID: 21300000, guid: a45bc14786136c84cb0ca35f6d9b0947, type: 3}
@@ -860,7 +902,7 @@ GameObject:
   - component: {fileID: 497114540}
   - component: {fileID: 497114539}
   m_Layer: 0
-  m_Name: knight_hclose
+  m_Name: handClose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -907,12 +949,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 21300000, guid: ff838cdff813283439741e5f780f5e4a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 729c9981b382bec48a5cd85d33fd42a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -926,13 +968,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497114538}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.4504904, w: 0.89278126}
-  m_LocalPosition: {x: 0, y: -0.01699993, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 111249043}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 53.55}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,7 +1012,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1020,7 +1062,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.94, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1276,6 +1318,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0bc23c58c419f41b389d31c0d3eab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handCloseOffset: []
+  handFarOffset:
+  - 0
+  - 0
+  - 0
+  gunOffset:
+  - 0
+  - 0
+  - 0
 --- !u!1 &1488870613
 GameObject:
   m_ObjectHideFlags: 0
@@ -1682,7 +1733,7 @@ GameObject:
   - component: {fileID: 1750013740}
   - component: {fileID: 1750013739}
   m_Layer: 0
-  m_Name: knight_hfar
+  m_Name: handFar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1729,12 +1780,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 8867215e54687cf48a1a05ef0bf0f669, type: 3}
+  m_Sprite: {fileID: 21300000, guid: db71476d8bfc29844b64e4774fdede8f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1748,8 +1799,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1750013738}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.92, y: -0.109, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1801,8 +1852,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1960523217}
   - component: {fileID: 1960523216}
+  - component: {fileID: 1960523218}
   m_Layer: 0
-  m_Name: def_shotgun
+  m_Name: weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1869,12 +1921,36 @@ Transform:
   m_GameObject: {fileID: 1960523215}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.446, y: -0.061, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 111249043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1960523218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960523215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a54f19f182fd84d9f3a24b3e834e22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handCloseOffset:
+  - 0
+  - 0
+  - 0
+  handFarOffset:
+  - 0
+  - 0
+  - 0
+  gunOffset:
+  - 0
+  - 0
+  - 0
 --- !u!1 &2094511440
 GameObject:
   m_ObjectHideFlags: 0

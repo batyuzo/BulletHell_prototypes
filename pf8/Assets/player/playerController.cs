@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class playerController : MonoBehaviour {
+public class playerController : MonoBehaviour
+{
     [Header("Player Component Reference")]
     [SerializeField] Rigidbody2D rb;
 
@@ -28,18 +29,20 @@ public class playerController : MonoBehaviour {
     public bool grounded;
     public int maxHealth;
     public int currentHealth;
+    public bool forwardMotion;
 
-    
 
 
-    private void FixedUpdate() {
+
+    private void FixedUpdate()
+    {
         //!----------MOVEMENT----------!
         //moves get executed per physics update
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);     
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         //coyote decreases mid-air
-        if(coyoteCount > 0 && !groundCheckP1.grounded) { coyoteCount -= 0.2f; }
+        if (coyoteCount > 0 && !groundCheckP1.grounded) { coyoteCount -= 0.2f; }
         //buffer decreases mid-air
-        if(jumpBuffer > 0) { jumpBuffer -= 0.50f; }
+        if (jumpBuffer > 0) { jumpBuffer -= 0.50f; }
 
 
 
@@ -67,64 +70,83 @@ public class playerController : MonoBehaviour {
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
-        currentHealth=gameObject.GetComponent<playerHealth>().currentHealth;
+        currentHealth = gameObject.GetComponent<playerHealth>().currentHealth;
 
     }
 
-    public void Move(InputAction.CallbackContext context) {
+    public void Move(InputAction.CallbackContext context)
+    {
         horizontal = context.ReadValue<Vector2>().x;
         if (context.performed) { moving = true; }
         else { moving = false; }
     }
 
-    public void Jump(InputAction.CallbackContext context) {
-        if(context.performed && groundCheckP1.grounded) {
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (context.performed && groundCheckP1.grounded)
+        {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-        } 
+        }
         else jumpBuffer = 1f;
     }
     public void Fire(InputAction.CallbackContext context)
     {
-        //fire = trigger for health
-        if (context.performed) { gameObject.GetComponent<playerHealth>().playerDamaged(10); }
+        if (context.performed)
+        {
+        }
+        Debug.Log(gameObject.name + " fired");
     }
 
     public void AltFire(InputAction.CallbackContext context)
     {
-
+        Debug.Log(gameObject.name + " altfired");
     }
 
-    public void Throw(InputAction.CallbackContext context)
+    public void Equip(InputAction.CallbackContext context)
     {
+        if (context.performed)
+        {
+            gameObject.GetComponentInChildren<gunHolder>().setOffset();
+
+        }
 
     }
+
 
     public void Drop(InputAction.CallbackContext context)
     {
-
+        Debug.Log(gameObject.name + " dropped");
     }
 
-    public void Melee(InputAction.CallbackContext context)
-    {
-
-    }
     public void Flip()
     {
 
         Vector3 mouseScreenPos = Input.mousePosition;
-        Vector3 mouseWorldPos=Camera.main.ScreenToWorldPoint(mouseScreenPos);
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
 
-        if (mouseWorldPos.x>transform.position.x)
+        //facing right
+        if (mouseWorldPos.x > transform.position.x)
         {
-            body.rotation = Quaternion.Euler(0,180,0);
+            body.GetComponentInChildren<SpriteRenderer>().flipX = true;
+            moveDirection(true);
         }
+        //facing left
         if (mouseWorldPos.x < transform.position.x)
         {
-            body.rotation = Quaternion.Euler(0, 0, 0);
-
+            body.GetComponentInChildren<SpriteRenderer>().flipX = false;
+            moveDirection(false);
         }
+    }
 
-
-  
+    private void moveDirection(bool lookingRight)
+    {
+        //if looks right and goes right -> forward motion
+        if (lookingRight && horizontal > 0) { forwardMotion = true; }
+        //if looks left and goes right -> backwards motion
+        else if (!lookingRight && horizontal > 0) { forwardMotion = false; }
+        //if looks left and goes left -> forward motion
+        else if (!lookingRight && horizontal < 0) { forwardMotion = true; }
+        //if looks right and goes left -> backwards motion
+        else if (lookingRight && horizontal < 0) { forwardMotion = false; }
     }
 }

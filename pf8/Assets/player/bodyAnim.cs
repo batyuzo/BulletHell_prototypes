@@ -8,7 +8,7 @@ public class bodyAnim : MonoBehaviour
 {
 
     [Header("Script refs")]
-    [SerializeField] playerController script;
+    [SerializeField] playerController player;
 
     [Header("Static pose refs")]
     [SerializeField] Sprite stationary;
@@ -30,23 +30,40 @@ public class bodyAnim : MonoBehaviour
     {
         i = 0;
         walk= new List<Sprite> { walk1, walk2, walk3, walk4, walk5, walk6 };
-        divide = 60/script.fps;
+        divide = 60/player.fps;
 
     }
 
-    private void moveAnim(int frame)
+    private void moveAnim(int frame, bool forward)
     {
-        if (frame % divide == 0 && current < 5)
-        {
-            current++;
-        }
-        else if (frame % divide == 0)
-        {
-            current = 0;
-        }
 
+        //moving forward
+        if (forward)
+        {
+            if (frame % divide == 0 && current < 5)
+            {
+                current++;
+            }
+            else if (frame % divide == 0)
+            {
+                current = 0;
+            }
+        }
+        //moving backwards
+        else
+        {
+            if (frame % divide == 0 && current > 0)
+            {
+                current--;
+            }
+            else if (frame % divide == 0)
+            {
+                current = 5;
+            }
+        }
         playerBody.GetComponentInChildren<SpriteRenderer>().sprite = walk[current];   
     }
+
 
     private void idleAnim()
     {
@@ -64,9 +81,13 @@ public class bodyAnim : MonoBehaviour
     private void FixedUpdate()
     {
         i++;
-        if (script.moving)
+        if (player.moving && player.forwardMotion)
         {
-            moveAnim(i);
+            moveAnim(i,true);
+        }
+        else if(player.moving && !player.forwardMotion)
+        {
+            moveAnim(i,false);
         }
         else
         {
