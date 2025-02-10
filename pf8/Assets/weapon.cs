@@ -30,23 +30,13 @@ public class weapon : MonoBehaviour
 
     public virtual void SetValues()
     {
-        //set offset of a weapon
     }
 
-    public virtual void Equip()
-    {
-        //equip weapon
-        active = true;
-        Destroy(rb);
-        Destroy(coll);
-        SetValues();
-    }
 
     public virtual void Drop()
     {
         //drop weapon
         rb.WakeUp();
-        SetValues();
     }
 
 
@@ -55,5 +45,7 @@ public class weapon : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         active = false;
+
+
     }
 }

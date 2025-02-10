@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -19,6 +20,7 @@ public class playerController : MonoBehaviour
     [SerializeField] Transform gunHold;
     [SerializeField] Transform head;
     [SerializeField] Transform body;
+    public GameObject assetHandler;
 
     [Header("PlayerLogs")]
     public int jumpLeft;
@@ -30,6 +32,8 @@ public class playerController : MonoBehaviour
     public int maxHealth;
     public int currentHealth;
     public bool forwardMotion;
+
+
 
 
 
@@ -52,6 +56,15 @@ public class playerController : MonoBehaviour
 
     private void Awake()
     {
+        //ignore weapon collision
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("weapon"))
+        {
+            Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), obj.GetComponent<Collider2D>(), true);
+        }
+
+        //set assetHandler reference
+        assetHandler = GameObject.FindGameObjectWithTag("playerAssets");
+
     }
 
     // Start is called before the first frame update
@@ -71,6 +84,10 @@ public class playerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
         currentHealth = gameObject.GetComponent<playerHealth>().currentHealth;
+
+        //if theres a weapon equippable
+
+
 
     }
 
@@ -93,7 +110,7 @@ public class playerController : MonoBehaviour
     {
         if (context.performed)
         {
-            gameObject.GetComponentInChildren<weaponHandler>().Fire();
+            gameObject.GetComponentInChildren<gunHolder>().Fire();
         }
 
     }
@@ -102,19 +119,27 @@ public class playerController : MonoBehaviour
     {
         if (context.performed)
         {
-            gameObject.GetComponentInChildren<weaponHandler>().AltFire();
+            gameObject.GetComponentInChildren<gunHolder>().AltFire();
         }
 
     }
 
     public void Equip(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && scanCheck() != null)
         {
-            gameObject.GetComponentInChildren<weaponHandler>().Equip();
-            gameObject.GetComponentInChildren<gunHolder>().setOffset();
+            gameObject.GetComponentInChildren<gunHolder>().Equip();
         }
 
+    }
+
+    public void ChangeSkin(InputAction.CallbackContext context)
+    {
+
+        
+        //if (context.performed)
+        //{
+        //    body.GetComponentInChildren<SpriteRenderer>().sprite =
     }
 
 
@@ -154,4 +179,23 @@ public class playerController : MonoBehaviour
         //if looks right and goes left -> backwards motion
         else if (lookingRight && horizontal < 0) { forwardMotion = false; }
     }
+
+    private GameObject scanCheck()
+    {
+        GameObject obj = gameObject.GetComponentInChildren<scanner>().getEquippable();
+
+        if (obj != null)
+        {
+            Debug.Log("scanCheck true");
+            return obj;
+        }
+        else
+        {
+            Debug.Log("scanCheck false");
+            return null;
+        }
+    }
+
 }
+
+

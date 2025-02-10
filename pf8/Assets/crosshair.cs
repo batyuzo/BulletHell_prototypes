@@ -13,6 +13,6 @@ public class crosshair : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position = GetComponentInParent<Transform>().position;
     }
 }
