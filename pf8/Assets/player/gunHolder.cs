@@ -26,6 +26,7 @@ public class gunHolder : MonoBehaviour
         float angle = Mathf.Atan2(dir.y * -1, dir.x * -1) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
+        //flip part
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (mousePos.x < transform.position.x)
@@ -38,11 +39,25 @@ public class gunHolder : MonoBehaviour
                     child.GetComponentInChildren<SpriteRenderer>().flipY = false;
                 }
 
+                //handClose
+                if (child.name == "handClose")
+                {
+                    child.localRotation = Quaternion.Euler(0, 0, HCO[2]);
+                    child.localPosition = new Vector3(HCO[0], HCO[1], child.localPosition.z);
+                }
+                //handFar
+                if (child.name == "handFar")
+                {
+                    child.localRotation = Quaternion.Euler(0, 0, HFO[2]);
+                    child.localPosition = new Vector3(HFO[0], HFO[1], child.localPosition.z);
+                }
 
-                //if (child.name == "handClose")
-                //{
-                //    child.localRotation = Quaternion.Euler(0, 0, 0);
-                //}
+                //weapon
+                if (child.CompareTag("weapon"))
+                {
+                    child.localRotation = Quaternion.Euler(0, 0, WPO[2]);
+                    child.localPosition = new Vector3(WPO[0], WPO[1], child.localPosition.z);
+                }
             }
         }
         else
@@ -53,12 +68,26 @@ public class gunHolder : MonoBehaviour
                 {
                     child.GetComponentInChildren<SpriteRenderer>().flipY = true;
                 }
-                //if (child.name == "handClose")
-                //{
-                //    child.localRotation = Quaternion.Euler(0, 0, 53);
-                //    //can also just offset the transform
-                //    //child.localPosition += new Vector3(1, 1, 1);
-                //}
+
+                //handClose
+                if (child.name == "handClose")
+                {
+                    child.localRotation = Quaternion.Euler(0, 0, -HCO[2]);
+                    child.localPosition = new Vector3(HCO[0], -HCO[1], child.localPosition.z);
+                }
+                //handFar
+                if (child.name == "handFar")
+                {
+                    child.localRotation = Quaternion.Euler(0, 0, -HFO[2]);
+                    child.localPosition = new Vector3(HFO[0], -HFO[1], child.localPosition.z);
+                }
+
+                //weapon
+                if (child.CompareTag("weapon"))
+                {
+                    child.localRotation = Quaternion.Euler(0, 0, -WPO[2]);
+                    child.localPosition = new Vector3(WPO[0], -WPO[1], child.localPosition.z);
+                }
             }
         }
     }
@@ -146,6 +175,7 @@ public class gunHolder : MonoBehaviour
     public void Drop()
     {
         //base for throw and forfeiting control overall
+        //clear parent
         weaponScript.Drop();
 
     }
