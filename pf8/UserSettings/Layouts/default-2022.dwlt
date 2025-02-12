@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1037
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 371}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 87
+  controlID: 100
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -326,7 +326,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/player
+    - Assets
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -334,15 +334,15 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 95
   m_LastFolders:
-  - Assets/player
+  - Assets
   m_LastFoldersGridSize: 95
   m_LastProjectPath: D:\platformer\wip_local\BulletHell_prototypes\pf8
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 35}
-    m_SelectedIDs: 66740000
-    m_LastClickedID: 29798
+    m_SelectedIDs: d6720000
+    m_LastClickedID: 29398
     m_ExpandedIDs: 00000000d6720000d8720000da720000dc72000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -399,7 +399,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000946c000000000000f6860000
+    m_ExpandedInstanceIDs: c6230000946c000000000000f68600004c7800009e720000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -464,9 +464,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 88710000
-      m_LastClickedID: 29064
-      m_ExpandedIDs: 16fbffff2071000042710000
+      m_SelectedIDs: 92a4ffff
+      m_LastClickedID: -23406
+      m_ExpandedIDs: 16fbffff1c710000207100004271000072710000b2710000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -788,9 +788,9 @@ MonoBehaviour:
       floating: 1
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 1255, y: 327}
+      snapOffset: {x: -329, y: -157}
       snapOffsetDelta: {x: 0, y: 0}
-      snapCorner: 0
+      snapCorner: 3
       id: UnityEditor.SceneViewCameraOverlay
       index: 0
       layout: 4
@@ -872,9 +872,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.32596776, y: -1.070998, z: 0.10967146}
+    m_Target: {x: 1.829157, y: -0.79110986, z: 0.09439372}
     speed: 2
-    m_Value: {x: 0.32596776, y: -1.070998, z: 0.10967146}
+    m_Value: {x: 1.8291569, y: -0.79110986, z: 0.09439373}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -924,9 +924,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 3.0743947
+    m_Target: 10
     speed: 2
-    m_Value: 3.0743947
+    m_Value: 9.999999
   m_Ortho:
     m_Target: 1
     speed: 2

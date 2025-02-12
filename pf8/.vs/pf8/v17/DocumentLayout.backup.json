@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|d:\\platformer\\wip_local\\bullethell_prototypes\\pf8\\assets\\player\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|solutionrelative:assets\\player\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\assets\\player\\gunholder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|solutionrelative:assets\\player\\gunholder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|d:\\platformer\\wip_local\\bullethell_prototypes\\pf8\\assets\\player\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|solutionrelative:assets\\player\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\assets\\shotgun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,11 +19,11 @@
       "RelativeMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|solutionrelative:assets\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|d:\\platformer\\wip_local\\bullethell_prototypes\\pf8\\assets\\player\\playeranim.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\assets\\player\\playeranim.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|solutionrelative:assets\\player\\playeranim.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|d:\\platformer\\wip_local\\bullethell_prototypes\\pf8\\assets\\assets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\assets\\assets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|solutionrelative:assets\\assets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -34,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
@@ -46,8 +46,7 @@
               "RelativeToolTip": "Assets\\player\\playerAnim.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAA5wBIAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T19:01:13.927Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-10T19:01:13.927Z"
             },
             {
               "$type": "Document",
@@ -59,8 +58,7 @@
               "RelativeToolTip": "Assets\\assets.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAQwD0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T18:59:53.803Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-10T18:59:53.803Z"
             },
             {
               "$type": "Document",
@@ -72,8 +70,7 @@
               "RelativeToolTip": "Assets\\weapon.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T18:46:49.881Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-10T18:46:49.881Z"
             },
             {
               "$type": "Document",
@@ -85,25 +82,24 @@
               "RelativeToolTip": "Assets\\shotgun.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T18:30:09.71Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-10T18:30:09.71Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "gunHolder.cs",
               "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\player\\gunHolder.cs",
               "RelativeDocumentMoniker": "Assets\\player\\gunHolder.cs",
               "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\player\\gunHolder.cs",
               "RelativeToolTip": "Assets\\player\\gunHolder.cs",
-              "ViewState": "AgIAAEYAAAAAAAAAAAD4v0UAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAIkAAAAAAAAAAAAwwLEAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-10T16:56:16.153Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "playerController.cs",
               "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\player\\playerController.cs",
               "RelativeDocumentMoniker": "Assets\\player\\playerController.cs",

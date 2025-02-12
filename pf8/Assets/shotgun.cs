@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class shotgun : weapon
 {
+    int i = 0;
     public override void Fire() {
-        //firing script, let it be 10 damage inflicted for self, now
-        gameObject.GetComponentInParent<playerHealth>().playerDamaged(10);
-        Debug.Log("shotgun fired with 'shotgun.cs'");
+        if (i == 0) { GameObject.FindGameObjectWithTag("mapLoader").GetComponent<mapLoader>().loadMap("medieval_japan"); i++; }
+        else if (i == 1) { GameObject.FindGameObjectWithTag("mapLoader").GetComponent<mapLoader>().loadMap("ham_factory"); i++; }
+        else { GameObject.FindGameObjectWithTag("mapLoader").GetComponent<mapLoader>().loadMap("practice"); i=0; }
+
     }
 
     public override void AltFire()

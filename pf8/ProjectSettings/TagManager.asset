@@ -7,6 +7,8 @@ TagManager:
   - ground
   - weapon
   - playerAssets
+  - mapLoader
+  - gameManager
   layers:
   - Default
   - TransparentFX
