@@ -249,7 +249,7 @@
                 {
                     "name": "",
                     "id": "6bd227b4-41bc-48d3-b962-060e449eee84",
-                    "path": "<Keyboard>/#(E)",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -270,11 +270,11 @@
                 },
                 {
                     "name": "",
-                    "id": "5f14900a-5ee6-4fc2-b826-60649de77cd9",
+                    "id": "db707050-fa74-4149-98d2-91a20222cf00",
                     "path": "<Keyboard>/u",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "",
                     "action": "ChangeSkin",
                     "isComposite": false,
                     "isPartOfComposite": false

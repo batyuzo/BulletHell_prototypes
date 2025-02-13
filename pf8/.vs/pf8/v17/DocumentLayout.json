@@ -3,32 +3,24 @@
   "WorkspaceRootPath": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|d:\\platformer\\wip_local\\bullethell_prototypes\\pf8\\assets\\maploader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|solutionrelative:assets\\maploader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|d:\\platformer\\wip_local\\bullethell_prototypes\\pf8\\assets\\script\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\assets\\shotgun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|solutionrelative:assets\\shotgun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|d:\\platformer\\wip_local\\bullethell_prototypes\\pf8\\assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\assets\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|solutionrelative:assets\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\assets\\script\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\assets\\player\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|solutionrelative:assets\\player\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\assets\\script\\assets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\assets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|d:\\platformer\\wip_local\\bullethell_prototypes\\pf8\\assets\\player\\gunholder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|solutionrelative:assets\\player\\gunholder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\assets\\player\\playeranim.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|solutionrelative:assets\\player\\playeranim.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\assets\\assets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|solutionrelative:assets\\assets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\assets\\script\\playeranim.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8AAA0F8-E5A9-E069-4CEC-917F33B40FD4}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\playeranim.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,92 +35,64 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "mapLoader.cs",
-              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\mapLoader.cs",
-              "RelativeDocumentMoniker": "Assets\\mapLoader.cs",
-              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\mapLoader.cs",
-              "RelativeToolTip": "Assets\\mapLoader.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAgwDEAAAAfAAAAAAAAAA==",
+              "Title": "menu.cs",
+              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\script\\menu.cs",
+              "RelativeDocumentMoniker": "Assets\\script\\menu.cs",
+              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\script\\menu.cs",
+              "RelativeToolTip": "Assets\\script\\menu.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T12:29:40.469Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "playerAnim.cs",
-              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\player\\playerAnim.cs",
-              "RelativeDocumentMoniker": "Assets\\player\\playerAnim.cs",
-              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\player\\playerAnim.cs",
-              "RelativeToolTip": "Assets\\player\\playerAnim.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T19:01:13.927Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "assets.cs",
-              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\assets.cs",
-              "RelativeDocumentMoniker": "Assets\\assets.cs",
-              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\assets.cs",
-              "RelativeToolTip": "Assets\\assets.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAQwD0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T18:59:53.803Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "weapon.cs",
-              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\weapon.cs",
-              "RelativeDocumentMoniker": "Assets\\weapon.cs",
-              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\weapon.cs",
-              "RelativeToolTip": "Assets\\weapon.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T18:46:49.881Z",
+              "WhenOpened": "2025-02-13T20:29:46.999Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "shotgun.cs",
-              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\shotgun.cs",
-              "RelativeDocumentMoniker": "Assets\\shotgun.cs",
-              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\shotgun.cs",
-              "RelativeToolTip": "Assets\\shotgun.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABoAAAAAAAAAA==",
+              "Title": "gameManager.cs",
+              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\script\\gameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\script\\gameManager.cs",
+              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\script\\gameManager.cs",
+              "RelativeToolTip": "Assets\\script\\gameManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T18:30:09.71Z",
+              "WhenOpened": "2025-02-13T20:29:22.759Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "gunHolder.cs",
-              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\player\\gunHolder.cs",
-              "RelativeDocumentMoniker": "Assets\\player\\gunHolder.cs",
-              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\player\\gunHolder.cs",
-              "RelativeToolTip": "Assets\\player\\gunHolder.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBAAAAAhAAAAAAAAAA==",
+              "Title": "playerAnim.cs",
+              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\script\\playerAnim.cs",
+              "RelativeDocumentMoniker": "Assets\\script\\playerAnim.cs",
+              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\script\\playerAnim.cs",
+              "RelativeToolTip": "Assets\\script\\playerAnim.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAkwIMAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T16:56:16.153Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-13T20:17:43.708Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "playerController.cs",
-              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\player\\playerController.cs",
-              "RelativeDocumentMoniker": "Assets\\player\\playerController.cs",
-              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\player\\playerController.cs",
-              "RelativeToolTip": "Assets\\player\\playerController.cs",
-              "ViewState": "AgIAAG4AAAAAAAAAAAAuwIIAAABAAAAAAAAAAA==",
+              "Title": "assets.cs",
+              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\script\\assets.cs",
+              "RelativeDocumentMoniker": "Assets\\script\\assets.cs",
+              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\script\\assets.cs",
+              "RelativeToolTip": "Assets\\script\\assets.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAgwDoAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T16:55:51.046Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-13T18:54:49.513Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "playerController.cs",
+              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\script\\playerController.cs",
+              "RelativeDocumentMoniker": "Assets\\script\\playerController.cs",
+              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf8\\Assets\\script\\playerController.cs",
+              "RelativeToolTip": "Assets\\script\\playerController.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAAD4v4kAAABiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T18:37:49.372Z"
             }
           ]
         }
