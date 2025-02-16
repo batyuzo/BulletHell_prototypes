@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class weapon : MonoBehaviour
@@ -9,7 +10,13 @@ public class weapon : MonoBehaviour
     public float[] handCloseOffset = new float[3];
     public float[] handFarOffset = new float[3];
     public float[] weaponOffset = new float[3];
-    public bool active;
+    public int magazine;
+    public int rarity;
+    public bool ranged;
+    public int damage;
+    public float projSpeed;
+    public float firerate, cooldown;
+
 
     public virtual void Fire()
     {
@@ -43,8 +50,10 @@ public class weapon : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
-        active = false;
+    }
 
-
+    public virtual void FixedUpdate()
+    {
+        if (cooldown > 0) { cooldown -= .1f; }
     }
 }

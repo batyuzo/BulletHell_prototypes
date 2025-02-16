@@ -31,7 +31,7 @@ public class gameManager : MonoBehaviour
         if (mapname == "practice")
         {
             //initplayers' skin will be controlled by passedData
-            initPlayers(new string[] { "void", null }, spawnPositions.prac_player, 200);
+            initPlayers(new string[] { "entity", null }, spawnPositions.prac_player, 200);
             weaponLoader.init(mapname);
         }
         else if (mapname == "ham_factory")
