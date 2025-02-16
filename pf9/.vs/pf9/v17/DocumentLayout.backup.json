@@ -1,0 +1,85 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|d:\\platformer\\wip_local\\bullethell_prototypes\\pf9\\assets\\weaponloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|solutionrelative:assets\\weaponloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\assets\\script\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\spawnPositions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|solutionrelative:Assets\\spawnPositions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "playerController.cs",
+              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\script\\playerController.cs",
+              "RelativeDocumentMoniker": "Assets\\script\\playerController.cs",
+              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\script\\playerController.cs",
+              "RelativeToolTip": "Assets\\script\\playerController.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAQwE4AAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-16T11:50:41.436Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "weaponLoader.cs",
+              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\weaponLoader.cs",
+              "RelativeDocumentMoniker": "Assets\\weaponLoader.cs",
+              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\weaponLoader.cs",
+              "RelativeToolTip": "Assets\\weaponLoader.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-16T10:11:40.862Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "spawnPositions.cs",
+              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\spawnPositions.cs",
+              "RelativeDocumentMoniker": "Assets\\spawnPositions.cs",
+              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\spawnPositions.cs",
+              "RelativeToolTip": "Assets\\spawnPositions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwB8AAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-16T09:40:09.344Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "gameManager.cs",
+              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\script\\gameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\script\\gameManager.cs",
+              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\script\\gameManager.cs",
+              "RelativeToolTip": "Assets\\script\\gameManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T18:07:04.484Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
