@@ -19,7 +19,9 @@ public class playerController : MonoBehaviour
     [SerializeField] Transform flip;
     [SerializeField] Transform head;
     [SerializeField] Transform body;
+    public gunHolder gunHolder;
     public GameObject assetHandler;
+  
 
     [Header("PlayerLogs")]
     public int jumpLeft;
@@ -79,7 +81,6 @@ public class playerController : MonoBehaviour
         gameObject.GetComponentInChildren<gunHolder>().equipped = null;
     }
 
-    
     public void Flip()
     {
 
@@ -112,21 +113,6 @@ public class playerController : MonoBehaviour
         else if (lookingRight && horizontal < 0) { forwardMotion = false; }
     }
 
-    private GameObject scanCheck()
-    {
-        GameObject obj = gameObject.GetComponentInChildren<scanner>().getEquippable();
-
-        if (obj != null)
-        {
-            Debug.Log("scanCheck true");
-            return obj;
-        }
-        else
-        {
-            Debug.Log("scanCheck false");
-            return null;
-        }
-    }
 
     //controls
     public void Move(InputAction.CallbackContext context)
@@ -165,11 +151,12 @@ public class playerController : MonoBehaviour
 
     public void Equip(InputAction.CallbackContext context)
     {
-        if (context.performed && scanCheck() != null)
+        if (context.performed)
         {
-            gameObject.GetComponentInChildren<gunHolder>().Equip();
+            gunHolder.Equip();
         }
 
+     
     }
 
     public void ChangeSkin(InputAction.CallbackContext context)
@@ -179,9 +166,11 @@ public class playerController : MonoBehaviour
 
     public void Drop(InputAction.CallbackContext context)
     {
-        Debug.Log(gameObject.name + " dropped");
+        if (context.performed)
+        {
+            gameObject.GetComponentInChildren<gunHolder>().Drop();
+        }
+
     }
 
 }
-
-

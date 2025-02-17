@@ -12,7 +12,9 @@ public class gunHolder : MonoBehaviour
     public float[] HFO = new float[3];//hand far offset
     public float[] WPO = new float[3];//weapon offset
 
-    public GameObject equipped;
+
+    public GameObject equipped = null;
+    public scanner scan;
 
     [Header("weapon script ref")]
     public weapon weaponScript;
@@ -116,12 +118,9 @@ public class gunHolder : MonoBehaviour
                 child.localPosition = new Vector3(HFO[0], HFO[1], 0);
                 child.localRotation = Quaternion.Euler(0, 0, HFO[2]);
             }
-            else if (child.CompareTag("weapon"))
-            {
-                child.localPosition = new Vector3(WPO[0], WPO[1], 0);
-                child.localRotation = Quaternion.Euler(0, 0, WPO[2]);
-            }
         }
+        equipped.transform.localPosition = new Vector3(WPO[0], WPO[1], 0);
+        equipped.transform.localRotation = Quaternion.Euler(0, 0, WPO[2]);
     }
 
 
@@ -149,34 +148,32 @@ public class gunHolder : MonoBehaviour
 
     public void Equip()
     {
+        GameObject toEquip = scan.getEquippable();
+        if (toEquip != null)
+        {
 
-        equipped = gameObject.GetComponentInChildren<scanner>().getEquippable();
-        //set parent
-        equipped.transform.SetParent(transform, false);
-        //set script reference from child
-        weaponScript = equipped.GetComponent<weapon>();
-        //prepare offsets
-        weaponScript.SetValues();
-        equipped.transform.localPosition = Vector3.zero;
-        equipped.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        //execute offsets
-        setOffset();
-        Debug.Log(WPO[0] + WPO[1] + WPO[2]);
+            Drop();
+            equipped = toEquip;
+            weaponScript = equipped.GetComponent<weapon>();
+            weaponScript.equip(this.gameObject);
+            weaponScript.SetValues();
+            equipped.transform.localPosition = Vector3.zero;
+            equipped.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            setOffset();
+        }
 
-    }
-
-
-
-    public void Throw()
-    {
-        weaponScript.Throw();
     }
 
     public void Drop()
     {
         //base for throw and forfeiting control overall
-        //clear parent
-        weaponScript.Drop();
+        if (equipped != null)
+        {
+            equipped.transform.SetParent(null);
+            scan.addDropped(equipped.GetComponent<Collider2D>());
+            equipped = null;
+        }
+
 
     }
 

@@ -31,11 +31,11 @@ public class shotgun : weapon
         handCloseOffset = new float[] { 0, 0, 53 };
         handFarOffset = new float[] { -0.863f, -0.162f, 0 };
         weaponOffset = new float[] { -0.446f, -0.061f, 0 };
-
     }
 
     private void Awake()
     {
+        gameObject.layer = 8;
         magazine = 7;
         rarity = 2;
         ranged = true;

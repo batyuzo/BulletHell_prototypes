@@ -30,26 +30,16 @@ public class weapon : MonoBehaviour
 
     public virtual void Throw()
     {
-        Drop();
-        coll.isTrigger = true;
-        transform.parent = null;
     }
 
     public virtual void SetValues()
     {
     }
 
-
-    public virtual void Drop()
+    public virtual void equip(GameObject parent)
     {
-        //drop weapon
-    }
-
-
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        coll = GetComponent<BoxCollider2D>();
+        transform.SetParent(parent.transform);
+        SetValues();
     }
 
     public virtual void FixedUpdate()

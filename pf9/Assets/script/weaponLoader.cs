@@ -10,8 +10,8 @@ public class weaponLoader : MonoBehaviour
 
     private void mirror(GameObject weapon, Vector2 spawnAt)
     {
-        Instantiate(weapon, spawnAt, Quaternion.Euler(0, 180, 0));
-        Instantiate(weapon, new Vector2(-spawnAt.x, spawnAt.y), Quaternion.Euler(0, 0, 0));
+        Instantiate(weapon, spawnAt, Quaternion.Euler(0, 180, 0)).name = "shotgun1";
+        Instantiate(weapon, new Vector2(-spawnAt.x, spawnAt.y), Quaternion.Euler(0, 0, 0)).name="shotgun2";
     }
 
     public void init(string mapname)
