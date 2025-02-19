@@ -3,15 +3,27 @@
   "WorkspaceRootPath": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|d:\\platformer\\wip_local\\bullethell_prototypes\\pf9\\assets\\script\\maploader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\maploader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|d:\\platformer\\wip_local\\bullethell_prototypes\\pf9\\assets\\script\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|d:\\platformer\\wip_local\\bullethell_prototypes\\pf9\\assets\\script\\weapons\\shotgun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\weapons\\shotgun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|d:\\platformer\\wip_local\\bullethell_prototypes\\pf9\\assets\\script\\gunholder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\gunholder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|d:\\platformer\\wip_local\\bullethell_prototypes\\pf9\\assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|d:\\platformer\\wip_local\\bullethell_prototypes\\pf9\\assets\\script\\healthbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\assets\\script\\maploader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\maploader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\assets\\script\\healthbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5F2B5B90-E0A8-2EDA-FB5F-EABD99732264}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\healthbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -27,19 +39,57 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "mapLoader.cs",
-              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\script\\mapLoader.cs",
-              "RelativeDocumentMoniker": "Assets\\script\\mapLoader.cs",
-              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\script\\mapLoader.cs",
-              "RelativeToolTip": "Assets\\script\\mapLoader.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAQwDwAAAAIAAAAAAAAAA==",
+              "Title": "weapon.cs",
+              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\script\\weapon.cs",
+              "RelativeDocumentMoniker": "Assets\\script\\weapon.cs",
+              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\script\\weapon.cs",
+              "RelativeToolTip": "Assets\\script\\weapon.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-19T21:09:24.59Z",
+              "WhenOpened": "2025-02-19T21:39:17.67Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "shotgun.cs",
+              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\script\\weapons\\shotgun.cs",
+              "RelativeDocumentMoniker": "Assets\\script\\weapons\\shotgun.cs",
+              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\script\\weapons\\shotgun.cs",
+              "RelativeToolTip": "Assets\\script\\weapons\\shotgun.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-19T21:37:51.331Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "gunHolder.cs",
+              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\script\\gunHolder.cs",
+              "RelativeDocumentMoniker": "Assets\\script\\gunHolder.cs",
+              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\script\\gunHolder.cs",
+              "RelativeToolTip": "Assets\\script\\gunHolder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-19T21:34:45.324Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "mapLoader.cs",
+              "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\script\\mapLoader.cs",
+              "RelativeDocumentMoniker": "Assets\\script\\mapLoader.cs",
+              "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\script\\mapLoader.cs",
+              "RelativeToolTip": "Assets\\script\\mapLoader.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAMBcwDwAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-19T21:09:24.59Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "healthbar.cs",
               "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\script\\healthbar.cs",
               "RelativeDocumentMoniker": "Assets\\script\\healthbar.cs",
@@ -47,18 +97,17 @@
               "RelativeToolTip": "Assets\\script\\healthbar.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-19T16:36:43.129Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-19T16:36:43.129Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "gameManager.cs",
               "DocumentMoniker": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\script\\gameManager.cs",
               "RelativeDocumentMoniker": "Assets\\script\\gameManager.cs",
               "ToolTip": "D:\\platformer\\wip_local\\BulletHell_prototypes\\pf9\\Assets\\script\\gameManager.cs",
               "RelativeToolTip": "Assets\\script\\gameManager.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB0AAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAIBJwC0AAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-18T20:12:56.485Z",
               "EditorCaption": ""

@@ -43,7 +43,7 @@ public class gameManager : MonoBehaviour
         }
         else if (mapname == "jap")
         {
-            initPlayers(new string[] { "samurai", null }, spawnPositions.jap_player, 200);
+            initPlayers(new string[] { "rogue", null }, spawnPositions.jap_player, 200);
             weaponLoader.init(mapname);
         }
 

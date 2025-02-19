@@ -39,8 +39,8 @@ public class shotgun : weapon
         magazine = 7;
         rarity = 2;
         ranged = true;
-        damage = 15;//this value is passed to projectiles
-        firerate = 0.75f;//this is for math only
+        damage = 15;
+        firerate = 0.75f;
         projSpeed = .85f;
     }
 }

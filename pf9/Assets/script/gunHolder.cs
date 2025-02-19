@@ -155,7 +155,7 @@ public class gunHolder : MonoBehaviour
             Drop();
             equipped = toEquip;
             weaponScript = equipped.GetComponent<weapon>();
-            weaponScript.equip(this.gameObject);
+            weaponScript.equip(gameObject);
             weaponScript.SetValues();
             equipped.transform.localPosition = Vector3.zero;
             equipped.transform.localRotation = Quaternion.Euler(0, 0, 0);

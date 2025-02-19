@@ -16,6 +16,9 @@ public class weapon : MonoBehaviour
     public int damage;
     public float projSpeed;
     public float firerate, cooldown;
+    //cooldown = 1/firerate
+    //firerate = [weapon specific]
+    //cooldown is always 1 second.
 
 
     public virtual void Fire()
@@ -44,6 +47,6 @@ public class weapon : MonoBehaviour
 
     public virtual void FixedUpdate()
     {
-        if (cooldown > 0) { cooldown -= .1f; }
+        if (cooldown > 0) { cooldown -= .016f; }
     }
 }
