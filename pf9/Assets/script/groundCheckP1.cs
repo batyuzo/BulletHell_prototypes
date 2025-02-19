@@ -16,7 +16,7 @@ public class groundCheckP1 : MonoBehaviour {
     void Update() {
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("ground")) { grounded=true; }
     }

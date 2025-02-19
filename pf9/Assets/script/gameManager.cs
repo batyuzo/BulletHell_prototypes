@@ -41,7 +41,7 @@ public class gameManager : MonoBehaviour
         }
         else if (mapname == "medieval_japan")
         {
-            initPlayers(new string[] { "rogue", null }, spawnPositions.jap_player, 200);
+            initPlayers(new string[] { "samurai", null }, spawnPositions.jap_player, 200);
             weaponLoader.init(mapname);
         }
 
@@ -63,6 +63,6 @@ public class gameManager : MonoBehaviour
     private void Awake()
     {
         baseSettings();
-        initTest("practice");
+        initTest("medieval_japan");
     }
 }

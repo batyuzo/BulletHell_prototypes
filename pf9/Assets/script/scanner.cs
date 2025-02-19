@@ -22,12 +22,13 @@ public class scanner : MonoBehaviour
     public GameObject getEquippable()
     {
         Collider2D toEquip = null;
-        if (collisionWith != null)
+        if (collisionWith.Count>0)
         {
             toEquip = collisionWith[0];
             collisionWith.RemoveAt(0);
+            return toEquip.gameObject;
         }
-        return toEquip.gameObject;
+        return null;
     }
 
     public void addDropped(Collider2D dropped)
