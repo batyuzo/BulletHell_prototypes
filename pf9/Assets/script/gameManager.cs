@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class gameManager : MonoBehaviour
 {
-    //i'm using unity UI for this so we don't have to find every single non-changing gameobject
     [Header("refs")]
-    mapLoader mapLoader;
-    weaponLoader weaponLoader;
-    spawnPositions spawnPositions;
+    public mapLoader mapLoader;
+    public weaponLoader weaponLoader;
+    public spawnPositions spawnPositions;
+    public healthbar healthbarP1;
     //passedData passedData;
 
     public GameObject player1;
@@ -28,23 +28,24 @@ public class gameManager : MonoBehaviour
     public void initTest(string mapname)
     {
         mapLoader.loadMap(mapname);
-        if (mapname == "practice")
+        healthbarP1.init("p1");
+
+        if (mapname == "prac")
         {
             //initplayers' skin will be controlled by passedData
             initPlayers(new string[] { "entity", null }, spawnPositions.prac_player, 200);
             weaponLoader.init(mapname);
         }
-        else if (mapname == "ham_factory")
+        else if (mapname == "ham")
         {
             initPlayers(new string[] { "butcher", null }, spawnPositions.ham_player, 200);
             weaponLoader.init(mapname);
         }
-        else if (mapname == "medieval_japan")
+        else if (mapname == "jap")
         {
             initPlayers(new string[] { "samurai", null }, spawnPositions.jap_player, 200);
             weaponLoader.init(mapname);
         }
-
 
 
     }
@@ -52,9 +53,6 @@ public class gameManager : MonoBehaviour
     private void baseSettings()
     {
         Cursor.visible = false;
-        mapLoader = GetComponent<mapLoader>();
-        weaponLoader = GetComponent<weaponLoader>();
-        spawnPositions = GetComponent<spawnPositions>();
         weaponLoader.spawnPositions = spawnPositions;
     }
 
@@ -63,6 +61,6 @@ public class gameManager : MonoBehaviour
     private void Awake()
     {
         baseSettings();
-        initTest("medieval_japan");
+        initTest("jap");
     }
 }

@@ -10,6 +10,9 @@ TagManager:
   - mapLoader
   - gameManager
   - lightsMain
+  - ladder
+  - death
+  - healthbar
   layers:
   - Default
   - TransparentFX
@@ -22,8 +25,8 @@ TagManager:
   - Weapon
   - Inactive
   - Ground2
-  - 
-  - 
+  - Ladder
+  - Death
   - 
   - 
   - 

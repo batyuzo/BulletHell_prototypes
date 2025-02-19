@@ -21,7 +21,7 @@ public class playerController : MonoBehaviour
     [SerializeField] Transform body;
     public gunHolder gunHolder;
     public GameObject assetHandler;
-  
+
 
     [Header("PlayerLogs")]
     public int jumpLeft;
@@ -156,7 +156,7 @@ public class playerController : MonoBehaviour
             gunHolder.Equip();
         }
 
-     
+
     }
 
     public void ChangeSkin(InputAction.CallbackContext context)
@@ -171,6 +171,14 @@ public class playerController : MonoBehaviour
             gameObject.GetComponentInChildren<gunHolder>().Drop();
         }
 
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("death"))
+        {
+            GetComponent<playerHealth>().death();
+        }
     }
 
 }

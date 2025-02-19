@@ -10,7 +10,7 @@ public class mapLoader : MonoBehaviour
     public Light2D global;
     public Light2D emission;
     public string activeMap;
-    public int current = 0;
+    public int current1, current2;
     public int i = 0;
     public int divide;
     public GameObject a1, a2, b1, b2, c1, c2, c3;
@@ -41,24 +41,25 @@ public class mapLoader : MonoBehaviour
 
 
     [Header("medieval_japan_refs")]
-    [SerializeField] Sprite jap_A1;
     [SerializeField] Sprite jap_A2;
     [SerializeField] Sprite jap_B1;
     [SerializeField] Sprite jap_B2;
     [SerializeField] Sprite jap_C1;
     [SerializeField] Sprite jap_C2;
-    [SerializeField] Sprite jap_emission;
     public PolygonCollider2D jap_coll;
     public PolygonCollider2D jap_parkour;
     public Color jap_ecolor;
+    public Sprite[] jap_A1;
+    public Sprite[] jap_emission;
 
 
 
     public bool loadMap(string mapName)
     {
         i = 0;
-        current = 0;
-        if (mapName == "ham_factory")
+        current1 = 0;
+        current2 = 0;
+        if (mapName == "ham")
         {
             //level layers
             layerUpdate("A1", a1, ham_A1);
@@ -78,10 +79,10 @@ public class mapLoader : MonoBehaviour
             emission.lightCookieSprite = ham_emission;
 
             //active map
-            activeMap = "ham_factory";
+            activeMap = "ham";
             return true;
         }
-        else if (mapName == "practice")
+        else if (mapName == "prac")
         {
             //level layers
             layerUpdate("A1", a1, prac_A1);
@@ -99,13 +100,12 @@ public class mapLoader : MonoBehaviour
             emission.color = prac_ecolor;
 
             //active map
-            activeMap = "practice";
+            activeMap = "prac";
             return true;
         }
-        else if (mapName == "medieval_japan")
+        else if (mapName == "jap")
         {
             //level layers
-            layerUpdate("A1", a1, jap_A1);
             layerUpdate("A2", a2, jap_A2);
             layerUpdate("B1", b1, jap_B1);
             layerUpdate("B2", b2, jap_B2);
@@ -119,10 +119,10 @@ public class mapLoader : MonoBehaviour
             //lights
             emission.intensity = 1;
             emission.color = jap_ecolor;
-            emission.lightCookieSprite = jap_emission;
+
 
             //active map
-            activeMap = "medieval_japan";
+            activeMap = "jap";
             return true;
         }
         else
@@ -138,7 +138,7 @@ public class mapLoader : MonoBehaviour
 
     private void collUpdate(string mapName)
     {
-        if (mapName == "ham_factory")
+        if (mapName == "ham")
         {
             ham_coll.enabled = true;
             prac_coll.enabled = false;
@@ -146,14 +146,14 @@ public class mapLoader : MonoBehaviour
             jap_coll.enabled = false;
 
         }
-        else if (mapName == "practice")
+        else if (mapName == "prac")
         {
             ham_coll.enabled = false;
             prac_coll.enabled = true;
             jap_parkour.enabled = false;
             jap_coll.enabled = false;
         }
-        else if (mapName == "medieval_japan")
+        else if (mapName == "jap")
         {
             ham_coll.enabled = false;
             prac_coll.enabled = false;
@@ -164,20 +164,42 @@ public class mapLoader : MonoBehaviour
 
     private void layerAnim(int frame)
     {
-        if (frame % 4 == 0 && current < 5)
-        {
-            current++;
-        }
-        else if (frame % 4 == 0)
-        {
-            current = 0;
-        }
 
-        if (activeMap == "practice")
+
+        if (activeMap == "prac")
         {
-            layerUpdate("C1", c1, prac_C1[current]);
-            layerUpdate("C2", c2, prac_C2[current]);
-            emission.lightCookieSprite = prac_emission[current];
+            if (frame % 4 == 0 && current1 < 5)
+            {
+                current1++;
+            }
+            else if (frame % 4 == 0)
+            {
+                current1 = 0;
+            }
+            layerUpdate("C1", c1, prac_C1[current1]);
+            layerUpdate("C2", c2, prac_C2[current1]);
+            emission.lightCookieSprite = prac_emission[current1];
+        }
+        else if (activeMap == "jap")
+        {
+            if (frame % 4 == 0 && current1 < jap_A1.Length - 1)
+            {
+                current1++;
+            }
+            else if (frame % 4 == 0)
+            {
+                current1 = 0;
+            }
+            if (frame % 4 == 0 && current2 < jap_emission.Length - 1)
+            {
+                current2++;
+            }
+            else if (frame % 4 == 0)
+            {
+                current2 = 0;
+            }
+            layerUpdate("A1", a1, jap_A1[current1]);
+            emission.lightCookieSprite = jap_emission[current2];
         }
     }
 
