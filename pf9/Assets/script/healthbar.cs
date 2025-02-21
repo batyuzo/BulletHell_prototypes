@@ -32,7 +32,7 @@ public class healthbar : MonoBehaviour
     private void healthUpdate(string player)
     {
         float scale = healthScript.currentHealth / 200;//this gives us the health we can use for scale
-        healthObj.transform.localScale = new Vector2(scale*.85f, 1);
+        healthObj.transform.localScale = new Vector2(scale*0.86f, 1);
         transform.localPosition = position;
     }
 

@@ -23,7 +23,7 @@ public class shotgun : weapon
 
     public override void AltFire()
     {
-        GameObject.Find("gameManager").GetComponent<gameManager>().initTest("ham_factory");
+        GameObject.Find("gameManager").GetComponent<gameManager>().initTest("ham");
     }
 
     public override void SetValues()

@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class weapon : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    public BoxCollider2D coll;
     public float[] handCloseOffset = new float[3];
     public float[] handFarOffset = new float[3];
     public float[] weaponOffset = new float[3];
@@ -16,9 +14,8 @@ public class weapon : MonoBehaviour
     public int damage;
     public float projSpeed;
     public float firerate, cooldown;
-    //cooldown = 1/firerate
+    //cooldown = 1/firerate -> firerate is given in shots per second
     //firerate = [weapon specific]
-    //cooldown is always 1 second.
 
 
     public virtual void Fire()
