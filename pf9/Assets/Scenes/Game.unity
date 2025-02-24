@@ -1632,8 +1632,8 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 0
+    height: 0
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -2369,7 +2369,7 @@ SpriteRenderer:
   m_SortingLayerID: -1744296333
   m_SortingLayer: -9
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 25414e68b85abe049813ef5efd911e04, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2377,7 +2377,7 @@ SpriteRenderer:
   m_Size: {x: 30, y: 16.875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1022273501
