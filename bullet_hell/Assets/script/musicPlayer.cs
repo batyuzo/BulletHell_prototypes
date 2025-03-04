@@ -65,9 +65,9 @@ public class musicPlayer : MonoBehaviour
 
         else if (scenario == "fight")
         {
-            int current = UnityEngine.Random.Range(0, 2);
+            int current = UnityEngine.Random.Range(0, 3);
             //random if p1 or p2 every time
-            if (UnityEngine.Random.Range(0, 1) == 1 && packP1 != null)
+            if (UnityEngine.Random.Range(0, 2) == 1 && packP1 != null)
             {
                 //which music from pack1
                 activeCover = packP1.coverart;
@@ -112,10 +112,10 @@ public class musicPlayer : MonoBehaviour
         else if (scenario == "menu")
         {
             //random track number
-            int current = UnityEngine.Random.Range(0, 1);
+            int current = UnityEngine.Random.Range(0, 3);
 
             //random player number
-            if (UnityEngine.Random.Range(0, 1) == 1 && packP1 != null)
+            if (UnityEngine.Random.Range(0, 2) == 1 && packP1 != null)
             {
                 //random from pack1
                 activeCover = packP1.coverart;

@@ -18,7 +18,9 @@ public class passedData : MonoBehaviour
 
     void Awake()
     {
-        if (GameObject.FindGameObjectsWithTag("gameManager").Length > 1)
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("passedData");
+
+        if (objs.Length > 1)
         {
             Destroy(this.gameObject);
         }

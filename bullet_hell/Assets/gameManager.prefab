@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 653852245482239009}
   - component: {fileID: 4546172377348861396}
   - component: {fileID: 1122865906968238204}
-  - component: {fileID: 4204181264905087310}
   m_Layer: 0
   m_Name: gameManager
   m_TagString: gameManager
@@ -54,15 +53,16 @@ MonoBehaviour:
   healthbarP2: {fileID: 0}
   player1: {fileID: 0}
   player2: {fileID: 0}
-  uiHandler: {fileID: 0}
+  fightUi: {fileID: 0}
   menuScript: {fileID: 0}
   musicPlayer: {fileID: 0}
   mapLoader: {fileID: 3303334643435291021}
-  passedData: {fileID: 4204181264905087310}
+  passedData: {fileID: 0}
   weaponLoader: {fileID: 653852245482239009}
   spawnPositions: {fileID: 6816570369336166462}
   playerAssets: {fileID: 4546172377348861396}
   musicAssets: {fileID: 1122865906968238204}
+  firstLaunch: 0
 --- !u!114 &3303334643435291021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,25 +316,3 @@ MonoBehaviour:
   crt2Kit: {fileID: 2481365549410795173, guid: 7ca48d9eb16a3da418ff189a4d6e3945, type: 3}
   hellstarKit: {fileID: 2481365549410795173, guid: 741e71d0f6ca62341bd2aa0d307a1fae, type: 3}
   muteKit: {fileID: 2481365549410795173, guid: eb3b494666bcd46408438b26496330a7, type: 3}
---- !u!114 &4204181264905087310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6425611289550705658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a50b3ccf451864f45834e6147e1f22db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  test: test
-  p1Name: BH1
-  p2Name: BH2
-  p1Kit: {fileID: 2481365549410795173, guid: 56f9e0a19ae6dec46baa5a5021b37dd3, type: 3}
-  p2Kit: {fileID: 2481365549410795173, guid: 56f9e0a19ae6dec46baa5a5021b37dd3, type: 3}
-  p1Skin: knight
-  p2Skin: knight
-  p1Rank: 0
-  p2Rank: 0
-  map: prac

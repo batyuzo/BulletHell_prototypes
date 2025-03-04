@@ -66,26 +66,27 @@ public class mapLoader : MonoBehaviour
         global = fightRefs.global;
 
         prac_coll = fightRefs.prac_coll;
-        ham_coll= fightRefs.ham_coll;
+        ham_coll = fightRefs.ham_coll;
         jap_coll = fightRefs.jap_coll;
         jap_parkour = fightRefs.jap_parkour;
-        
+
     }
     public bool loadMap(string mapName)
     {
+        unloadMap();
         i = 0;
         current1 = 0;
         current2 = 0;
         if (mapName == "ham")
         {
             //level layers
-            layerUpdate("A1", a1, ham_A1);
-            layerUpdate("A2", a2, ham_A2);
-            layerUpdate("B1", b1, ham_B1);
-            layerUpdate("B2", b2, ham_B2);
-            layerUpdate("C1", c1, ham_C1);
-            layerUpdate("C2", c2, ham_C2);
-            layerUpdate("C3", c3, ham_C3);
+            layerUpdate(a1, ham_A1);
+            layerUpdate(a2, ham_A2);
+            layerUpdate(b1, ham_B1);
+            layerUpdate(b2, ham_B2);
+            layerUpdate(c1, ham_C1);
+            layerUpdate(c2, ham_C2);
+            layerUpdate(c3, ham_C3);
 
             //collision
             collUpdate(mapName);
@@ -102,12 +103,12 @@ public class mapLoader : MonoBehaviour
         else if (mapName == "prac")
         {
             //level layers
-            layerUpdate("A1", a1, prac_A1);
-            layerUpdate("A2", a2, prac_A2);
-            layerUpdate("B1", b1, prac_B1);
-            layerUpdate("B2", b2, prac_B2);
+            layerUpdate( a1, prac_A1);
+            layerUpdate( a2, prac_A2);
+            layerUpdate( b1, prac_B1);
+            layerUpdate( b2, prac_B2);
             //c1,c2 are managed by a per-frame basis
-            layerUpdate("C3", c3, null);
+            layerUpdate(c3, null);
 
             //collision
             collUpdate(mapName);
@@ -123,12 +124,12 @@ public class mapLoader : MonoBehaviour
         else if (mapName == "jap")
         {
             //level layers
-            layerUpdate("A2", a2, jap_A2);
-            layerUpdate("B1", b1, jap_B1);
-            layerUpdate("B2", b2, jap_B2);
-            layerUpdate("C1", c1, jap_C1);
-            layerUpdate("C2", c2, jap_C2);
-            layerUpdate("C3", c3, null);
+            layerUpdate(a2, jap_A2);
+            layerUpdate(b1, jap_B1);
+            layerUpdate(b2, jap_B2);
+            layerUpdate(c1, jap_C1);
+            layerUpdate(c2, jap_C2);
+            layerUpdate(c3, null);
 
             //collision
             collUpdate(mapName);
@@ -147,7 +148,18 @@ public class mapLoader : MonoBehaviour
         }
     }
 
-    private void layerUpdate(string name, GameObject obj, Sprite toLoad)
+    private void unloadMap()
+    {
+        layerUpdate(a1, null);
+        layerUpdate(a2, null);
+        layerUpdate(b1, null);
+        layerUpdate(b2, null);
+        layerUpdate(c1, null);
+        layerUpdate(c2, null);
+        layerUpdate(c3, null);
+    }
+
+    private void layerUpdate(GameObject obj, Sprite toLoad)
     {
         obj.GetComponent<SpriteRenderer>().sprite = toLoad;
     }
@@ -191,8 +203,8 @@ public class mapLoader : MonoBehaviour
             {
                 current1 = 0;
             }
-            layerUpdate("C1", c1, prac_C1[current1]);
-            layerUpdate("C2", c2, prac_C2[current1]);
+            layerUpdate(c1, prac_C1[current1]);
+            layerUpdate(c2, prac_C2[current1]);
             emission.lightCookieSprite = prac_emission[current1];
         }
         else if (activeMap == "jap")
@@ -213,7 +225,7 @@ public class mapLoader : MonoBehaviour
             {
                 current2 = 0;
             }
-            layerUpdate("A1", a1, jap_A1[current1]);
+            layerUpdate(a1, jap_A1[current1]);
             emission.lightCookieSprite = jap_emission[current2];
         }
     }

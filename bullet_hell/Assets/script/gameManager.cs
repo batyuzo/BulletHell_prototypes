@@ -25,10 +25,10 @@ public class gameManager : MonoBehaviour
 
     [Header("common refs")]//fetched on both
     public musicPlayer musicPlayer;
+    public passedData passedData;
 
     [Header("permanent refs")]//fetched on awake, or hardcoded from UI
     public mapLoader mapLoader;
-    public passedData passedData;
     public weaponLoader weaponLoader;
     public spawnPositions spawnPositions;
     public playerAssets playerAssets;
@@ -39,35 +39,29 @@ public class gameManager : MonoBehaviour
 
     private void Awake()
     {
-        firstLaunch = true;
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode arg1)
-    {
-
-        Debug.Log("scene loaded:" + scene.name);
-
-        if (scene.name == "Menu")
+        if (SceneManager.GetActiveScene().name == "menu")
         {
             initMenu();
         }
-        else if (scene.name == "Game")
+        else if (SceneManager.GetActiveScene().name == "fight")
         {
             initFight();
         }
-
     }
+
+
 
     public void initMenu()
     {
-        setRefs("Menu");
+        setRefs("menu");
         menuScript.init(passedData);
+        musicPlayer.init(passedData.p1Kit, passedData.p2Kit, 0.5f, "menu");
+        Debug.Log(passedData.p1Kit.name);
     }
 
     public void initFight()
     {
-        setRefs("Fight");
+        setRefs("fight");
         mapLoader.loadMap(passedData.map);
         weaponLoader.spawnPositions = spawnPositions;
         musicPlayer.init(passedData.p1Kit, passedData.p2Kit, 0.5f, "fight");
@@ -101,13 +95,16 @@ public class gameManager : MonoBehaviour
     private void setRefs(string scene)//find called once
     {
         unset();
-        if (scene == "Menu")//menu
+        passedData = GameObject.FindGameObjectWithTag("passedData").GetComponent<passedData>();
+        if (scene == "menu")//menu
         {
             menuRefs menuRefs = GameObject.FindGameObjectWithTag("refHandler").GetComponent<menuRefs>();
             //initMenu fetch
             menuScript = menuRefs.menuScript;
+            musicPlayer = menuRefs.musicPlayer;
+
         }
-        else//fight
+        else if(scene=="fight")//fight
         {
             fightRefs fightRefs = GameObject.FindGameObjectWithTag("refHandler").GetComponent<fightRefs>();
             //initFight fetch

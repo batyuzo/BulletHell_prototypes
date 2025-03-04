@@ -12,6 +12,7 @@ public class menu : MonoBehaviour
     string player1;
     string player2;
     public musicPlayer musicPlayer;
+    public musicAssets musicAssets;
 
     public List<string> maps;
 
@@ -28,9 +29,8 @@ public class menu : MonoBehaviour
 
     public void matchmake()
     {
-        passedData.map = maps[Random.Range(0, maps.Count)];
-        SceneManager.LoadScene("Game");
-
+        passedData.map = maps[Random.Range(0, 3)];
+        SceneManager.LoadScene("fight");
     }
 
     public void LoginPlayer1()
@@ -40,7 +40,6 @@ public class menu : MonoBehaviour
         //set player rank here
         passedData.p1Name = "batyuzo";
         passedData.p1Skin = "bull";
-        
     }
 
     public void LoginPlayer2()
