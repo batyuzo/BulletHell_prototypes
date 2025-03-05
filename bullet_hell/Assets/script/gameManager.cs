@@ -49,12 +49,10 @@ public class gameManager : MonoBehaviour
         }
     }
 
-
-
     public void initMenu()
     {
         setRefs("menu");
-        menuScript.init(passedData);
+        menuScript.init(passedData, musicPlayer, musicAssets, playerAssets);
         musicPlayer.init(passedData.p1Kit, passedData.p2Kit, 0.5f, "menu");
         Debug.Log(passedData.p1Kit.name);
     }

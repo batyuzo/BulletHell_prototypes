@@ -103,10 +103,10 @@ public class mapLoader : MonoBehaviour
         else if (mapName == "prac")
         {
             //level layers
-            layerUpdate( a1, prac_A1);
-            layerUpdate( a2, prac_A2);
-            layerUpdate( b1, prac_B1);
-            layerUpdate( b2, prac_B2);
+            layerUpdate(a1, prac_A1);
+            layerUpdate(a2, prac_A2);
+            layerUpdate(b1, prac_B1);
+            layerUpdate(b2, prac_B2);
             //c1,c2 are managed by a per-frame basis
             layerUpdate(c3, null);
 
