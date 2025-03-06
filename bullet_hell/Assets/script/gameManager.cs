@@ -55,7 +55,6 @@ public class gameManager : MonoBehaviour
         passedData.defaults(musicAssets.crt1Kit, "knight", playerAssets.knight_desc, musicAssets.crt1Kit.desc, "prac");
         menuScript.init(passedData, musicPlayer, musicAssets, playerAssets);
         musicPlayer.init(passedData.p1Kit, passedData.p2Kit, 0.5f, "menu");
-        Debug.Log(passedData.p1Kit.name);
     }
 
     public void initFight()

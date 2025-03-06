@@ -89,7 +89,11 @@ public class menu : MonoBehaviour
         //database here
         passedData.p1Name = "batyuzo";
         passedData.p1Skin = "bull";
+        passedData.p1SkinDesc = playerAssets.bull_desc;
         passedData.p1Rank = "200";
+        passedData.p1Kit = musicAssets.hellstarKit;
+        passedData.p1KitDesc = musicAssets.hellstarKit.desc;
+        musicPlayer.changePack(passedData.p1Kit, "p1");
         btn_player1.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
         playerbodyP1.skinSwitch(playerAssets, passedData.p1Skin);
 
@@ -105,7 +109,11 @@ public class menu : MonoBehaviour
         //database here
         passedData.p2Name = "girmany";
         passedData.p2Skin = "rogue";
-        passedData.p1Rank = "130";
+        passedData.p2SkinDesc = playerAssets.rogue_desc;
+        passedData.p2Kit = musicAssets.muteKit;
+        passedData.p2KitDesc = musicAssets.muteKit.desc;
+        musicPlayer.changePack(passedData.p2Kit, "p2");
+        passedData.p2Rank = "130";
         btn_player2.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
         playerbodyP2.skinSwitch(playerAssets, passedData.p2Skin);
 

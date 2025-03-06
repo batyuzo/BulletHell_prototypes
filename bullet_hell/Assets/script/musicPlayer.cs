@@ -25,10 +25,10 @@ public class musicPlayer : MonoBehaviour
         playMusic(scenario);
     }
 
-    public void changePack(musicKit newPack, int pNum)
+    public void changePack(musicKit newPack, string player)
     {
         //pnum1 -> player1
-        if (pNum == 1)
+        if (player=="p1")
         {
             packP1 = newPack;
         }
