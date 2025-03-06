@@ -72,7 +72,7 @@ public class playerController : MonoBehaviour
         gameObject.GetComponentInChildren<gunHolder>().equipped = null;
         gameObject.GetComponentInChildren<gunHolder>().bareHandsOffset();
 
-   
+
     }
 
     public void Flip()

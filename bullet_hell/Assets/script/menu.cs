@@ -32,31 +32,34 @@ public class menu : MonoBehaviour
     public GameObject uiCustomize;
     public GameObject uiSettings;
 
-    [Header("playerbody refs")]
+    [Header("playerbody menu refs")]
     public displaySkin playerbodyP1;
     public displaySkin playerbodyP2;
-    public displaySkin playerbodyInv;
 
     [Header("button refs menu")]
     public UnityEngine.UI.Button btn_fight;
     public UnityEngine.UI.Button btn_player1;//login + customize
     public UnityEngine.UI.Button btn_player2;//login + customize
-    public UnityEngine.UI.Button btn_settings;
-    public UnityEngine.UI.Button btn_credits;
-    public UnityEngine.UI.Button btn_quit;
 
-    [Header("button refs menu")]
-    public UnityEngine.UI.Button btn_reshuffle;//calls "shuffle" here
-    public UnityEngine.UI.Button btn_menu;//back to menu
+    [Header("Customize refs")]
+    //middle part
+    public displaySkin skinInv;
+    public TextMeshProUGUI nameInv;
+    public SpriteRenderer kitInv;
+    //left part
+    public tileManager tiles;
+    //right part
+    public TextMeshProUGUI skinDesc;
+    public TextMeshProUGUI kitDesc;
 
-  
+
     public void init(passedData passedDataRef, musicPlayer musicPlayerRef, musicAssets musicAssetsRef, playerAssets playerAssetsRef)
     {
+        menuScreen();
         passedData = passedDataRef;
         musicPlayer = musicPlayerRef;
         musicAssets = musicAssetsRef;
         playerAssets = playerAssetsRef;
-        menuScreen();
     }
 
     //------BUTTONS FUNCTIONALITY-------
@@ -68,7 +71,6 @@ public class menu : MonoBehaviour
         uiSettings.SetActive(false);
         //change background
         //update gameobjects
-
     }
 
     public void fight()//btn_fight
@@ -90,6 +92,7 @@ public class menu : MonoBehaviour
         passedData.p1Rank = "200";
         btn_player1.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
         playerbodyP1.skinSwitch(playerAssets, passedData.p1Skin);
+
     }
 
     public void LoginPlayer2()//btn_player1
@@ -119,17 +122,79 @@ public class menu : MonoBehaviour
         uiMenu.SetActive(false);
         uiCustomize.SetActive(true);
         uiSettings.SetActive(false);
-        playerbodyInv.skinSwitch(playerAssets, passedData.p1Skin);
         //change background
         //enable and update gameobjects
+        customUpdate(player);
+    }
+
+    public void customUpdate(string player)
+    {
         if (player == "p1")
         {
+            skinInv.skinSwitch(playerAssets, passedData.p1Skin);
+            nameInv.text = passedData.p1Name;
+            kitInv.sprite = passedData.p1Kit.coverart;
+            skinDesc.text = passedData.p1SkinDesc;
+            kitDesc.text = passedData.p1KitDesc;
+        }
+        else if (player == "p2")
+        {
+            skinInv.skinSwitch(playerAssets, passedData.p2Skin);
+            nameInv.text = passedData.p2Name;
+            kitInv.sprite = passedData.p2Kit.coverart;
+            skinDesc.text = passedData.p2SkinDesc;
+            kitDesc.text = passedData.p2KitDesc;
+        }
+    }
+
+    public void skinTile(string player, string skin)
+    {
+        if (player == "p1")
+        {
+            passedData.p1Skin = skin;
+            passedData.p1SkinDesc = getSkinDesc(skin);
 
         }
         else if (player == "p2")
         {
-
+            passedData.p2Skin = skin;
+            passedData.p2SkinDesc = getSkinDesc(skin);
         }
+        customUpdate(player);
+    }
+
+    public string getSkinDesc(string skin)
+    {
+        if (skin == "bull")
+        {
+            return playerAssets.bull_desc;
+        }
+        else if (skin == "butcher")
+        {
+            return playerAssets.butcher_desc;
+        }
+        else if (skin == "knight")
+        {
+            return playerAssets.knight_desc;
+        }
+        else if (skin == "entity")
+        {
+            return playerAssets.entity_desc;
+        }
+        else if (skin == "rogue")
+        {
+            return playerAssets.rogue_desc;
+        }
+        else if (skin == "samurai")
+        {
+            return playerAssets.samurai_desc;
+        }
+        else return null;
+    }
+
+    public void musicTile(string player, string kit)
+    {
+
     }
 
     public void reshuffle()//btn_reshuffle

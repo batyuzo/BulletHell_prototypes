@@ -58,3 +58,5 @@ MonoBehaviour:
   menu2: {fileID: 8300000, guid: 3aaf55d8a6a600b4aa3ab627c39220bf, type: 3}
   titleMVP: RED RAW AGAINST THE GRAIN
   MVP: {fileID: 8300000, guid: e4b8ecd79415d824db3131ca4fba1ece, type: 3}
+  desc: Adjust your heart rate to the beat, and you are guaranteed to see things
+    in slow motion. Use your time gains, practice makes perfect.

@@ -34,4 +34,6 @@ public class musicKit : MonoBehaviour
     public string titleMVP;
     public AudioClip MVP;
 
+    [Header("Description")]
+    public string desc;
 }

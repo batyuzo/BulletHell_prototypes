@@ -58,3 +58,6 @@ MonoBehaviour:
   menu2: {fileID: 8300000, guid: c3335cecde3b9d54fa3c8fb9d07c0e54, type: 3}
   titleMVP: LOSER TALK
   MVP: {fileID: 8300000, guid: 6b86462c964411d47a0421489e0b4fdb, type: 3}
+  desc: 'Mute City is the place you stand, all alone, after beating every one of
+    your brothers. You may think to yourself: "Where do we go from here?"... Who
+    said you can''t do it again?'

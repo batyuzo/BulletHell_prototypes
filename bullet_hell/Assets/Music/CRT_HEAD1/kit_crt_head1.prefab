@@ -58,3 +58,5 @@ MonoBehaviour:
   menu2: {fileID: 8300000, guid: 94854a451d6448c43a783cd72f04fbf5, type: 3}
   titleMVP: NIGHT OPS
   MVP: {fileID: 8300000, guid: 006603677c7c32a43a5cb1a113206b11, type: 3}
+  desc: Adrenaline and bloodthirst come together in this engaging kit, if it makes
+    your skin crawl, it's already made the difference.

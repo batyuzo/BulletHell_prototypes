@@ -52,6 +52,7 @@ public class gameManager : MonoBehaviour
     public void initMenu()
     {
         setRefs("menu");
+        passedData.defaults(musicAssets.crt1Kit, "knight", playerAssets.knight_desc, musicAssets.crt1Kit.desc, "prac");
         menuScript.init(passedData, musicPlayer, musicAssets, playerAssets);
         musicPlayer.init(passedData.p1Kit, passedData.p2Kit, 0.5f, "menu");
         Debug.Log(passedData.p1Kit.name);
@@ -92,8 +93,8 @@ public class gameManager : MonoBehaviour
 
     private void setRefs(string scene)//find called once
     {
-        unset();
-        passedData = GameObject.FindGameObjectWithTag("passedData").GetComponent<passedData>();
+        unset();//drop all references
+        passedData = GameObject.FindGameObjectWithTag("passedData").GetComponent<passedData>();//search for passedData
         if (scene == "menu")//menu
         {
             menuRefs menuRefs = GameObject.FindGameObjectWithTag("refHandler").GetComponent<menuRefs>();
@@ -102,7 +103,7 @@ public class gameManager : MonoBehaviour
             musicPlayer = menuRefs.musicPlayer;
 
         }
-        else if(scene=="fight")//fight
+        else if (scene == "fight")//fight
         {
             fightRefs fightRefs = GameObject.FindGameObjectWithTag("refHandler").GetComponent<fightRefs>();
             //initFight fetch
