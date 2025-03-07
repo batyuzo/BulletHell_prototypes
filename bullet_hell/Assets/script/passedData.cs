@@ -10,8 +10,8 @@ public class passedData : MonoBehaviour
     public musicKit p2Kit;
     public string p1Skin;
     public string p2Skin;
-    public string p1Rank;
-    public string p2Rank;
+    public int p1Rank;
+    public int p2Rank;
     public string p1SkinDesc;
     public string p2SkinDesc;
     public string p1KitDesc;
@@ -39,8 +39,8 @@ public class passedData : MonoBehaviour
         p2Kit = defaultKit;
 
         //zero ranks
-        p1Rank = "0";
-        p2Rank = "0";
+        p1Rank = 0;
+        p2Rank = 0;
 
         //skin defaults
         p1Skin = defaultSkin;

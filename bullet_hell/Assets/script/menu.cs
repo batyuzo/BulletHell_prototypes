@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -10,15 +10,6 @@ using UnityEngine.UIElements;
 
 public class menu : MonoBehaviour
 {
-
-    [Header("variables")]
-    string player1;
-    string player2;
-    enum Players
-    {
-        Player1,
-        Player2,
-    }
     public List<string> maps;//for matchmaking
 
     [Header("script refs")]
@@ -26,6 +17,7 @@ public class menu : MonoBehaviour
     public musicPlayer musicPlayer;
     public musicAssets musicAssets;
     public playerAssets playerAssets;
+    public tileManager tileManager;
 
     [Header("gameobject refs")]
     public GameObject uiMenu;
@@ -35,6 +27,13 @@ public class menu : MonoBehaviour
     [Header("playerbody menu refs")]
     public displaySkin playerbodyP1;
     public displaySkin playerbodyP2;
+
+    [Header("ownership refs")]
+    public List<musicKit> p1Kits;
+    public List<musicKit> p2Kits;
+    public List<string> p1Skins;
+    public List<string> p2Skins;
+
 
     [Header("button refs menu")]
     public UnityEngine.UI.Button btn_fight;
@@ -52,6 +51,9 @@ public class menu : MonoBehaviour
     public TextMeshProUGUI skinDesc;
     public TextMeshProUGUI kitDesc;
 
+    [Header("some help")]
+    public string activePlayer;
+
 
     public void init(passedData passedDataRef, musicPlayer musicPlayerRef, musicAssets musicAssetsRef, playerAssets playerAssetsRef)
     {
@@ -62,7 +64,6 @@ public class menu : MonoBehaviour
         playerAssets = playerAssetsRef;
     }
 
-    //------BUTTONS FUNCTIONALITY-------
     //home screen
     public void menuScreen()//btn_menu
     {
@@ -79,65 +80,114 @@ public class menu : MonoBehaviour
         SceneManager.LoadScene("fight");
     }
 
-    public void LoginPlayer1()//btn_player1
+    public void loginP1()//btn_player1
     {
         if (passedData.p1Name != "p1")//if logged in
         {
-            customizeScreen("p1");
+            uiMenu.SetActive(false);
+            uiCustomize.SetActive(true);
+            uiSettings.SetActive(false);
+            customUpdate();//displayed items update
+            tileManager.init(musicAssets, passedData, p1Kits, p1Skins, "p1");
+
+            if (passedData.p2Name != "p2")//if both logged in
+            {
+                btn_fight.interactable = true;
+            }
         }
-        Login(Players.Player1);
-        //database here
+        //DATABASE NEEDED
+        //p1Name=database reference
+        //p1Rank=database reference
+        //p1Kits=database reference
+        //p1Skins=database reference
+
+        //HARDCODED DB REFS FOR NOW
         passedData.p1Name = "batyuzo";
+        passedData.p1Rank = 515;
+        p1Skins = new List<string> { "entity", "samurai", "butcher" };
+        p1Kits = new List<musicKit> { musicAssets.crt1Kit, musicAssets.muteKit };
+
+        //PLAYERPREFS NEEDED
+        //"if playerPrefs.p1name==p1Name{} then set the following:
         passedData.p1Skin = "bull";
         passedData.p1SkinDesc = playerAssets.bull_desc;
-        passedData.p1Rank = "200";
-        passedData.p1Kit = musicAssets.hellstarKit;
-        passedData.p1KitDesc = musicAssets.hellstarKit.desc;
+        passedData.p1Kit = musicAssets.muteKit;
+        passedData.p1KitDesc = musicAssets.muteKit.desc;
+
         musicPlayer.changePack(passedData.p1Kit, "p1");
         btn_player1.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
-        playerbodyP1.skinSwitch(playerAssets, passedData.p1Skin);
-
+        playerbodyP1.skinSwitch(playerAssets, passedData.p1Skin);//in-menu playerbody
     }
 
-    public void LoginPlayer2()//btn_player1
+    public void loginP2()//btn_player2
     {
         if (passedData.p2Name != "p2")//if logged in
         {
             customizeScreen("p2");
+            if (passedData.p2Name != "p1")//if both logged in
+            {
+                btn_fight.interactable = true;
+            }
         }
-        Login(Players.Player2);
-        //database here
-        passedData.p2Name = "girmany";
-        passedData.p2Skin = "rogue";
-        passedData.p2SkinDesc = playerAssets.rogue_desc;
-        passedData.p2Kit = musicAssets.muteKit;
-        passedData.p2KitDesc = musicAssets.muteKit.desc;
-        musicPlayer.changePack(passedData.p2Kit, "p2");
-        passedData.p2Rank = "130";
-        btn_player2.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
-        playerbodyP2.skinSwitch(playerAssets, passedData.p2Skin);
+        //DATABASE NEEDED
+        //p2Name=database reference
+        //p2Rank=database reference
+        //p2Kits=database reference
+        //p2Skins=database reference
 
+        //HARDCODED DB REFS FOR NOW
+        passedData.p2Name = "girmany";
+        passedData.p2Rank = 901;
+        p2Skins = new List<string> { "entity", "samurai", "butcher" };
+        p2Kits = new List<musicKit> { musicAssets.crt1Kit, musicAssets.hellstarKit };
+
+        //PLAYERPREFS NEEDED
+        //"if playerPrefs.p1name==p1Name{} then set the following:
+        passedData.p2Skin = "butcher";
+        passedData.p2SkinDesc = playerAssets.bull_desc;
+        passedData.p2Kit = musicAssets.hellstarKit;
+        passedData.p2KitDesc = musicAssets.hellstarKit.desc;
+
+        musicPlayer.changePack(passedData.p2Kit, "p2");
+        btn_player2.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
+        playerbodyP2.skinSwitch(playerAssets, passedData.p2Skin);//in-menu playerbody
     }
 
     public void quit()//btn_quit
     {
+        savePrefs();
         Application.Quit();
     }
+    public void savePrefs()//on quit
+    {
+        Debug.Log("preferences saved. well, not yet, but i'm working on it");
+    }
+
+
 
     //customize
     public void customizeScreen(string player)//called by logins (when logged in)
     {
+        activePlayer = player;
         uiMenu.SetActive(false);
         uiCustomize.SetActive(true);
         uiSettings.SetActive(false);
-        //change background
-        //enable and update gameobjects
-        customUpdate(player);
+        customUpdate();//displayed items update
+        if (activePlayer == "p1")
+        {
+            tileManager.init(musicAssets, passedData, p1Kits, p1Skins, activePlayer);
+        }
+        else if (player == "p2")
+        {
+            tileManager.init(musicAssets, passedData, p2Kits, p2Skins, activePlayer);
+        }
+
+
     }
 
-    public void customUpdate(string player)
+    public void customUpdate()
     {
-        if (player == "p1")
+        if (activePlayer == "p1")
         {
             skinInv.skinSwitch(playerAssets, passedData.p1Skin);
             nameInv.text = passedData.p1Name;
@@ -145,7 +195,7 @@ public class menu : MonoBehaviour
             skinDesc.text = passedData.p1SkinDesc;
             kitDesc.text = passedData.p1KitDesc;
         }
-        else if (player == "p2")
+        else if (activePlayer == "p2")
         {
             skinInv.skinSwitch(playerAssets, passedData.p2Skin);
             nameInv.text = passedData.p2Name;
@@ -154,6 +204,26 @@ public class menu : MonoBehaviour
             kitDesc.text = passedData.p2KitDesc;
         }
     }
+
+    public void selectCrt1()
+    {
+        tileManager.selectKit(activePlayer,musicAssets.crt1Kit);
+    }
+    public void selectCrt2()
+    {
+        tileManager.selectKit(activePlayer,musicAssets.crt2Kit);
+    }
+
+    public void selectHellstar()
+    {
+        tileManager.selectKit(activePlayer, musicAssets.hellstarKit);
+
+    }
+    public void selectMute()
+    {
+        tileManager.selectKit(activePlayer, musicAssets.muteKit);
+    }
+
 
     public void skinTile(string player, string skin)
     {
@@ -168,7 +238,7 @@ public class menu : MonoBehaviour
             passedData.p2Skin = skin;
             passedData.p2SkinDesc = getSkinDesc(skin);
         }
-        customUpdate(player);
+        customUpdate();
     }
 
     public string getSkinDesc(string skin)
@@ -218,29 +288,4 @@ public class menu : MonoBehaviour
         uiSettings.SetActive(true);
         //update buttons n things here
     }
-
-    //------EVERYTHING ELSE-------
-    void Login(Players player)
-    {
-        switch (player)
-        {
-            case Players.Player1:
-                player1 = "batyuzo";
-                break;
-            case Players.Player2:
-                player2 = "gizmo";
-                break;
-
-            //will not happen, can't guarrantee in c# that i've exhausted the cases
-            default:
-                break;
-        }
-
-        if (player1 != null && player2 != null)
-        {
-            btn_fight.interactable = true;
-        }
-    }
-
-
 }
