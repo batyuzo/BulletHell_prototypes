@@ -89,16 +89,28 @@ MonoBehaviour:
   c1: {fileID: 0}
   c2: {fileID: 0}
   c3: {fileID: 0}
-  ham_A1: {fileID: 0}
-  ham_A2: {fileID: 21300000, guid: 8cfc0e05eba84d449b4f1b52d128d3d4, type: 3}
-  ham_B1: {fileID: 21300000, guid: 5774cea2599cb0e4dbac53f7e1136263, type: 3}
-  ham_B2: {fileID: 21300000, guid: c76a15108d477ed429085a98c0344251, type: 3}
-  ham_C1: {fileID: 21300000, guid: f785260f7fb57094485f9d25bb973734, type: 3}
-  ham_C2: {fileID: 21300000, guid: 4227ffbfa06879d48912746dc880c09f, type: 3}
-  ham_C3: {fileID: 21300000, guid: 8b15e5e529cc6de4e91c3a690d198b42, type: 3}
-  ham_emission: {fileID: 0}
+  ham_A1:
+  - {fileID: 21300000, guid: 0764c84757d49cd48991e5839a2b3295, type: 3}
+  - {fileID: 21300000, guid: c9040dd2aed48e8438e4836d89d89423, type: 3}
+  - {fileID: 21300000, guid: e7d1a8faa76113c41b7437cb491da829, type: 3}
+  - {fileID: 21300000, guid: 80236e315c98dd84b9ea0c080a5caca0, type: 3}
+  - {fileID: 21300000, guid: 50cedb5029769e042b7fbd4de6fbebd3, type: 3}
+  - {fileID: 21300000, guid: 0ff54f8f408cb364e9b2a0ba9035e0b1, type: 3}
+  - {fileID: 21300000, guid: 3c40959ba815e66468622c806e0a7821, type: 3}
+  - {fileID: 21300000, guid: 1e89e0078414ed74ba127ffc303edc75, type: 3}
+  - {fileID: 21300000, guid: 1f8a3f5774c89bb4b8063dede374cb10, type: 3}
+  - {fileID: 21300000, guid: b9a4d999bd3e23849925f42a5c6d117c, type: 3}
+  - {fileID: 21300000, guid: 6a5fcf78f8cd61e448b8e1d2b51bb64d, type: 3}
+  - {fileID: 21300000, guid: 2ce8de2cef119804c8853b0135c988f6, type: 3}
+  ham_A2: {fileID: 21300000, guid: 8d1ae49885d5da140b06a22fe97e3117, type: 3}
+  ham_B1: {fileID: 21300000, guid: 8541109e22196704aa45fd26d0fb33d7, type: 3}
+  ham_B2: {fileID: 21300000, guid: 6bfbeb5d813cafa4a8153c37ddb03f39, type: 3}
+  ham_C1: {fileID: 21300000, guid: 9d06ae5eee7c23342b96b99e3040157c, type: 3}
+  ham_C2: {fileID: 21300000, guid: e62d6810a3c6898458e31910bdf811d7, type: 3}
+  ham_C3: {fileID: 21300000, guid: 379357819b44faa4bbcd2d03eb433d62, type: 3}
+  ham_emission: {fileID: 21300000, guid: fc6720d5a8678864f9e8311e447a131c, type: 3}
   ham_coll: {fileID: 0}
-  ham_ecolor: {r: 0, g: 0, b: 0, a: 0}
+  ham_ecolor: {r: 1, g: 0.17254902, b: 0, a: 1}
   prac_A1: {fileID: 0}
   prac_A2: {fileID: 0}
   prac_B1: {fileID: 21300000, guid: 57fa0ef0a21c35a41b73b81043250625, type: 3}

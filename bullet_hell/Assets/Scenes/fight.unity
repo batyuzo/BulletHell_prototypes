@@ -1692,6 +1692,7 @@ MonoBehaviour:
   flip: {fileID: 10879910}
   head: {fileID: 693699323}
   body: {fileID: 10879910}
+  groundCheck: {fileID: 1578842393}
   gunHolder: {fileID: 111249044}
   playerAssets: {fileID: 0}
   jumpLeft: 0
@@ -1699,7 +1700,6 @@ MonoBehaviour:
   jumpBuffer: 0
   horizontal: 0
   moving: 0
-  grounded: 0
   maxHealth: 200
   currentHealth: 200
   forwardMotion: 0
@@ -4361,6 +4361,7 @@ MonoBehaviour:
   flip: {fileID: 494836765}
   head: {fileID: 595374547}
   body: {fileID: 494836765}
+  groundCheck: {fileID: 349915337}
   gunHolder: {fileID: 1538271487}
   playerAssets: {fileID: 0}
   jumpLeft: 0
@@ -4368,7 +4369,6 @@ MonoBehaviour:
   jumpBuffer: 0
   horizontal: 0
   moving: 0
-  grounded: 0
   maxHealth: 200
   currentHealth: 200
   forwardMotion: 0
