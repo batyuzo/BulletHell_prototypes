@@ -8,17 +8,6 @@ public class scanner : MonoBehaviour
 {
     public List<Collider2D> collisionWith = null;
 
-    private void Awake()
-    {
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     public GameObject getEquippable()
     {
         Collider2D toEquip = null;
@@ -50,11 +39,5 @@ public class scanner : MonoBehaviour
         {
             collisionWith.Remove(collision);
         }
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }

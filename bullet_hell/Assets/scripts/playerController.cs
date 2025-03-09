@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -20,6 +21,8 @@ public class playerController : MonoBehaviour
     [SerializeField] Transform head;
     [SerializeField] Transform body;
     public groundCheck groundCheck;
+    public PlayerInput playerInput;
+    public InputControlScheme device;
 
     [Header("script refs")]
     public gunHolder gunHolder;
@@ -30,13 +33,13 @@ public class playerController : MonoBehaviour
     public float coyoteCount;
     public float jumpBuffer;
     public float horizontal;
+    public float vertical;
     public bool moving;
     public int maxHealth;
     public int currentHealth;
     public bool forwardMotion;
     public bool grounded;
-
-
+    public bool laddered;
     private void FixedUpdate()
     {
         //!----------MOVEMENT----------!
@@ -46,20 +49,24 @@ public class playerController : MonoBehaviour
         if (coyoteCount > 0 && !grounded) { coyoteCount -= 0.2f; }
         //buffer decreases mid-air
         grounded = groundCheck.getGrounded();
-
     }
-
 
     // Update is called once per frame
     void Update()
     {
         Flip();
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-        currentHealth = gameObject.GetComponent<playerHealth>().currentHealth;
+        currentHealth = GetComponent<playerHealth>().currentHealth;
     }
-
     public void init(string skin, Vector3 pos, int health, playerAssets assetsRef)
     {
+        foreach(InputDevice thing in InputSystem.devices)
+        {
+            if (thing.name == "XInputControllerWindows")
+            {
+                Debug.Log("i can detect my controller at least");
+            }
+            //Debug.Log(thing.name);
+        }
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("weapon"))
         {
             Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), obj.GetComponent<Collider2D>(), true);
@@ -74,7 +81,6 @@ public class playerController : MonoBehaviour
 
 
     }
-
     public void Flip()
     {
 
@@ -94,7 +100,6 @@ public class playerController : MonoBehaviour
             moveDirection(false);
         }
     }
-
     private void moveDirection(bool lookingRight)
     {
         //if looks right and goes right -> forward motion
@@ -107,14 +112,32 @@ public class playerController : MonoBehaviour
         else if (lookingRight && horizontal < 0) { forwardMotion = false; }
     }
 
-
     //controls
     public void Move(InputAction.CallbackContext context)
     {
+        //VALUES
         horizontal = context.ReadValue<Vector2>().x;
-        if (context.performed) { moving = true; } else { moving = false; }
-    }
+        vertical = context.ReadValue<Vector2>().y;
 
+        //CLIMB
+        if (vertical != 0 && laddered)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, vertical * speed);
+        }
+
+        //WALK
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
+        //ANIM
+        if (context.performed && (horizontal != 0 || vertical != 0))
+        {
+            moving = true;
+        }
+        else
+        {
+            moving = false;
+        }
+    }
     public void Jump(InputAction.CallbackContext context)
     {
         if (context.performed && grounded)
@@ -123,7 +146,6 @@ public class playerController : MonoBehaviour
         }
         else jumpBuffer = 1f;
     }
-
     public void Fire(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -132,7 +154,6 @@ public class playerController : MonoBehaviour
         }
 
     }
-
     public void AltFire(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -141,7 +162,6 @@ public class playerController : MonoBehaviour
         }
 
     }
-
     public void Equip(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -151,12 +171,10 @@ public class playerController : MonoBehaviour
 
 
     }
-
     public void ChangeSkin(InputAction.CallbackContext context)
     {
         if (context.performed) { gameObject.GetComponentInChildren<bodyAnim>().skinSwitch("samurai"); }
     }
-
     public void Drop(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -165,13 +183,23 @@ public class playerController : MonoBehaviour
         }
 
     }
-
-    public void OnTriggerEnter2D(Collider2D collision)
+    //ladders and deaths
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("death"))
         {
             GetComponent<playerHealth>().death();
         }
+        else if (collision.CompareTag("ladder"))
+        {
+            laddered = true;
+        }
     }
-
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("ladder"))
+        {
+            laddered = false;
+        }
+    }
 }

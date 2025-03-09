@@ -5,6 +5,8 @@ using UnityEngine.Rendering.Universal;
 
 public class fightRefs : MonoBehaviour
 {
+    [Header("common")]
+
     //for gameManager
     public healthbar healthbarP1;
     public healthbar healthbarP2;
@@ -16,10 +18,13 @@ public class fightRefs : MonoBehaviour
     //for mapLoader
     public Light2D global, emission;
     public GameObject a1, a2, b1, b2, c1, c2, c3;
-    public PolygonCollider2D prac_coll;
+
+    [Header("specific")]
     public PolygonCollider2D ham_coll;
+    public PolygonCollider2D ham_ladder;
+    public PolygonCollider2D prac_coll;
     public PolygonCollider2D jap_coll;
     public PolygonCollider2D jap_parkour;
- 
+    public PolygonCollider2D jap_ladder;
 
 }

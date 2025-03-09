@@ -1235,7 +1235,7 @@ PolygonCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1248,10 +1248,10 @@ PolygonCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1414,17 +1414,17 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 2240
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1515,22 +1515,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 224add34-eb57-46b1-837b-ea84214b1a57
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 390778653}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 0ad689a5-46fb-4870-afe4-36fd923b1bc9
-    m_ActionName: Player/Look[/Mouse/delta,/Pen/delta]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 390778653}
@@ -1667,7 +1651,7 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 92139103-3724-4a6c-8376-df5e38507d9f
     m_ActionName: Player/Drop
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
@@ -1693,16 +1677,20 @@ MonoBehaviour:
   head: {fileID: 693699323}
   body: {fileID: 10879910}
   groundCheck: {fileID: 1578842393}
+  playerInput: {fileID: 390778652}
   gunHolder: {fileID: 111249044}
   playerAssets: {fileID: 0}
   jumpLeft: 0
   coyoteCount: 0
   jumpBuffer: 0
   horizontal: 0
+  vertical: 0
   moving: 0
   maxHealth: 200
   currentHealth: 200
   forwardMotion: 0
+  grounded: 0
+  laddered: 0
 --- !u!114 &390778654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1884,6 +1872,123 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065a990877c57d2408cd3bd086b51527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &478527589
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 830887547692488601, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: m_Name
+      value: passedData
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: map
+      value: jap
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: p1Kit
+      value: 
+      objectReference: {fileID: 2481365549410795173, guid: 741e71d0f6ca62341bd2aa0d307a1fae, type: 3}
+    - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: p2Kit
+      value: 
+      objectReference: {fileID: 2481365549410795173, guid: eb3b494666bcd46408438b26496330a7, type: 3}
+    - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: p1Name
+      value: bruder_jakob
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: p1Rank
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: p1Skin
+      value: bull
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: p2Name
+      value: jacob_geller
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: p2Rank
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: p2Skin
+      value: rogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: p1Login
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: p2Login
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: p1Skins.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: p2Skins.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: p1Skins.Array.data[0]
+      value: bull
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: p2Skins.Array.data[0]
+      value: rogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959631276143613185, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959631276143613185, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959631276143613185, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959631276143613185, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959631276143613185, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959631276143613185, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959631276143613185, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959631276143613185, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959631276143613185, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959631276143613185, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
 --- !u!1 &494836764
 GameObject:
   m_ObjectHideFlags: 0
@@ -3549,10 +3654,12 @@ MonoBehaviour:
   c1: {fileID: 1599976516}
   c2: {fileID: 566579039}
   c3: {fileID: 993551613}
-  prac_coll: {fileID: 2094511443}
   ham_coll: {fileID: 1997571249}
+  ham_ladder: {fileID: 360177148}
+  prac_coll: {fileID: 2094511443}
   jap_coll: {fileID: 1660248606}
   jap_parkour: {fileID: 1953353462}
+  jap_ladder: {fileID: 1272169618}
 --- !u!4 &1216693727
 Transform:
   m_ObjectHideFlags: 0
@@ -3696,7 +3803,7 @@ PolygonCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3709,10 +3816,10 @@ PolygonCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -4067,22 +4174,6 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1428454092}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 0ad689a5-46fb-4870-afe4-36fd923b1bc9
-    m_ActionName: Player/Look[/Mouse/delta,/Pen/delta]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1428454092}
         m_TargetAssemblyTypeName: playerController, Assembly-CSharp
         m_MethodName: Fire
         m_Mode: 0
@@ -4216,7 +4307,7 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 92139103-3724-4a6c-8376-df5e38507d9f
     m_ActionName: Player/Drop
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
@@ -4233,17 +4324,17 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 2240
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -4362,16 +4453,20 @@ MonoBehaviour:
   head: {fileID: 595374547}
   body: {fileID: 494836765}
   groundCheck: {fileID: 349915337}
+  playerInput: {fileID: 1428454087}
   gunHolder: {fileID: 1538271487}
   playerAssets: {fileID: 0}
   jumpLeft: 0
   coyoteCount: 0
   jumpBuffer: 0
   horizontal: 0
+  vertical: 0
   moving: 0
   maxHealth: 200
   currentHealth: 200
   forwardMotion: 0
+  grounded: 0
+  laddered: 0
 --- !u!4 &1428454093
 Transform:
   m_ObjectHideFlags: 0
@@ -6226,3 +6321,4 @@ SceneRoots:
   - {fileID: 110856278}
   - {fileID: 1216693727}
   - {fileID: 839488548}
+  - {fileID: 478527589}

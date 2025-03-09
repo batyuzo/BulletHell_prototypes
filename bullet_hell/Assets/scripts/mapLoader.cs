@@ -25,6 +25,7 @@ public class mapLoader : MonoBehaviour
     [SerializeField] Sprite ham_C3;
     [SerializeField] Sprite ham_emission;
     public PolygonCollider2D ham_coll;
+    public PolygonCollider2D ham_ladder;
     public Color ham_ecolor;
 
     [Header("practice_refs")]
@@ -46,6 +47,7 @@ public class mapLoader : MonoBehaviour
     [SerializeField] Sprite jap_C2;
     public PolygonCollider2D jap_coll;
     public PolygonCollider2D jap_parkour;
+    public PolygonCollider2D jap_ladder;
     public Color jap_ecolor;
     public Sprite[] jap_A1;
     public Sprite[] jap_emission;
@@ -61,8 +63,10 @@ public class mapLoader : MonoBehaviour
         emission = fightRefs.emission;
         global = fightRefs.global;
 
-        prac_coll = fightRefs.prac_coll;
+        ham_ladder = fightRefs.ham_ladder;
         ham_coll = fightRefs.ham_coll;
+        prac_coll = fightRefs.prac_coll;
+        jap_ladder = fightRefs.jap_ladder;
         jap_coll = fightRefs.jap_coll;
         jap_parkour = fightRefs.jap_parkour;
 
@@ -83,7 +87,8 @@ public class mapLoader : MonoBehaviour
             layerUpdate(c3, ham_C3);
 
             //collision
-            collUpdate(mapName);
+            ham_coll.enabled = true;
+            ham_ladder.enabled = true;
 
             //lights
             emission.blendStyleIndex = 1;
@@ -106,7 +111,7 @@ public class mapLoader : MonoBehaviour
             layerUpdate(c3, null);
 
             //collision
-            collUpdate(mapName);
+            prac_coll.enabled = true;
 
             //lights
             emission.blendStyleIndex = 0;
@@ -128,7 +133,9 @@ public class mapLoader : MonoBehaviour
             layerUpdate(c3, null);
 
             //collision
-            collUpdate(mapName);
+            jap_coll.enabled = true;
+            jap_parkour.enabled = true;
+            jap_ladder.enabled = true;
 
             //lights
             emission.blendStyleIndex = 0;
@@ -146,6 +153,13 @@ public class mapLoader : MonoBehaviour
     }
     private void unloadMap()
     {
+        ham_coll.enabled = false;
+        ham_ladder.enabled = false;
+        jap_ladder.enabled = false;
+        jap_coll.enabled = false;
+        jap_parkour.enabled = false;
+        prac_coll.enabled = false;
+
         layerUpdate(a1, null);
         layerUpdate(a2, null);
         layerUpdate(b1, null);
@@ -158,36 +172,11 @@ public class mapLoader : MonoBehaviour
     {
         obj.GetComponent<SpriteRenderer>().sprite = toLoad;
     }
-    private void collUpdate(string mapName)
-    {
-        if (mapName == "ham")
-        {
-            ham_coll.enabled = true;
-            prac_coll.enabled = false;
-            jap_parkour.enabled = false;
-            jap_coll.enabled = false;
-
-        }
-        else if (mapName == "prac")
-        {
-            ham_coll.enabled = false;
-            prac_coll.enabled = true;
-            jap_parkour.enabled = false;
-            jap_coll.enabled = false;
-        }
-        else if (mapName == "jap")
-        {
-            ham_coll.enabled = false;
-            prac_coll.enabled = false;
-            jap_parkour.enabled = true;
-            jap_coll.enabled = true;
-        }
-    }
     private void layerAnim(int frame)
     {
         if (activeMap == "ham")
         {
-            if (frame % 4 == 0 && current1 < ham_A1.Length-1)
+            if (frame % 4 == 0 && current1 < ham_A1.Length - 1)
             {
                 current1++;
             }
@@ -199,7 +188,7 @@ public class mapLoader : MonoBehaviour
         }
         else if (activeMap == "prac")
         {
-            if (frame % 4 == 0 && current1 < prac_C1.Length-1)
+            if (frame % 4 == 0 && current1 < prac_C1.Length - 1)
             {
                 current1++;
             }

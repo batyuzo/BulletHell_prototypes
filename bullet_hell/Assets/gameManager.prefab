@@ -324,6 +324,8 @@ MonoBehaviour:
     so do everything to represent him to the best of your abilities.
   ink_damageFx:
   - {fileID: 7403647218097492659, guid: 45071eb285ae1214da98df3c405d3080, type: 3}
+  - {fileID: 7403647218097492659, guid: 5c786e69f58811a47a52babc54966ab2, type: 3}
+  - {fileID: 7403647218097492659, guid: 9ddb28c4f1b64824d9d896168a9134ef, type: 3}
 --- !u!114 &1122865906968238204
 MonoBehaviour:
   m_ObjectHideFlags: 0
