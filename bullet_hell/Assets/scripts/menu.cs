@@ -95,7 +95,7 @@ public class menu : MonoBehaviour
             //HARDCODED DB REFS FOR NOW
             passedData.p1Name = "batyuzo";
             passedData.p1Rank = 515;
-            passedData.p1Skins = new List<string> { "bull", "butcher" };
+            passedData.p1Skins = new List<string> { "bull", "butcher", "knight", "entity" };
             passedData.p1Kits = new List<musicKit> { musicAssets.crt1Kit, musicAssets.crt2Kit, musicAssets.muteKit };
 
             //"if playerPrefs.p1name==p1Name{} then set the following:
@@ -196,7 +196,6 @@ public class menu : MonoBehaviour
             kitDesc.text = passedData.p2Kit.desc;
         }
     }
-
     public void setSkinDesc(string skin)
     {
         if (skin == "bull")
@@ -235,6 +234,30 @@ public class menu : MonoBehaviour
     {
         tileManager.selectSkin(activePlayer, "butcher");
         skinDesc.text = playerAssets.butcher_desc;
+        customUpdate();
+    }
+    public void selectKnight()
+    {
+        tileManager.selectSkin(activePlayer, "knight");
+        skinDesc.text = playerAssets.knight_desc;
+        customUpdate();
+    }
+    public void selectEntity()
+    {
+        tileManager.selectSkin(activePlayer, "entity");
+        skinDesc.text = playerAssets.entity_desc;
+        customUpdate();
+    }
+    public void selectRogue()
+    {
+        tileManager.selectSkin(activePlayer, "rogue");
+        skinDesc.text = playerAssets.rogue_desc;
+        customUpdate();
+    }
+    public void selectSamurai()
+    {
+        tileManager.selectSkin(activePlayer, "samurai");
+        skinDesc.text = playerAssets.samurai_desc;
         customUpdate();
     }
     //--------------------

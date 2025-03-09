@@ -53,12 +53,12 @@ public class tileManager : MonoBehaviour
     public Button btn_hellstar;
     public Button btn_mute;
 
-    //HOW TO ADD MORE SKINS/KITS:
+    //ADD MORE SKINS/KITS:
     //add references in tileManager:
     //--init, enableTiles, setSkinTiles/setMusicTiles, selectSkin/selectSkin
     //add function in menuScript, and reference it onClick for the button:
     //--select...
-
+    //add the pictures to the tile refs and the button itself
 
     public void init(musicAssets musicAssetsRef, passedData passedDataRef, string player)//called by menu
     {
@@ -68,8 +68,8 @@ public class tileManager : MonoBehaviour
         //disable everything first
         btn_bull.interactable = false;
         btn_butcher.interactable = false;
-        //btn_knight.interactable = false;
-        //btn_entity.interactable = false;
+        btn_knight.interactable = false;
+        btn_entity.interactable = false;
         //btn_rogue.interactable = false;
         //btn_samurai.interactable = false;
 
@@ -96,14 +96,13 @@ public class tileManager : MonoBehaviour
             selectSkin("p2", passedData.p2Skin);
         }
     }
-
     public void enableTiles(List<string> skins, List<musicKit> kits)//called by menu
     {
         //skins owned enable
         btn_bull.interactable = skins.Contains("bull");
         btn_butcher.interactable = skins.Contains("butcher");
-        //btn_knight.interactable = skins.Contains("knight");
-        //btn_entity.interactable = skins.Contains("entity");
+        btn_knight.interactable = skins.Contains("knight");
+        btn_entity.interactable = skins.Contains("entity");
         //btn_rogue.interactable = skins.Contains("rogue");
         //btn_samurai.interactable = skins.Contains("samurai");
 
@@ -114,17 +113,15 @@ public class tileManager : MonoBehaviour
         btn_mute.interactable = kits.Contains(musicAssets.muteKit);
 
     }
-
     public void setSkinTiles()
     {
         btn_bull.image.sprite = bullBase;
         btn_butcher.image.sprite = butcherBase;
-        //btn_knight.image.sprite = knightBase;
-        //btn_entity.image.sprite = entityBase;
+        btn_knight.image.sprite = knightBase;
+        btn_entity.image.sprite = entityBase;
         //btn_rogue.image.sprite = rogueBase;
         //btn_samurai.image.sprite = samuraiBase;
     }
-
     public void setMusicTiles()//resets base images
     {
         btn_crt1.image.sprite = crt1Base;
@@ -132,10 +129,10 @@ public class tileManager : MonoBehaviour
         btn_hellstar.image.sprite = hellstarBase;
         btn_mute.image.sprite = muteBase;
     }
-
     public void selectSkin(string player, string skin)
     {
         setSkinTiles();
+        //passedData update
         if (player == "p1")
         {
             passedData.p1Skin = skin;
@@ -144,6 +141,8 @@ public class tileManager : MonoBehaviour
         {
             passedData.p2Skin = skin;
         }
+
+        //visual representation
         if (skin == "bull")
         {
             refreshTile(btn_bull);
@@ -154,15 +153,33 @@ public class tileManager : MonoBehaviour
             refreshTile(btn_butcher);
             btn_butcher.image.sprite = butcherSelected;
         }
+        else if (skin == "knight")
+        {
+            refreshTile(btn_knight);
+            btn_butcher.image.sprite = knightSelected;
+        }
+        else if (skin == "entity")
+        {
+            refreshTile(btn_entity);
+            btn_butcher.image.sprite = entitySelected;
+        }
+        //else if (skin == "rogue")
+        //{
+        //    refreshTile(btn_rogue);
+        //    btn_butcher.image.sprite = rogueSelected;
+        //}
+        //else if (skin == "samurai")
+        //{
+        //    refreshTile(btn_samurai);
+        //    btn_butcher.image.sprite = samuraiSelected;
+        //}
 
     }
-
     public void refreshTile(Button btn)
     {
         btn.interactable = false;
         btn.interactable = true;
     }
-
     public void selectKit(string player, musicKit kit)//called by menu
     {
         setMusicTiles();
@@ -196,8 +213,5 @@ public class tileManager : MonoBehaviour
             refreshTile(btn_mute);
             btn_mute.image.sprite = muteSelected;
         }
-
     }
-
-
 }
