@@ -59,3 +59,5 @@ MonoBehaviour:
   p2Skins: []
   p1Kits: []
   p2Kits: []
+  p1Controls: {fileID: -944628639613478452, guid: 96f3f9c890664df47b16e8457b4ead7a, type: 3}
+  p2Controls: {fileID: -944628639613478452, guid: 5d17dd6d8781cb34d86e1c5535250ddf, type: 3}

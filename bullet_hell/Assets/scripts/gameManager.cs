@@ -8,7 +8,9 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using System;
 using UnityEngine.SceneManagement;
-using UnityEngine.Rendering.Universal;
+using UnityEngine.InputSystem;
+using Unity.VisualScripting;
+using System.Linq;
 
 public class gameManager : MonoBehaviour
 {
@@ -48,7 +50,6 @@ public class gameManager : MonoBehaviour
             initFight();
         }
     }
-
     public void initMenu()
     {
         setRefs("menu");
@@ -56,7 +57,6 @@ public class gameManager : MonoBehaviour
         menuScript.init(passedData, musicPlayer, musicAssets, playerAssets);
         musicPlayer.init(passedData.p1Kit, passedData.p2Kit, 0.5f, "menu");
     }
-
     public void initFight()
     {
         setRefs("fight");
@@ -83,13 +83,20 @@ public class gameManager : MonoBehaviour
         }
         weaponLoader.init(passedData.map);
     }
-
     private void initPlayers(string[] playerskins, Vector2 spawnAt, int health)
     {
-        player1.GetComponent<playerController>().init(playerskins[0], spawnAt, health, playerAssets);
-        player2.GetComponent<playerController>().init(playerskins[1], spawnAt * new Vector3(-1, 1), health, playerAssets);
-    }
 
+        Debug.Log("first player:");
+        player1.GetComponent<PlayerInput>().SwitchCurrentControlScheme(Mouse.current, Keyboard.current);
+        //player1.GetComponent<PlayerInput>().SwitchCurrentControlScheme(passedData.p1Device);
+        player1.GetComponent<playerController>().init(playerskins[0], spawnAt, health, playerAssets, player1.GetComponent<PlayerInput>().currentControlScheme);
+
+        Debug.Log("second player:");
+        player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme(Gamepad.current);
+        //player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme(passedData.p2Device);
+        player2.GetComponent<playerController>().init(playerskins[1], spawnAt * new Vector3(-1, 1), health, playerAssets, player2.GetComponent<PlayerInput>().currentControlScheme);
+
+    }
     private void setRefs(string scene)//find called once
     {
         unset();//drop all references
@@ -112,11 +119,9 @@ public class gameManager : MonoBehaviour
             player2 = fightRefs.player2;
             fightUi = fightRefs.fightUi;
             musicPlayer = fightRefs.musicPlayer;
-
             mapLoader.init(fightRefs);//junking it for less lines
         }
     }
-
     private void unset()
     {
         //unset fight refs

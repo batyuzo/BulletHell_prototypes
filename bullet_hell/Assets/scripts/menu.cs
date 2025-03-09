@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -59,6 +61,16 @@ public class menu : MonoBehaviour
         musicPlayer = musicPlayerRef;
         musicAssets = musicAssetsRef;
         playerAssets = playerAssetsRef;
+
+        if (Mouse.current != null)
+        {
+            passedData.p2Device = new InputDevice[] { Keyboard.current, Mouse.current };
+        }
+
+        if (Gamepad.current != null)
+        {
+            passedData.p1Device = new InputDevice[] { Gamepad.current };
+        }
     }
 
     //home screen
@@ -153,7 +165,6 @@ public class menu : MonoBehaviour
     {
         Debug.Log("preferences saved. well, not yet, but i'm working on it");
     }
-
     //customize
     public void customizeScreen(string player)//called by logins (when logged in)
     {

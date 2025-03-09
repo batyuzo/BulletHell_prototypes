@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class playerController : MonoBehaviour
@@ -21,8 +22,7 @@ public class playerController : MonoBehaviour
     [SerializeField] Transform head;
     [SerializeField] Transform body;
     public groundCheck groundCheck;
-    public PlayerInput playerInput;
-    public InputControlScheme device;
+    public int playerNum;
 
     [Header("script refs")]
     public gunHolder gunHolder;
@@ -57,26 +57,19 @@ public class playerController : MonoBehaviour
         Flip();
         currentHealth = GetComponent<playerHealth>().currentHealth;
     }
-    public void init(string skin, Vector3 pos, int health, playerAssets assetsRef)
+
+    public void init(string skin, Vector3 pos, int health, playerAssets assetsRef, string schemeName)
     {
-        foreach(InputDevice thing in InputSystem.devices)
-        {
-            if (thing.name == "XInputControllerWindows")
-            {
-                Debug.Log("i can detect my controller at least");
-            }
-            //Debug.Log(thing.name);
-        }
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("weapon"))
         {
             Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), obj.GetComponent<Collider2D>(), true);
         }
         playerAssets = assetsRef;
 
-        gameObject.GetComponentInChildren<bodyAnim>().init(skin, assetsRef);
-        gameObject.transform.position = pos;
-        gameObject.GetComponentInChildren<playerHealth>().init(200, assetsRef);
-        gameObject.GetComponentInChildren<gunHolder>().equipped = null;
+        gameObject.GetComponentInChildren<bodyAnim>().init(skin, assetsRef);//skin
+        gameObject.transform.position = pos;//spawn position
+        gameObject.GetComponentInChildren<playerHealth>().init(200, assetsRef);//set health
+        gameObject.GetComponentInChildren<gunHolder>().init(schemeName);//gamepad or not?
         gameObject.GetComponentInChildren<gunHolder>().bareHandsOffset();
 
 

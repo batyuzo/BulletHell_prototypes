@@ -1,6 +1,9 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class passedData : MonoBehaviour
 {
@@ -19,6 +22,11 @@ public class passedData : MonoBehaviour
     public List<string> p2Skins;
     public List<musicKit> p1Kits;
     public List<musicKit> p2Kits;
+    public InputActionAsset p1Controls;
+    public InputActionAsset p2Controls;
+    public InputDevice[] p1Device;
+    public InputDevice[] p2Device;
+
 
     void Awake()
     {

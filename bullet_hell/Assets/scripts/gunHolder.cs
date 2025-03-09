@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.ExceptionServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class gunHolder : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class gunHolder : MonoBehaviour
     public GameObject equipped = null;
     public GameObject player;
 
+    public bool gamepad;
+
     public bodyAnim playerAnim;
     public scanner scan;
     public TextMeshProUGUI equippedText;
@@ -33,6 +36,19 @@ public class gunHolder : MonoBehaviour
     [Header("weapon script ref")]
     public weapon weaponScript;
 
+    public void init(string scheme)
+    {
+        if (scheme.Contains("Mouse"))
+        {
+            gamepad = false;
+        }
+        else
+        {
+            gamepad = true;
+        }
+        Drop();
+    }
+
     private void updateMaginfo()
     {
         if (equipped != null)
@@ -42,14 +58,32 @@ public class gunHolder : MonoBehaviour
             magInfoText.color = new Color(1, 1, 1, 1);
         }
     }
-
     private void hideMagInfo()
     {
         magInfoText.color = new Color(1, 1, 1, 0);
     }
-
     //title says it all
-    private void lookAtMouse()
+    private void lookAt()
+    {
+        if (gamepad)
+        {
+            gamepadAim();
+        }
+        else
+        {
+            mouseAim();
+        }
+
+
+        
+    }
+
+    private void gamepadAim()
+    {
+        
+    }
+
+    private void mouseAim()
     {
         Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
         float angle = Mathf.Atan2(dir.y * -1, dir.x * -1) * Mathf.Rad2Deg;
@@ -121,7 +155,6 @@ public class gunHolder : MonoBehaviour
         }
     }
 
-
     //executes on Equip
     public void setOffset()
     {
@@ -147,13 +180,11 @@ public class gunHolder : MonoBehaviour
 
         playerAnim.updateHands(weaponHands[0], weaponHands[1]);
     }
-
     public void bareHandsOffset()
     {
         HCO = new float[] { -.4f, .3f, -65 };
         HFO = new float[] { -.7f, .3f, -65 };
     }
-
     public bool Fire()
     {
         if (equipped != null)
@@ -167,7 +198,6 @@ public class gunHolder : MonoBehaviour
         }
 
     }
-
     public bool AltFire()
     {
         if (equipped != null)
@@ -180,7 +210,6 @@ public class gunHolder : MonoBehaviour
             return false;
         }
     }
-
     public void Equip()
     {
         GameObject toEquip = scan.getEquippable();
@@ -199,7 +228,6 @@ public class gunHolder : MonoBehaviour
             setOffset();
         }
     }
-
     public void Drop()
     {
         //set hands, forfeit control
@@ -219,13 +247,11 @@ public class gunHolder : MonoBehaviour
             temp = null;
         }
     }
-
     private void Update()
     {
-        lookAtMouse();
+        lookAt();
         updateMaginfo();
     }
-
     private void Awake()
     {
         offset = new Vector3(1f, -1f);
