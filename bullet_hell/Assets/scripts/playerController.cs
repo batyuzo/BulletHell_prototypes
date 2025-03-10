@@ -22,7 +22,6 @@ public class playerController : MonoBehaviour
     [SerializeField] Transform head;
     [SerializeField] Transform body;
     public groundCheck groundCheck;
-    public int playerNum;
 
     [Header("script refs")]
     public gunHolder gunHolder;
@@ -71,8 +70,6 @@ public class playerController : MonoBehaviour
         gameObject.GetComponentInChildren<playerHealth>().init(200, assetsRef);//set health
         gameObject.GetComponentInChildren<gunHolder>().init(schemeName);//gamepad or not?
         gameObject.GetComponentInChildren<gunHolder>().bareHandsOffset();
-
-
     }
     public void Flip()
     {
@@ -145,7 +142,6 @@ public class playerController : MonoBehaviour
         {
             gameObject.GetComponentInChildren<gunHolder>().Fire();
         }
-
     }
     public void AltFire(InputAction.CallbackContext context)
     {
@@ -153,7 +149,6 @@ public class playerController : MonoBehaviour
         {
             gameObject.GetComponentInChildren<gunHolder>().AltFire();
         }
-
     }
     public void Equip(InputAction.CallbackContext context)
     {
@@ -162,11 +157,6 @@ public class playerController : MonoBehaviour
             gunHolder.Equip();
         }
 
-
-    }
-    public void ChangeSkin(InputAction.CallbackContext context)
-    {
-        if (context.performed) { gameObject.GetComponentInChildren<bodyAnim>().skinSwitch("samurai"); }
     }
     public void Drop(InputAction.CallbackContext context)
     {
@@ -174,7 +164,6 @@ public class playerController : MonoBehaviour
         {
             gameObject.GetComponentInChildren<gunHolder>().Drop();
         }
-
     }
     //ladders and deaths
     private void OnTriggerEnter2D(Collider2D collision)

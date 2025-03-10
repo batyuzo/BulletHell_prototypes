@@ -62,7 +62,6 @@ public class gunHolder : MonoBehaviour
     {
         magInfoText.color = new Color(1, 1, 1, 0);
     }
-    //title says it all
     private void lookAt()
     {
         if (gamepad)
@@ -73,26 +72,44 @@ public class gunHolder : MonoBehaviour
         {
             mouseAim();
         }
-
-
-        
     }
-
     private void gamepadAim()
     {
-        
+        flip(toFlip("keyboard"));
     }
-
     private void mouseAim()
     {
         Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
         float angle = Mathf.Atan2(dir.y * -1, dir.x * -1) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
         //flip part
-
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (mousePos.x < transform.position.x)
+        flip(toFlip("mouse"));
+    }
+    private bool toFlip(string scheme)//decides if flip
+    {
+        if (scheme == "mouse")
+        {
+            if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < transform.position.x)
+            {
+                return true;
+            }
+            else return false;
+
+        }
+        else
+        {
+            return true;//fill later
+        }
+
+    }
+    private void flip(bool flip)
+    {
+        //Church: Well, give it a flip.
+        //Tucker: I don't wanna flip it.
+        //Church: What's the problem?
+        //Tucker: It's in a weird place.
+        if (flip)
         {
             foreach (Transform child in transform)
             {
@@ -154,9 +171,7 @@ public class gunHolder : MonoBehaviour
             }
         }
     }
-
-    //executes on Equip
-    public void setOffset()
+    public void setOffset()//executes on Equip
     {
 
         //grab values from children
