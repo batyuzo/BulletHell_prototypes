@@ -23,6 +23,7 @@ public class gunHolder : MonoBehaviour
     public GameObject player;
 
     public bool gamepad;
+    public Vector2 aimDirection;
 
     public bodyAnim playerAnim;
     public scanner scan;
@@ -48,7 +49,6 @@ public class gunHolder : MonoBehaviour
         }
         Drop();
     }
-
     private void updateMaginfo()
     {
         if (equipped != null)
@@ -75,11 +75,16 @@ public class gunHolder : MonoBehaviour
     }
     private void gamepadAim()
     {
-        flip(toFlip("keyboard"));
+
+        Vector2 dir = aimDirection;
+        float angle = Mathf.Atan2(dir.y * -1, dir.x * -1) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        flip(toFlip("gamepad"));
     }
     private void mouseAim()
     {
         Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        aimDirection = new Vector2(dir.x, dir.y);
         float angle = Mathf.Atan2(dir.y * -1, dir.x * -1) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         //flip part
@@ -99,7 +104,11 @@ public class gunHolder : MonoBehaviour
         }
         else
         {
-            return true;//fill later
+            if (aimDirection.x > 0)
+            {
+                return false;
+            }
+            else return true;
         }
 
     }

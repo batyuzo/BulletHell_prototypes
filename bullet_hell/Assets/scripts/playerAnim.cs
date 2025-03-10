@@ -42,7 +42,6 @@ public class bodyAnim : MonoBehaviour
     {
         //init("knight");
     }
-
     public void init(string startingCharacter, playerAssets assetsRef)
     {
         i = 0;

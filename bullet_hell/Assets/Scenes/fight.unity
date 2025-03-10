@@ -738,6 +738,8 @@ MonoBehaviour:
   handFar: {fileID: 1750013738}
   equipped: {fileID: 0}
   player: {fileID: 390778648}
+  gamepad: 0
+  aimDirection: {x: 0, y: 0}
   playerAnim: {fileID: 390778655}
   scan: {fileID: 111249045}
   equippedText: {fileID: 1807920352}
@@ -1623,22 +1625,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 390778653}
         m_TargetAssemblyTypeName: playerController, Assembly-CSharp
-        m_MethodName: ChangeSkin
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 8d0647fd-3e8b-4eb3-831c-7a49ba597a31
-    m_ActionName: Player/ChangeSkin[/Keyboard/u]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 390778653}
-        m_TargetAssemblyTypeName: playerController, Assembly-CSharp
         m_MethodName: Drop
         m_Mode: 0
         m_Arguments:
@@ -1651,6 +1637,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 92139103-3724-4a6c-8376-df5e38507d9f
     m_ActionName: Player/Drop
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 390778653}
+        m_TargetAssemblyTypeName: playerController, Assembly-CSharp
+        m_MethodName: Look
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c9dbf2f1-6a61-48ca-9b6b-550b1c03ab08
+    m_ActionName: Player/Look[/XInputControllerWindows/rightStick]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -1677,7 +1679,6 @@ MonoBehaviour:
   head: {fileID: 693699323}
   body: {fileID: 10879910}
   groundCheck: {fileID: 1578842393}
-  playerNum: 0
   gunHolder: {fileID: 111249044}
   playerAssets: {fileID: 0}
   jumpLeft: 0
@@ -2546,6 +2547,8 @@ MonoBehaviour:
   handFar: {fileID: 0}
   equipped: {fileID: 0}
   player: {fileID: 0}
+  gamepad: 0
+  aimDirection: {x: 0, y: 0}
   playerAnim: {fileID: 0}
   scan: {fileID: 0}
   equippedText: {fileID: 0}
@@ -2744,6 +2747,8 @@ MonoBehaviour:
   handFar: {fileID: 0}
   equipped: {fileID: 0}
   player: {fileID: 0}
+  gamepad: 0
+  aimDirection: {x: 0, y: 0}
   playerAnim: {fileID: 0}
   scan: {fileID: 0}
   equippedText: {fileID: 0}
@@ -3837,12 +3842,12 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 13, y: 2.56}
       - {x: 12, y: 2.56}
-      - {x: 12, y: -6.56}
-      - {x: 13, y: -6.56}
+      - {x: 12, y: -8}
+      - {x: 13, y: -8}
     - - {x: -13, y: 2.56}
       - {x: -12, y: 2.56}
-      - {x: -12, y: -6.56}
-      - {x: -13, y: -6.56}
+      - {x: -12, y: -8}
+      - {x: -13, y: -8}
   m_UseDelaunayMesh: 0
 --- !u!1 &1294941562
 GameObject:
@@ -4279,22 +4284,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1428454092}
         m_TargetAssemblyTypeName: playerController, Assembly-CSharp
-        m_MethodName: ChangeSkin
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 8d0647fd-3e8b-4eb3-831c-7a49ba597a31
-    m_ActionName: Player/ChangeSkin[/Keyboard/u]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1428454092}
-        m_TargetAssemblyTypeName: playerController, Assembly-CSharp
         m_MethodName: Drop
         m_Mode: 0
         m_Arguments:
@@ -4307,6 +4296,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 92139103-3724-4a6c-8376-df5e38507d9f
     m_ActionName: Player/Drop
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1428454092}
+        m_TargetAssemblyTypeName: playerController, Assembly-CSharp
+        m_MethodName: Look
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ef20c381-b286-418b-a00d-786885a9c40e
+    m_ActionName: Player/Look[/XInputControllerWindows/rightStick]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -4453,7 +4458,6 @@ MonoBehaviour:
   head: {fileID: 595374547}
   body: {fileID: 494836765}
   groundCheck: {fileID: 349915337}
-  playerNum: 0
   gunHolder: {fileID: 1538271487}
   playerAssets: {fileID: 0}
   jumpLeft: 0
@@ -4617,6 +4621,8 @@ MonoBehaviour:
   handFar: {fileID: 2068750618}
   equipped: {fileID: 0}
   player: {fileID: 1428454085}
+  gamepad: 0
+  aimDirection: {x: 0, y: 0}
   playerAnim: {fileID: 1428454091}
   scan: {fileID: 1538271488}
   equippedText: {fileID: 1807920352}
@@ -5023,14 +5029,16 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 13.2, y: -4.56}
-      - {x: 13.2, y: -5.44}
+    - - {x: 13.5, y: -4.56}
+      - {x: 13.25, y: -5}
+      - {x: 13.5, y: -5.56}
       - {x: 14, y: -5.56}
       - {x: 14, y: -7.56}
       - {x: -14, y: -7.56}
       - {x: -14, y: -5.56}
-      - {x: -13.2, y: -5.44}
-      - {x: -13.2, y: -4.56}
+      - {x: -13.5, y: -5.56}
+      - {x: -13.23, y: -5}
+      - {x: -13.5, y: -4.56}
       - {x: -15, y: -4.56}
       - {x: -15, y: -8.44}
       - {x: 15, y: -8.44}
@@ -5055,10 +5063,12 @@ PolygonCollider2D:
       - {x: -8, y: -3.56}
       - {x: -9, y: -3.56}
       - {x: -9, y: -4.56}
-      - {x: -11.8, y: -4.56}
-      - {x: -11.8, y: -5.3}
-      - {x: 11.8, y: -5.3}
-      - {x: 11.8, y: -4.56}
+      - {x: -11.5, y: -4.56}
+      - {x: -11.75, y: -5}
+      - {x: -11.5, y: -5.44}
+      - {x: 11.5, y: -5.44}
+      - {x: 11.75, y: -5}
+      - {x: 11.5, y: -4.56}
     - - {x: -6, y: 1.44}
       - {x: -7, y: 1.44}
       - {x: -7, y: 0.44}
@@ -5832,21 +5842,21 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -15, y: 2.44}
-      - {x: -13.1, y: 2.44}
-      - {x: -13.1, y: 2.4}
+      - {x: -13.25, y: 2.44}
+      - {x: -13.25, y: 2.4}
       - {x: -15, y: 2.4}
     - - {x: 15, y: 2.44}
-      - {x: 13.1, y: 2.44}
-      - {x: 13.1, y: 2.4}
+      - {x: 13.25, y: 2.44}
+      - {x: 13.25, y: 2.4}
       - {x: 15, y: 2.4}
-    - - {x: -11.9, y: 2.44}
+    - - {x: -11.75, y: 2.44}
       - {x: -11, y: 2.44}
       - {x: -11, y: 2.4}
-      - {x: -11.9, y: 2.4}
-    - - {x: 11.9, y: 2.44}
+      - {x: -11.75, y: 2.4}
+    - - {x: 11.75, y: 2.44}
       - {x: 11, y: 2.44}
       - {x: 11, y: 2.4}
-      - {x: 11.9, y: 2.4}
+      - {x: 11.75, y: 2.4}
     - - {x: -11, y: 4.44}
       - {x: -7, y: 4.44}
       - {x: -7, y: 4.4}
@@ -5987,8 +5997,9 @@ PolygonCollider2D:
       - {x: -10, y: 4.44}
       - {x: -11, y: 4.44}
       - {x: -11, y: 3.44}
-      - {x: -15, y: 3.44}
-      - {x: -15, y: 2.44}
+      - {x: -11.5, y: 3.44}
+      - {x: -11.75, y: 3}
+      - {x: -11.5, y: 2.44}
       - {x: -7, y: 2.44}
       - {x: -7, y: 3.44}
     - - {x: 3, y: 3.44}
@@ -6010,8 +6021,9 @@ PolygonCollider2D:
       - {x: 9, y: 3.44}
       - {x: 7, y: 3.44}
       - {x: 7, y: 2.44}
-      - {x: 15, y: 2.44}
-      - {x: 15, y: 3.44}
+      - {x: 11.5, y: 2.44}
+      - {x: 11.75, y: 3}
+      - {x: 11.5, y: 3.44}
       - {x: 11, y: 3.44}
     - - {x: 16, y: 9}
       - {x: 16, y: -9}
@@ -6025,6 +6037,16 @@ PolygonCollider2D:
       - {x: 15, y: 9}
       - {x: -15, y: 9}
       - {x: -15, y: 8.44}
+    - - {x: 15, y: 3.44}
+      - {x: 13.5, y: 3.44}
+      - {x: 13.25, y: 3}
+      - {x: 13.5, y: 2.44}
+      - {x: 15, y: 2.44}
+    - - {x: -15, y: 3.44}
+      - {x: -13.5, y: 3.44}
+      - {x: -13.25, y: 3}
+      - {x: -13.5, y: 2.44}
+      - {x: -15, y: 2.44}
   m_UseDelaunayMesh: 0
 --- !u!1 &2000256276
 GameObject:

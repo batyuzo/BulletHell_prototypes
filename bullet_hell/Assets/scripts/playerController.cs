@@ -26,6 +26,7 @@ public class playerController : MonoBehaviour
     [Header("script refs")]
     public gunHolder gunHolder;
     public playerAssets playerAssets;
+    public float deadzone;
 
     [Header("PlayerLogs")]
     public int jumpLeft;
@@ -55,6 +56,7 @@ public class playerController : MonoBehaviour
     {
         Flip();
         currentHealth = GetComponent<playerHealth>().currentHealth;
+
     }
 
     public void init(string skin, Vector3 pos, int health, playerAssets assetsRef, string schemeName)
@@ -64,7 +66,7 @@ public class playerController : MonoBehaviour
             Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), obj.GetComponent<Collider2D>(), true);
         }
         playerAssets = assetsRef;
-
+        deadzone = .25f;
         gameObject.GetComponentInChildren<bodyAnim>().init(skin, assetsRef);//skin
         gameObject.transform.position = pos;//spawn position
         gameObject.GetComponentInChildren<playerHealth>().init(200, assetsRef);//set health
@@ -101,6 +103,22 @@ public class playerController : MonoBehaviour
         //if looks right and goes left -> backwards motion
         else if (lookingRight && horizontal < 0) { forwardMotion = false; }
     }
+    public void Look(InputAction.CallbackContext context)
+    {
+        if (deadzoneCheck(context.ReadValue<Vector2>()[0], context.ReadValue<Vector2>()[1]))
+        {
+            gunHolder.aimDirection = context.ReadValue<Vector2>();
+        }
+    }
+
+    private bool deadzoneCheck(float xInput, float yInput)//called by look
+    {
+        if (Mathf.Abs(xInput) > deadzone || Mathf.Abs(yInput) > deadzone)
+        {
+            return true;//out of deadzone
+        }
+        return false;//still in deadzone
+    }
 
     //controls
     public void Move(InputAction.CallbackContext context)
@@ -109,10 +127,11 @@ public class playerController : MonoBehaviour
         horizontal = context.ReadValue<Vector2>().x;
         vertical = context.ReadValue<Vector2>().y;
 
+
         //CLIMB
-        if (vertical != 0 && laddered)
+        if (context.ReadValue<Vector2>().y > 0 && laddered)
         {
-            rb.velocity = new Vector2(rb.velocity.x, vertical * speed);
+            rb.velocity = new Vector2(rb.velocity.x, context.ReadValue<Vector2>().y * speed);
         }
 
         //WALK
