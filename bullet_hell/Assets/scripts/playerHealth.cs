@@ -11,7 +11,15 @@ public class playerHealth : MonoBehaviour
     public int currentHealth;
     public healthbar healthbarScript;
     public List<GameObject> inkFx;
+    public bool dead;
 
+
+    public void init(int health, playerAssets playerAssets)
+    {
+        dead = false;
+        currentHealth = health;
+        inkFx = playerAssets.ink_damageFx;
+    }
 
     //player gets damaged
     public void playerDamaged(int dmg, string type)
@@ -28,7 +36,7 @@ public class playerHealth : MonoBehaviour
 
     private void damageFx(string type)
     {
-        if (type == "ink" && inkFx.Count>0)
+        if (type == "ink" && inkFx.Count > 0)
         {
             Instantiate(inkFx[UnityEngine.Random.Range(0, inkFx.Count)], this.gameObject.transform.position, Quaternion.Euler(0, 0, 0));
         }
@@ -36,12 +44,9 @@ public class playerHealth : MonoBehaviour
 
     public void death()
     {
+        dead = true;
         Debug.Log(gameObject.name + "is dead");
     }
 
-    public void init(int health, playerAssets playerAssets)
-    {
-        currentHealth = health;
-        inkFx = playerAssets.ink_damageFx;
-    }
+
 }

@@ -27,6 +27,8 @@ public class playerController : MonoBehaviour
     public gunHolder gunHolder;
     public playerAssets playerAssets;
     public float deadzone;
+    public Vector2 aimDirection;
+    public bool gamepad;
 
     [Header("PlayerLogs")]
     public int jumpLeft;
@@ -54,13 +56,26 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Flip();
+        if (!gamepad)//gamepad aimDir -> "Look"
+        { aimDirection = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position); }
+        gunHolder.lookAt(aimDirection);
+        flipSprite(aimDirection.x > 0);//if need flip
         currentHealth = GetComponent<playerHealth>().currentHealth;
-
     }
 
-    public void init(string skin, Vector3 pos, int health, playerAssets assetsRef, string schemeName)
+    public void init(string skin, Vector3 pos, int health, playerAssets assetsRef, Vector2 initialDirection)
     {
+        aimDirection = initialDirection;
+        //set scheme
+        if (GetComponent<PlayerInput>().currentControlScheme.Contains("pad"))
+        {
+            gamepad = true;
+        }
+        else
+        {
+            gamepad = false;
+        }
+
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("weapon"))
         {
             Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), obj.GetComponent<Collider2D>(), true);
@@ -70,23 +85,19 @@ public class playerController : MonoBehaviour
         gameObject.GetComponentInChildren<bodyAnim>().init(skin, assetsRef);//skin
         gameObject.transform.position = pos;//spawn position
         gameObject.GetComponentInChildren<playerHealth>().init(200, assetsRef);//set health
-        gameObject.GetComponentInChildren<gunHolder>().init(schemeName);//gamepad or not?
-        gameObject.GetComponentInChildren<gunHolder>().bareHandsOffset();
+        gunHolder = GetComponentInChildren<gunHolder>();
+        gunHolder.bareHandsOffset();
     }
-    public void Flip()
+    public void flipSprite(bool right)//look left/right
     {
-
-        Vector3 mouseScreenPos = Input.mousePosition;
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
-
         //facing right
-        if (mouseWorldPos.x > transform.position.x)
+        if (right)
         {
             body.GetComponentInChildren<SpriteRenderer>().flipX = true;
             moveDirection(true);
         }
         //facing left
-        if (mouseWorldPos.x < transform.position.x)
+        else
         {
             body.GetComponentInChildren<SpriteRenderer>().flipX = false;
             moveDirection(false);
@@ -105,12 +116,11 @@ public class playerController : MonoBehaviour
     }
     public void Look(InputAction.CallbackContext context)
     {
-        if (deadzoneCheck(context.ReadValue<Vector2>()[0], context.ReadValue<Vector2>()[1]))
+        if (gamepad && deadzoneCheck(context.ReadValue<Vector2>()[0], context.ReadValue<Vector2>()[1]))
         {
-            gunHolder.aimDirection = context.ReadValue<Vector2>();
+            aimDirection = context.ReadValue<Vector2>();
         }
     }
-
     private bool deadzoneCheck(float xInput, float yInput)//called by look
     {
         if (Mathf.Abs(xInput) > deadzone || Mathf.Abs(yInput) > deadzone)
@@ -119,7 +129,6 @@ public class playerController : MonoBehaviour
         }
         return false;//still in deadzone
     }
-
     //controls
     public void Move(InputAction.CallbackContext context)
     {

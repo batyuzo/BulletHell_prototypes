@@ -36,8 +36,27 @@ public class gameManager : MonoBehaviour
     public playerAssets playerAssets;
     public musicAssets musicAssets;
 
+    public Scene activescene;
+
     [Header("logs")]
     public bool firstLaunch;
+
+    private void Update()
+    {
+        if (fightEnd())
+        {
+            SceneManager.LoadScene("menu");
+        }
+    }
+
+    public bool fightEnd()
+    {
+        if (activescene.name == "fight" && (player1.GetComponent<playerHealth>().dead || player2.GetComponent<playerHealth>().dead))
+        {
+            return true;
+        }
+        return false;
+    }
 
     private void Awake()
     {
@@ -52,6 +71,9 @@ public class gameManager : MonoBehaviour
     }
     public void initMenu()
     {
+        UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+        activescene = SceneManager.GetActiveScene();
+        UnityEngine.Cursor.visible = true;
         setRefs("menu");
         passedData.defaults(musicAssets.crt1Kit, "knight", playerAssets.knight_desc, musicAssets.crt1Kit.desc, "prac");
         menuScript.init(passedData, musicPlayer, musicAssets, playerAssets);
@@ -59,6 +81,9 @@ public class gameManager : MonoBehaviour
     }
     public void initFight()
     {
+        UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+        activescene = SceneManager.GetActiveScene();
+        UnityEngine.Cursor.visible = false;
         setRefs("fight");
         mapLoader.loadMap(passedData.map);
         weaponLoader.spawnPositions = spawnPositions;
@@ -66,8 +91,7 @@ public class gameManager : MonoBehaviour
         fightUi.init(passedData);
         healthbarP1.init("p1", passedData.map);
         healthbarP2.init("p2", passedData.map);
-        UnityEngine.Cursor.visible = false;
-        UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+
 
         if (passedData.map == "prac")
         {
@@ -89,12 +113,12 @@ public class gameManager : MonoBehaviour
         Debug.Log("first player:");
         player1.GetComponent<PlayerInput>().SwitchCurrentControlScheme(Gamepad.current);
         //player1.GetComponent<PlayerInput>().SwitchCurrentControlScheme(passedData.p1Device);
-        player1.GetComponent<playerController>().init(playerskins[0], spawnAt, health, playerAssets, player1.GetComponent<PlayerInput>().currentControlScheme);
+        player1.GetComponent<playerController>().init(playerskins[0], spawnAt, health, playerAssets, new Vector2(1, 0));
 
         Debug.Log("second player:");
         player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme(Mouse.current, Keyboard.current);
         //player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme(passedData.p2Device);
-        player2.GetComponent<playerController>().init(playerskins[1], spawnAt * new Vector3(-1, 1), health, playerAssets, player2.GetComponent<PlayerInput>().currentControlScheme);
+        player2.GetComponent<playerController>().init(playerskins[1], spawnAt * new Vector3(-1, 1), health, playerAssets, new Vector2(-1, 0));
 
     }
     private void setRefs(string scene)//find called once

@@ -738,8 +738,7 @@ MonoBehaviour:
   handFar: {fileID: 1750013738}
   equipped: {fileID: 0}
   player: {fileID: 390778648}
-  gamepad: 0
-  aimDirection: {x: 0, y: 0}
+  head: {fileID: 693699322}
   playerAnim: {fileID: 390778655}
   scan: {fileID: 111249045}
   equippedText: {fileID: 1807920352}
@@ -1681,6 +1680,9 @@ MonoBehaviour:
   groundCheck: {fileID: 1578842393}
   gunHolder: {fileID: 111249044}
   playerAssets: {fileID: 0}
+  deadzone: 0
+  aimDirection: {x: 0, y: 0}
+  gamepad: 0
   jumpLeft: 0
   coyoteCount: 0
   jumpBuffer: 0
@@ -2547,8 +2549,7 @@ MonoBehaviour:
   handFar: {fileID: 0}
   equipped: {fileID: 0}
   player: {fileID: 0}
-  gamepad: 0
-  aimDirection: {x: 0, y: 0}
+  head: {fileID: 0}
   playerAnim: {fileID: 0}
   scan: {fileID: 0}
   equippedText: {fileID: 0}
@@ -2728,34 +2729,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 693699322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c0bc23c58c419f41b389d31c0d3eab5, type: 3}
+  m_Script: {fileID: 11500000, guid: b91af3e1ad4ba21438995a44bc4da9d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HCO:
-  - 0
-  - 0
-  - 0
-  HFO:
-  - 0
-  - 0
-  - 0
-  WPO:
-  - 0
-  - 0
-  - 0
-  handClose: {fileID: 0}
-  handFar: {fileID: 0}
-  equipped: {fileID: 0}
-  player: {fileID: 0}
-  gamepad: 0
-  aimDirection: {x: 0, y: 0}
-  playerAnim: {fileID: 0}
-  scan: {fileID: 0}
-  equippedText: {fileID: 0}
-  magInfo: {fileID: 0}
-  magInfoText: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0}
-  weaponScript: {fileID: 0}
 --- !u!1 &758420255
 GameObject:
   m_ObjectHideFlags: 0
@@ -4460,6 +4436,9 @@ MonoBehaviour:
   groundCheck: {fileID: 349915337}
   gunHolder: {fileID: 1538271487}
   playerAssets: {fileID: 0}
+  deadzone: 0
+  aimDirection: {x: 0, y: 0}
+  gamepad: 0
   jumpLeft: 0
   coyoteCount: 0
   jumpBuffer: 0
@@ -4621,13 +4600,12 @@ MonoBehaviour:
   handFar: {fileID: 2068750618}
   equipped: {fileID: 0}
   player: {fileID: 1428454085}
-  gamepad: 0
-  aimDirection: {x: 0, y: 0}
+  head: {fileID: 595374546}
   playerAnim: {fileID: 1428454091}
   scan: {fileID: 1538271488}
-  equippedText: {fileID: 1807920352}
-  magInfo: {fileID: 1712164409}
-  magInfoText: {fileID: 1712164411}
+  equippedText: {fileID: 5715673}
+  magInfo: {fileID: 9745227}
+  magInfoText: {fileID: 9745229}
   offset: {x: 0, y: 0, z: 0}
   weaponScript: {fileID: 0}
 --- !u!114 &1538271488

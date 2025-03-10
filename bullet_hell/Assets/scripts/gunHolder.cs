@@ -21,9 +21,7 @@ public class gunHolder : MonoBehaviour
     public GameObject handFar;
     public GameObject equipped = null;
     public GameObject player;
-
-    public bool gamepad;
-    public Vector2 aimDirection;
+    public GameObject head;
 
     public bodyAnim playerAnim;
     public scanner scan;
@@ -37,18 +35,6 @@ public class gunHolder : MonoBehaviour
     [Header("weapon script ref")]
     public weapon weaponScript;
 
-    public void init(string scheme)
-    {
-        if (scheme.Contains("Mouse"))
-        {
-            gamepad = false;
-        }
-        else
-        {
-            gamepad = true;
-        }
-        Drop();
-    }
     private void updateMaginfo()
     {
         if (equipped != null)
@@ -62,64 +48,30 @@ public class gunHolder : MonoBehaviour
     {
         magInfoText.color = new Color(1, 1, 1, 0);
     }
-    private void lookAt()
+    public void lookAt(Vector2 direction)
     {
-        if (gamepad)
-        {
-            gamepadAim();
-        }
-        else
-        {
-            mouseAim();
-        }
+        transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(direction.y * -1, direction.x * -1) * Mathf.Rad2Deg, Vector3.forward);
+        head.transform.rotation = transform.rotation;
+        flip(direction.x < 0);
     }
-    private void gamepadAim()
-    {
-
-        Vector2 dir = aimDirection;
-        float angle = Mathf.Atan2(dir.y * -1, dir.x * -1) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        flip(toFlip("gamepad"));
-    }
-    private void mouseAim()
-    {
-        Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-        aimDirection = new Vector2(dir.x, dir.y);
-        float angle = Mathf.Atan2(dir.y * -1, dir.x * -1) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        //flip part
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        flip(toFlip("mouse"));
-    }
-    private bool toFlip(string scheme)//decides if flip
-    {
-        if (scheme == "mouse")
-        {
-            if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < transform.position.x)
-            {
-                return true;
-            }
-            else return false;
-
-        }
-        else
-        {
-            if (aimDirection.x > 0)
-            {
-                return false;
-            }
-            else return true;
-        }
-
-    }
-    private void flip(bool flip)
+    public void flip(bool flip)
     {
         //Church: Well, give it a flip.
         //Tucker: I don't wanna flip it.
         //Church: What's the problem?
         //Tucker: It's in a weird place.
+        //...
+        //Church: Did you try wiggling it?
+        //Tucker: No way, I'm not wiggling your dongle.
+        //Church: Oh, stop being a baby. Just wiggle it.
         if (flip)
         {
+            //head flip
+            if (head.GetComponentInChildren<SpriteRenderer>() != null)
+            {
+                head.GetComponentInChildren<SpriteRenderer>().flipY = false;
+            }
+            //children flip
             foreach (Transform child in transform)
             {
                 //check if 'spriterenderer exists'
@@ -151,6 +103,12 @@ public class gunHolder : MonoBehaviour
         }
         else
         {
+            //head flip
+            if (head.GetComponentInChildren<SpriteRenderer>() != null)
+            {
+                head.GetComponentInChildren<SpriteRenderer>().flipY = true;
+            }
+            //children flip
             foreach (Transform child in transform)
             {
                 if (child.GetComponentInChildren<SpriteRenderer>() != null)
@@ -273,7 +231,6 @@ public class gunHolder : MonoBehaviour
     }
     private void Update()
     {
-        lookAt();
         updateMaginfo();
     }
     private void Awake()
