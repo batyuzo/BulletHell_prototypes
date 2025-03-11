@@ -88,6 +88,9 @@ public class menu : MonoBehaviour
     }
     public void loginP1()//btn_player1
     {
+        //LOGIN REQUEST
+        StartCoroutine(APIManager.Login("girmany", "gizmo"));
+
         if (passedData.p2Login)//if both logged in
         {
             btn_fight.interactable = true;
@@ -107,7 +110,7 @@ public class menu : MonoBehaviour
             //HARDCODED DB REFS FOR NOW
             passedData.p1Name = "batyuzo";
             passedData.p1Rank = 515;
-            passedData.p1Skins = new List<string> { "bull", "butcher", "knight", "entity" };
+            passedData.p1Skins = new List<string> { "bull", "butcher", "knight" };
             passedData.p1Kits = new List<musicKit> { musicAssets.crt1Kit, musicAssets.crt2Kit, musicAssets.muteKit };
 
             //"if playerPrefs.p1name==p1Name{} then set the following:
