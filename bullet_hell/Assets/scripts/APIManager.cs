@@ -12,10 +12,18 @@ public class APIManager : MonoBehaviour
     public class LoginResponse
     {
         public bool success;
+        public string player; //p1 or p2
         public string username;
+
+        public LoginResponse(bool success, string username, string player)
+        {
+            this.success = success;
+            this.username = username;
+            this.player = player;
+        }
     }
 
-    static public IEnumerator Login(string username, string password)
+    static public IEnumerator Login(string username, string password, string player, Action<LoginResponse> callback)
     {
         byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
 
@@ -31,25 +39,18 @@ public class APIManager : MonoBehaviour
         string loginEndpoint = $"/login/login_check.php?username={username}&password={hash}";
         UnityWebRequest uwr = UnityWebRequest.Get(baseUrl + loginEndpoint);
         yield return uwr.SendWebRequest();
+        LoginResponse response = new LoginResponse(false, "null", player);
         if (uwr.result == UnityWebRequest.Result.Success)
         {
             Debug.Log("Received: " + uwr.downloadHandler.text);
+            response.success = true;
+            response.username = username;
         }
         else
         {
             Debug.Log("Error: " + uwr.error);
+            response.success = false;
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        callback?.Invoke(response);
     }
 }

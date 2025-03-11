@@ -86,20 +86,11 @@ public class menu : MonoBehaviour
         passedData.map = maps[Random.Range(0, maps.Count)];
         SceneManager.LoadScene("fight");
     }
-    public void loginP1()//btn_player1
+    public void loginCallback(APIManager.LoginResponse response)
     {
-        //LOGIN REQUEST
-        StartCoroutine(APIManager.Login("girmany", "gizmo"));
-
-        if (passedData.p2Login)//if both logged in
-        {
-            btn_fight.interactable = true;
-        }
-        if (passedData.p1Login)//if logged in
-        {
-            customizeScreen("p1");
-        }
-        else//first pressed
+        if(!response.success)
+            return;
+        if(response.player == "p1")
         {
             //DATABASE NEEDED
             //passedData.p1Name=database reference
@@ -118,23 +109,12 @@ public class menu : MonoBehaviour
             passedData.p1Skin = "bull";
             passedData.p1Kit = musicAssets.muteKit;
             passedData.p1Login = true;
-        }
 
-        btn_player1.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
-        musicPlayer.changePack(passedData.p1Kit, "p1");
-        playerbodyP1.skinSwitch(playerAssets, passedData.p1Skin);//in-menu playerbody
-    }
-    public void loginP2()//btn_player2
-    {
-        if (passedData.p1Login)//if both logged in
-        {
-            btn_fight.interactable = true;
+            btn_player1.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
+            musicPlayer.changePack(passedData.p1Kit, "p1");
+            playerbodyP1.skinSwitch(playerAssets, passedData.p1Skin);//in-menu playerbody
         }
-        if (passedData.p2Login)//if logged in
-        {
-            customizeScreen("p2");
-        }
-        else//first pressed
+        else
         {
             //DATABASE NEEDED
             //passedData.p2Name=database reference
@@ -153,11 +133,46 @@ public class menu : MonoBehaviour
             passedData.p2Skin = "butcher";
             passedData.p2Kit = musicAssets.crt1Kit;
             passedData.p2Login = true;
+            btn_player2.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
+            musicPlayer.changePack(passedData.p2Kit, "p2");
+            playerbodyP2.skinSwitch(playerAssets, passedData.p2Skin);//in-menu playerbody
         }
-
-        btn_player2.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
-        musicPlayer.changePack(passedData.p2Kit, "p2");
-        playerbodyP2.skinSwitch(playerAssets, passedData.p2Skin);//in-menu playerbody
+    }
+    public void loginP1()//btn_player1
+    {
+        if (passedData.p2Login)//if both logged in
+        {
+            btn_fight.interactable = true;
+        }
+        if (passedData.p1Login)//if logged in
+        {
+            customizeScreen("p1");
+        }
+        else//first pressed
+        {
+            string username = "girmany", password = "baba";
+            //LOGIN REQUEST
+            StartCoroutine(APIManager.Login(username, password, "p1", loginCallback));
+            
+        }
+    }
+    
+    public void loginP2()//btn_player2
+    {
+        if (passedData.p1Login)//if both logged in
+        {
+            btn_fight.interactable = true;
+        }
+        if (passedData.p2Login)//if logged in
+        {
+            customizeScreen("p2");
+        }
+        else//first pressed
+        {
+            string username = "girmany", password = "baba";
+            //LOGIN REQUEST
+            StartCoroutine(APIManager.Login(username, password, "p2", loginCallback));
+        }
     }
     public void quit()//btn_quit
     {

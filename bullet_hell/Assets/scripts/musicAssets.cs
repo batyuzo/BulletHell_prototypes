@@ -15,4 +15,13 @@ public class musicAssets : MonoBehaviour
 
     [Header("mute city")]
     public musicKit muteKit;
+
+    public musicKit GetAssetByName(string name)
+    {
+        if (name.Contains("crt1"))
+        {
+            return crt1Kit;
+        }
+        return null;
+    }
 }
