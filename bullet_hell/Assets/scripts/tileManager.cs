@@ -103,8 +103,8 @@ public class tileManager : MonoBehaviour
         btn_butcher.interactable = skins.Contains("butcher");
         btn_knight.interactable = skins.Contains("knight");
         btn_entity.interactable = skins.Contains("entity");
-        //btn_rogue.interactable = skins.Contains("rogue");
-        //btn_samurai.interactable = skins.Contains("samurai");
+        btn_rogue.interactable = skins.Contains("rogue");
+        btn_samurai.interactable = skins.Contains("samurai");
 
         //kits owned enable
         btn_crt1.interactable = kits.Contains(musicAssets.crt1Kit);
@@ -119,8 +119,8 @@ public class tileManager : MonoBehaviour
         btn_butcher.image.sprite = butcherBase;
         btn_knight.image.sprite = knightBase;
         btn_entity.image.sprite = entityBase;
-        //btn_rogue.image.sprite = rogueBase;
-        //btn_samurai.image.sprite = samuraiBase;
+        btn_rogue.image.sprite = rogueBase;
+        btn_samurai.image.sprite = samuraiBase;
     }
     public void setMusicTiles()//resets base images
     {
@@ -156,23 +156,23 @@ public class tileManager : MonoBehaviour
         else if (skin == "knight")
         {
             refreshTile(btn_knight);
-            btn_butcher.image.sprite = knightSelected;
+            btn_knight.image.sprite = knightSelected;
         }
         else if (skin == "entity")
         {
             refreshTile(btn_entity);
-            btn_butcher.image.sprite = entitySelected;
+            btn_entity.image.sprite = entitySelected;
         }
-        //else if (skin == "rogue")
-        //{
-        //    refreshTile(btn_rogue);
-        //    btn_butcher.image.sprite = rogueSelected;
-        //}
-        //else if (skin == "samurai")
-        //{
-        //    refreshTile(btn_samurai);
-        //    btn_butcher.image.sprite = samuraiSelected;
-        //}
+        else if (skin == "rogue")
+        {
+            refreshTile(btn_rogue);
+            btn_rogue.image.sprite = rogueSelected;
+        }
+        else if (skin == "samurai")
+        {
+            refreshTile(btn_samurai);
+            btn_samurai.image.sprite = samuraiSelected;
+        }
 
     }
     public void refreshTile(Button btn)
