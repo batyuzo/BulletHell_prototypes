@@ -26,7 +26,6 @@ public class playerController : MonoBehaviour
     [Header("script refs")]
     public gunHolder gunHolder;
     public playerAssets playerAssets;
-    public float deadzone;
 
     [Header("PlayerLogs")]
     public int jumpLeft;
@@ -38,8 +37,11 @@ public class playerController : MonoBehaviour
     public int maxHealth;
     public int currentHealth;
     public bool forwardMotion;
-    public bool grounded;
-    public bool laddered;
+    public bool grounded;//if on ground
+    public bool laddered;//if touching ladder
+    public float deadzone;//gamepad deadzone
+    public bool gamepad;//if use gamepad
+    public bool facingRight;
     private void FixedUpdate()
     {
         //!----------MOVEMENT----------!
@@ -56,41 +58,54 @@ public class playerController : MonoBehaviour
     {
         Flip();
         currentHealth = GetComponent<playerHealth>().currentHealth;
-
     }
 
-    public void init(string skin, Vector3 pos, int health, playerAssets assetsRef, string schemeName)
+    public void init(string skin, Vector3 pos, int health, playerAssets assetsRef)
     {
-        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("weapon"))
+        gamepad = GetComponent<PlayerInput>().currentControlScheme.Contains("pad");//if gamepad scheme
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("weapon"))//weapon collision off
         {
             Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), obj.GetComponent<Collider2D>(), true);
         }
         playerAssets = assetsRef;
-        deadzone = .25f;
+        deadzone = .25f;//gamepad deadzone
         gameObject.GetComponentInChildren<bodyAnim>().init(skin, assetsRef);//skin
         gameObject.transform.position = pos;//spawn position
         gameObject.GetComponentInChildren<playerHealth>().init(200, assetsRef);//set health
-        gameObject.GetComponentInChildren<gunHolder>().init(schemeName);//gamepad or not?
-        gameObject.GetComponentInChildren<gunHolder>().bareHandsOffset();
+        //gunHolder init
+        gunHolder = GetComponentInChildren<gunHolder>();
+        gunHolder.gamepad = gamepad;
+        gunHolder.bareHandsOffset();
     }
-    public void Flip()
+    public void Flip()//this is for mouse now only
     {
+        if (!gamepad)//mouse look right
+        {
+            Vector3 mouseScreenPos = Input.mousePosition;
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
 
-        Vector3 mouseScreenPos = Input.mousePosition;
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
+            facingRight = mouseWorldPos.x > transform.position.x;
+        }
+        else
+        {
+            //decided by Look
+        }
 
         //facing right
-        if (mouseWorldPos.x > transform.position.x)
+        if (facingRight)
         {
             body.GetComponentInChildren<SpriteRenderer>().flipX = true;
             moveDirection(true);
         }
         //facing left
-        if (mouseWorldPos.x < transform.position.x)
+        else
         {
             body.GetComponentInChildren<SpriteRenderer>().flipX = false;
             moveDirection(false);
         }
+
+
+
     }
     private void moveDirection(bool lookingRight)
     {
@@ -103,14 +118,14 @@ public class playerController : MonoBehaviour
         //if looks right and goes left -> backwards motion
         else if (lookingRight && horizontal < 0) { forwardMotion = false; }
     }
-    public void Look(InputAction.CallbackContext context)
+    public void Look(InputAction.CallbackContext context)//GAMEPAD ONLY
     {
-        if (deadzoneCheck(context.ReadValue<Vector2>()[0], context.ReadValue<Vector2>()[1]))
+        if (deadzoneCheck(context.ReadValue<Vector2>()[0], context.ReadValue<Vector2>()[1]))//deadzone
         {
-            gunHolder.aimDirection = context.ReadValue<Vector2>();
+            facingRight = context.ReadValue<Vector2>().x > 0;//if look right
+            gunHolder.aimDirection = context.ReadValue<Vector2>();//vector for gunHolder
         }
     }
-
     private bool deadzoneCheck(float xInput, float yInput)//called by look
     {
         if (Mathf.Abs(xInput) > deadzone || Mathf.Abs(yInput) > deadzone)

@@ -89,12 +89,12 @@ public class gameManager : MonoBehaviour
         Debug.Log("first player:");
         player1.GetComponent<PlayerInput>().SwitchCurrentControlScheme(Gamepad.current);
         //player1.GetComponent<PlayerInput>().SwitchCurrentControlScheme(passedData.p1Device);
-        player1.GetComponent<playerController>().init(playerskins[0], spawnAt, health, playerAssets, player1.GetComponent<PlayerInput>().currentControlScheme);
+        player1.GetComponent<playerController>().init(playerskins[0], spawnAt, health, playerAssets);
 
         Debug.Log("second player:");
         player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme(Mouse.current, Keyboard.current);
         //player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme(passedData.p2Device);
-        player2.GetComponent<playerController>().init(playerskins[1], spawnAt * new Vector3(-1, 1), health, playerAssets, player2.GetComponent<PlayerInput>().currentControlScheme);
+        player2.GetComponent<playerController>().init(playerskins[1], spawnAt * new Vector3(-1, 1), health, playerAssets);
 
     }
     private void setRefs(string scene)//find called once

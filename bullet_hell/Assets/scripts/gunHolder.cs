@@ -22,7 +22,7 @@ public class gunHolder : MonoBehaviour
     public GameObject equipped = null;
     public GameObject player;
 
-    public bool gamepad;
+    public bool gamepad;//by playerController.init
     public Vector2 aimDirection;
 
     public bodyAnim playerAnim;
@@ -36,19 +36,6 @@ public class gunHolder : MonoBehaviour
 
     [Header("weapon script ref")]
     public weapon weaponScript;
-
-    public void init(string scheme)
-    {
-        if (scheme.Contains("Mouse"))
-        {
-            gamepad = false;
-        }
-        else
-        {
-            gamepad = true;
-        }
-        Drop();
-    }
     private void updateMaginfo()
     {
         if (equipped != null)
