@@ -99,8 +99,8 @@ public class menu : MonoBehaviour
             //passedData.p1Skins=database reference
 
             //HARDCODED DB REFS FOR NOW
-            passedData.p1Name = "girmany";
-            passedData.p1Rank = 50;
+            passedData.p1Name = response.username;
+            passedData.p1Rank = response.points;
             passedData.p1Skins = new List<string> { "bull", "butcher", "knight" };
             passedData.p1Kits = new List<musicKit> { musicAssets.crt1Kit, musicAssets.crt2Kit, musicAssets.muteKit };
 
@@ -151,7 +151,7 @@ public class menu : MonoBehaviour
         else//first pressed
         {
 
-            if (true)
+            if (false)
             {
                 loginCallback(new APIManager.LoginResponse(true, "girmany", 50, "p1"));
             }
@@ -178,7 +178,7 @@ public class menu : MonoBehaviour
         }
         else//first pressed
         {
-            if (true)
+            if (false)
             {
                 loginCallback(new APIManager.LoginResponse(true, "batyuzo", 100, "p2"));
 
