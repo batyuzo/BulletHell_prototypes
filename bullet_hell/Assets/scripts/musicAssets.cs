@@ -18,10 +18,21 @@ public class musicAssets : MonoBehaviour
 
     public musicKit GetAssetByName(string name)
     {
-        if (name.Contains("crt1"))
+        switch (name)
         {
-            return crt1Kit;
+            case "CRT_HEAD1":
+                return crt1Kit;
+            case "CRT_HEAD2":
+                return crt2Kit;
+            case "Dusqk":
+                return null;
+            case "hellstar plus":
+                return hellstarKit;
+            case "Mute City":
+                return muteKit;
+            default:
+                return null;
+
         }
-        return null;
     }
 }

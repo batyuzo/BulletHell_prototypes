@@ -86,6 +86,26 @@ public class menu : MonoBehaviour
         passedData.map = maps[Random.Range(0, maps.Count)];
         SceneManager.LoadScene("fight");
     }
+    public void LoadOwnedMusic(APIManager.AssetResponse response)
+    {
+        if (!response.success)
+            return;
+        if (response.player == "p1")
+        {
+            List<musicKit> kits = new List<musicKit>();
+            foreach (string kitName in response.ownedAssetName)
+                kits.Add(musicAssets.GetAssetByName(kitName));
+            passedData.p1Kits = kits;
+        }
+        else
+        {
+            List<musicKit> kits = new List<musicKit>();
+            foreach (string kitName in response.ownedAssetName)
+                kits.Add(musicAssets.GetAssetByName(kitName));
+            passedData.p2Kits = kits;
+        }
+
+    }
     public void loginCallback(APIManager.LoginResponse response)
     {
         if (!response.success)
@@ -101,9 +121,11 @@ public class menu : MonoBehaviour
             //HARDCODED DB REFS FOR NOW
             passedData.p1Name = response.username;
             passedData.p1Rank = response.points;
-            passedData.p1Skins = new List<string> { "bull", "butcher", "knight" };
-            passedData.p1Kits = new List<musicKit> { musicAssets.crt1Kit, musicAssets.crt2Kit, musicAssets.muteKit };
 
+            //Loading owned music
+            StartCoroutine(APIManager.GetOwnedMusic(response.username, "p1", LoadOwnedMusic));
+
+            passedData.p1Skins = new List<string> { "bull", "butcher", "knight" };
             //"if playerPrefs.p1name==p1Name{} then set the following:
             //CURRENTLY SET PREFS
             passedData.p1Skin = "bull";
