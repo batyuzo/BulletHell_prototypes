@@ -109,14 +109,14 @@ public class gameManager : MonoBehaviour
     }
     private void initPlayers(string[] playerskins, Vector2 spawnAt, int health)
     {
-
+        //TEMPORARY
         Debug.Log("first player:");
-        player1.GetComponent<PlayerInput>().SwitchCurrentControlScheme(Gamepad.current);
+        player1.GetComponent<PlayerInput>().SwitchCurrentControlScheme(Mouse.current, Keyboard.current);
         //player1.GetComponent<PlayerInput>().SwitchCurrentControlScheme(passedData.p1Device);
         player1.GetComponent<playerController>().init(playerskins[0], spawnAt, health, playerAssets, new Vector2(1, 0));
 
         Debug.Log("second player:");
-        player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme(Mouse.current, Keyboard.current);
+        player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme("Gamepad");
         //player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme(passedData.p2Device);
         player2.GetComponent<playerController>().init(playerskins[1], spawnAt * new Vector3(-1, 1), health, playerAssets, new Vector2(-1, 0));
 

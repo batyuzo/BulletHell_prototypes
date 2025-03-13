@@ -42,8 +42,6 @@ public class playerController : MonoBehaviour
     public bool forwardMotion;
     public bool grounded;//if on ground
     public bool laddered;//if touching ladder
-    public float deadzone;//gamepad deadzone
-    public bool gamepad;//if use gamepad
     public bool facingRight;
     private void FixedUpdate()
     {
