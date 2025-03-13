@@ -40,8 +40,11 @@ public class playerController : MonoBehaviour
     public int maxHealth;
     public int currentHealth;
     public bool forwardMotion;
-    public bool grounded;
-    public bool laddered;
+    public bool grounded;//if on ground
+    public bool laddered;//if touching ladder
+    public float deadzone;//gamepad deadzone
+    public bool gamepad;//if use gamepad
+    public bool facingRight;
     private void FixedUpdate()
     {
         //!----------MOVEMENT----------!
@@ -81,7 +84,7 @@ public class playerController : MonoBehaviour
             Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), obj.GetComponent<Collider2D>(), true);
         }
         playerAssets = assetsRef;
-        deadzone = .25f;
+        deadzone = .25f;//gamepad deadzone
         gameObject.GetComponentInChildren<bodyAnim>().init(skin, assetsRef);//skin
         gameObject.transform.position = pos;//spawn position
         gameObject.GetComponentInChildren<playerHealth>().init(200, assetsRef);//set health
@@ -102,6 +105,9 @@ public class playerController : MonoBehaviour
             body.GetComponentInChildren<SpriteRenderer>().flipX = false;
             moveDirection(false);
         }
+
+
+
     }
     private void moveDirection(bool lookingRight)
     {
@@ -114,7 +120,7 @@ public class playerController : MonoBehaviour
         //if looks right and goes left -> backwards motion
         else if (lookingRight && horizontal < 0) { forwardMotion = false; }
     }
-    public void Look(InputAction.CallbackContext context)
+    public void Look(InputAction.CallbackContext context)//GAMEPAD ONLY
     {
         if (gamepad && deadzoneCheck(context.ReadValue<Vector2>()[0], context.ReadValue<Vector2>()[1]))
         {

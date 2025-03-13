@@ -86,6 +86,58 @@ public class menu : MonoBehaviour
         passedData.map = maps[Random.Range(0, maps.Count)];
         SceneManager.LoadScene("fight");
     }
+    public void loginCallback(APIManager.LoginResponse response)
+    {
+        if (!response.success)
+            return;
+        if(response.player == "p1")
+        {
+            //DATABASE NEEDED
+            //passedData.p1Name=database reference
+            //passedData.p1Rank=database reference
+            //passedData.p1Kits=database reference
+            //passedData.p1Skins=database reference
+
+            //HARDCODED DB REFS FOR NOW
+            passedData.p1Name = "girmany";
+            passedData.p1Rank = 50;
+            passedData.p1Skins = new List<string> { "bull", "butcher", "knight" };
+            passedData.p1Kits = new List<musicKit> { musicAssets.crt1Kit, musicAssets.crt2Kit, musicAssets.muteKit };
+
+            //"if playerPrefs.p1name==p1Name{} then set the following:
+            //CURRENTLY SET PREFS
+            passedData.p1Skin = "bull";
+            passedData.p1Kit = musicAssets.muteKit;
+            passedData.p1Login = true;
+
+            btn_player1.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
+            musicPlayer.changePack(passedData.p1Kit, "p1");
+            playerbodyP1.skinSwitch(playerAssets, passedData.p1Skin);//in-menu playerbody
+        }
+        else
+        {
+            //DATABASE NEEDED
+            //passedData.p2Name=database reference
+            //passedData.p2Rank=database reference
+            //passedData.p2Kits=database reference
+            //passedData.p2Skins=database reference
+
+            //HARDCODED DB REFS FOR NOW
+            passedData.p2Name = "batyuzo";
+            passedData.p2Rank = 100;
+            passedData.p2Skins = new List<string> { "butcher", "rogue", "samurai", };
+            passedData.p2Kits = new List<musicKit> { musicAssets.crt1Kit, musicAssets.crt2Kit };
+
+            //"if playerPrefs.p1name==p1Name{} then set the following:
+            //CURRENTLY SET PREFS
+            passedData.p2Skin = "butcher";
+            passedData.p2Kit = musicAssets.crt1Kit;
+            passedData.p2Login = true;
+            btn_player2.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
+            musicPlayer.changePack(passedData.p2Kit, "p2");
+            playerbodyP2.skinSwitch(playerAssets, passedData.p2Skin);//in-menu playerbody
+        }
+    }
     public void loginP1()//btn_player1
     {
         if (passedData.p2Login)//if both logged in
@@ -98,29 +150,22 @@ public class menu : MonoBehaviour
         }
         else//first pressed
         {
-            //DATABASE NEEDED
-            //passedData.p1Name=database reference
-            //passedData.p1Rank=database reference
-            //passedData.p1Kits=database reference
-            //passedData.p1Skins=database reference
 
-            //HARDCODED DB REFS FOR NOW
-            passedData.p1Name = "batyuzo";
-            passedData.p1Rank = 515;
-            passedData.p1Skins = new List<string> { "bull", "butcher", "knight", "entity" };
-            passedData.p1Kits = new List<musicKit> { musicAssets.crt1Kit, musicAssets.crt2Kit, musicAssets.muteKit };
+            if (true)
+            {
+                loginCallback(new APIManager.LoginResponse(true, "girmany", 50, "p1"));
+            }
+            else
+            {
+                string username = "girmany", password = "gizmo";
+            //LOGIN REQUEST
+            StartCoroutine(APIManager.Login(username, password, "p1", loginCallback));
 
-            //"if playerPrefs.p1name==p1Name{} then set the following:
-            //CURRENTLY SET PREFS
-            passedData.p1Skin = "bull";
-            passedData.p1Kit = musicAssets.muteKit;
-            passedData.p1Login = true;
+            }
+            
         }
-
-        btn_player1.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
-        musicPlayer.changePack(passedData.p1Kit, "p1");
-        playerbodyP1.skinSwitch(playerAssets, passedData.p1Skin);//in-menu playerbody
     }
+    
     public void loginP2()//btn_player2
     {
         if (passedData.p1Login)//if both logged in
@@ -133,28 +178,19 @@ public class menu : MonoBehaviour
         }
         else//first pressed
         {
-            //DATABASE NEEDED
-            //passedData.p2Name=database reference
-            //passedData.p2Rank=database reference
-            //passedData.p2Kits=database reference
-            //passedData.p2Skins=database reference
+            if (true)
+            {
+                loginCallback(new APIManager.LoginResponse(true, "batyuzo", 100, "p2"));
 
-            //HARDCODED DB REFS FOR NOW
-            passedData.p2Name = "girmany";
-            passedData.p2Rank = 901;
-            passedData.p2Skins = new List<string> { "butcher", "rogue", "samurai", };
-            passedData.p2Kits = new List<musicKit> { musicAssets.crt1Kit, musicAssets.crt2Kit };
+            }
+            else
+            {
+                string username = "batyuzo", password = "batyuzik";
+            //LOGIN REQUEST
+            StartCoroutine(APIManager.Login(username, password, "p2", loginCallback));
 
-            //"if playerPrefs.p1name==p1Name{} then set the following:
-            //CURRENTLY SET PREFS
-            passedData.p2Skin = "butcher";
-            passedData.p2Kit = musicAssets.crt1Kit;
-            passedData.p2Login = true;
+            }
         }
-
-        btn_player2.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
-        musicPlayer.changePack(passedData.p2Kit, "p2");
-        playerbodyP2.skinSwitch(playerAssets, passedData.p2Skin);//in-menu playerbody
     }
     public void quit()//btn_quit
     {

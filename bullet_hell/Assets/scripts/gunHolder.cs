@@ -34,7 +34,6 @@ public class gunHolder : MonoBehaviour
 
     [Header("weapon script ref")]
     public weapon weaponScript;
-
     private void updateMaginfo()
     {
         if (equipped != null)
