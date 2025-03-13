@@ -86,6 +86,8 @@ public class menu : MonoBehaviour
         passedData.map = maps[Random.Range(0, maps.Count)];
         SceneManager.LoadScene("fight");
     }
+
+    //TODO CORRECT THE CODE
     public void LoadOwnedMusic(APIManager.AssetResponse response)
     {
         if (!response.success)

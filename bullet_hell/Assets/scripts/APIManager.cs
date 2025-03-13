@@ -29,27 +29,26 @@ public class APIManager : MonoBehaviour
     }
     public class AssetResponse
     {
-        public List<string> ownedAssetName;
+        public Dictionary<string, bool> ownedAssetName;
         public bool success;
         public string player;
-        bool active;
 
-        public AssetResponse(List<string> ownedAssetName, bool success, string player, bool active)
+        public AssetResponse(Dictionary<string, bool> ownedAssetName, bool success, string player)
         {
             this.ownedAssetName = ownedAssetName;
             this.success = success;
             this.player = player;
-            this.active = active;
         }
     }
 
-    static public IEnumerator GetOwnedMusic(string username, string player, Action<AssetResponse> callback)
+    public IEnumerator GetOwnedMusic(string username, string player, Action<AssetResponse> callback)
     {
         //Define the api endpoint
         string endpoint = $"/profile/get_player_musics.php?username={username}";
         UnityWebRequest uwr = UnityWebRequest.Get(baseUrl + endpoint);
         yield return uwr.SendWebRequest();
-        AssetResponse response = new AssetResponse(new List<string>(), false, "", false);
+        AssetResponse response = new AssetResponse(new Dictionary<string, bool>(), false, ""); // Initialize dictionary
+
         if (uwr.result == UnityWebRequest.Result.Success)
         {
             //Debug.Log("Received: " + uwr.downloadHandler.text);
@@ -66,30 +65,38 @@ public class APIManager : MonoBehaviour
                 {
                     foreach (JSONNode item in json.AsArray)
                     {
-                        //Wont crash if the query is wrong
-                        if (item.HasKey("name") && item["name"].IsString)
+                        // Check for both "name" and "active" keys, and their correct types.
+                        if (item.HasKey("name") && item["name"].IsString &&
+                            item.HasKey("active") && item["active"].IsBoolean)
                         {
-                            response.ownedAssetName.Add(item["name"]);
+                            string name = item["name"];
+                            bool active = item["active"];
+                            response.ownedAssetName.Add(name, active); // Add both name and active status
                         }
                         else
                         {
-                            Debug.LogWarning("Item in array does not have a 'name' property or 'name' is not a string: " + item.ToString());
+                            Debug.LogWarning("Item in array is missing 'name' or 'active' property, or has incorrect types: " + item.ToString());
                         }
                     }
                 }
                 else
                 {
-                    Debug.LogError("Failed to parse JSON response.");
+                    Debug.LogError("Expected JSON array, but received: " + json.Tag.ToString());
                     response.success = false;
                 }
             }
             else
             {
-                Debug.Log("Error: " + uwr.error + " - " + username);
+                Debug.LogError("Failed to parse JSON response.");
                 response.success = false;
             }
-            callback?.Invoke(response);
         }
+        else
+        {
+            Debug.Log("Error: " + uwr.error + " - " + username);
+            response.success = false;
+        }
+        callback(response); // Call the callback
     }
 
     static public IEnumerator Login(string username, string password, string player, Action<LoginResponse> callback)
