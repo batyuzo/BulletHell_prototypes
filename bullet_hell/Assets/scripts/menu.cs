@@ -88,7 +88,7 @@ public class menu : MonoBehaviour
     }
     public void loginCallback(APIManager.LoginResponse response)
     {
-        if(!response.success)
+        if (!response.success)
             return;
         if(response.player == "p1")
         {
@@ -99,8 +99,8 @@ public class menu : MonoBehaviour
             //passedData.p1Skins=database reference
 
             //HARDCODED DB REFS FOR NOW
-            passedData.p1Name = "batyuzo";
-            passedData.p1Rank = 515;
+            passedData.p1Name = "girmany";
+            passedData.p1Rank = 50;
             passedData.p1Skins = new List<string> { "bull", "butcher", "knight" };
             passedData.p1Kits = new List<musicKit> { musicAssets.crt1Kit, musicAssets.crt2Kit, musicAssets.muteKit };
 
@@ -123,8 +123,8 @@ public class menu : MonoBehaviour
             //passedData.p2Skins=database reference
 
             //HARDCODED DB REFS FOR NOW
-            passedData.p2Name = "girmany";
-            passedData.p2Rank = 901;
+            passedData.p2Name = "batyuzo";
+            passedData.p2Rank = 100;
             passedData.p2Skins = new List<string> { "butcher", "rogue", "samurai", };
             passedData.p2Kits = new List<musicKit> { musicAssets.crt1Kit, musicAssets.crt2Kit };
 
@@ -150,9 +150,18 @@ public class menu : MonoBehaviour
         }
         else//first pressed
         {
-            string username = "girmany", password = "baba";
+
+            if (true)
+            {
+                loginCallback(new APIManager.LoginResponse(true, "girmany", 50, "p1"));
+            }
+            else
+            {
+                string username = "girmany", password = "gizmo";
             //LOGIN REQUEST
             StartCoroutine(APIManager.Login(username, password, "p1", loginCallback));
+
+            }
             
         }
     }
@@ -169,9 +178,18 @@ public class menu : MonoBehaviour
         }
         else//first pressed
         {
-            string username = "girmany", password = "baba";
+            if (true)
+            {
+                loginCallback(new APIManager.LoginResponse(true, "batyuzo", 100, "p2"));
+
+            }
+            else
+            {
+                string username = "batyuzo", password = "batyuzik";
             //LOGIN REQUEST
             StartCoroutine(APIManager.Login(username, password, "p2", loginCallback));
+
+            }
         }
     }
     public void quit()//btn_quit

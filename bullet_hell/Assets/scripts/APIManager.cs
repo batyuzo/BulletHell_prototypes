@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
+//using System.Web.Script.Serialization;
 
 public class APIManager : MonoBehaviour
 {
@@ -13,18 +14,22 @@ public class APIManager : MonoBehaviour
     {
         public bool success;
         public string player; //p1 or p2
+        public int points;
         public string username;
 
-        public LoginResponse(bool success, string username, string player)
+        public LoginResponse(bool success, string username, int points, string player)
         {
             this.success = success;
             this.username = username;
+            this.points = points;
             this.player = player;
         }
     }
 
     static public IEnumerator Login(string username, string password, string player, Action<LoginResponse> callback)
     {
+
+        //Hashing the password
         byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
 
         SHA512 shaM = new SHA512Managed();
@@ -37,9 +42,11 @@ public class APIManager : MonoBehaviour
         }
         string hash = builder.ToString();
         string loginEndpoint = $"/login/login_check.php?username={username}&password={hash}";
+
+        //Sending request
         UnityWebRequest uwr = UnityWebRequest.Get(baseUrl + loginEndpoint);
         yield return uwr.SendWebRequest();
-        LoginResponse response = new LoginResponse(false, "null", player);
+        LoginResponse response = new LoginResponse(false, "null", 0,player);
         if (uwr.result == UnityWebRequest.Result.Success)
         {
             Debug.Log("Received: " + uwr.downloadHandler.text);
