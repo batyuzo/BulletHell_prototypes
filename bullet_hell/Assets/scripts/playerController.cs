@@ -57,8 +57,11 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gamepad)//gamepad aimDir -> "Look"
-        { aimDirection = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position); }
+        if (!gamepad)//m+k only
+        {
+            aimDirection = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+            Climb();
+        }
         gunHolder.lookAt(aimDirection);
         flipSprite(aimDirection.x > 0);//if need flip
         currentHealth = GetComponent<playerHealth>().currentHealth;
@@ -140,13 +143,8 @@ public class playerController : MonoBehaviour
         horizontal = context.ReadValue<Vector2>().x;
         vertical = context.ReadValue<Vector2>().y;
 
-
         //CLIMB
-        if (context.ReadValue<Vector2>().y > 0 && laddered)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, context.ReadValue<Vector2>().y * speed);
-        }
-
+        Climb();//m+k in update 
         //WALK
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
@@ -158,6 +156,13 @@ public class playerController : MonoBehaviour
         else
         {
             moving = false;
+        }
+    }
+    private void Climb()
+    {
+        if (vertical > 0 && laddered)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, vertical * speed);
         }
     }
     public void Jump(InputAction.CallbackContext context)
