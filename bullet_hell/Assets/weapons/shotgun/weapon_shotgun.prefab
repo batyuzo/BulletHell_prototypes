@@ -101,8 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a54f19f182fd84d9f3a24b3e834e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  coll: {fileID: 0}
+  rb: {fileID: 7182172249200431270}
+  coll: {fileID: 7805415079537400683}
   handCloseOffset:
   - 0
   - 0
@@ -129,8 +129,9 @@ MonoBehaviour:
   firerate: 0
   cooldown: 0
   shootingPoint: {fileID: 7027401682490116231}
-  muzzleFlash: {fileID: 7403647218097492659, guid: f2360eb70bef5934b8c7d188603f16ca, type: 3}
+  muzzleFlash: {fileID: 7403647218097492659, guid: 1822e9844559caa44819f65cfedf08c9, type: 3}
   bullet: {fileID: 1780308452379566466, guid: 0c8da336ce867944d892d9a496d304a2, type: 3}
+  pelletCount: 0
 --- !u!61 &7805415079537400683
 BoxCollider2D:
   m_ObjectHideFlags: 0

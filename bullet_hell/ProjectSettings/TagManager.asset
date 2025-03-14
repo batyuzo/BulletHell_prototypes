@@ -15,6 +15,7 @@ TagManager:
   - healthbar
   - passedData
   - refHandler
+  - projectile
   layers:
   - Default
   - TransparentFX

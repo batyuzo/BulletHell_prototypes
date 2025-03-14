@@ -33,6 +33,7 @@ public class weapon : MonoBehaviour
     }
     public virtual void SetValues()
     {
+
     }
     public virtual void equip(GameObject parent)
     {

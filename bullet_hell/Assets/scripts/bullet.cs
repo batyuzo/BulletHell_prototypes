@@ -26,14 +26,16 @@ public class bullet : MonoBehaviour
 
     }
 
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<playerHealth>().playerDamaged(damage, "ink");
         }
-        Destroy(gameObject);
+        if (!other.gameObject.CompareTag("projectile"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame

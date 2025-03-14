@@ -169,7 +169,7 @@ public class playerController : MonoBehaviour
     }
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed && grounded)
+        if (context.performed && groundCheck.getGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }

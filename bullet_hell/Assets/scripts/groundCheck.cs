@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class groundCheck : MonoBehaviour {
 
-    //public static for outside accessibility
-    public static bool grounded;
+    public bool grounded;
 
     public bool getGrounded()
     {

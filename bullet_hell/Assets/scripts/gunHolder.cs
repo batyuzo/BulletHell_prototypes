@@ -176,7 +176,6 @@ public class gunHolder : MonoBehaviour
         {
             return false;
         }
-
     }
     public bool AltFire()
     {
@@ -197,12 +196,15 @@ public class gunHolder : MonoBehaviour
         {
             Drop();
             equipped = toEquip;
+            equipped.GetComponent<Rigidbody2D>().simulated = false;
             weaponScript = equipped.GetComponent<weapon>();//set weaponscript
+
             //weaponscript interactions
             weaponScript.equip(gameObject);
             weaponScript.SetValues();
             equippedText.SetText(weaponScript.weaponName);
             //reset positions
+
             equipped.transform.localPosition = Vector2.zero;
             equipped.transform.localRotation = Quaternion.Euler(0, 0, 0);
             setOffset();
@@ -217,6 +219,7 @@ public class gunHolder : MonoBehaviour
             equipped.transform.SetParent(null);
             scan.addDropped(equipped.GetComponent<Collider2D>());
             equipped = null;
+            temp.simulated = true;
             temp.velocity = Vector3.zero;
             temp.angularVelocity = 0;
             //UI+sprite updates
