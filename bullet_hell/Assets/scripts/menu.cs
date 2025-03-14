@@ -56,12 +56,12 @@ public class menu : MonoBehaviour
 
     public void init(passedData passedDataRef, musicPlayer musicPlayerRef, musicAssets musicAssetsRef, playerAssets playerAssetsRef)
     {
-        menuScreen();
+
         passedData = passedDataRef;
         musicPlayer = musicPlayerRef;
         musicAssets = musicAssetsRef;
         playerAssets = playerAssetsRef;
-
+        menuScreen();
         if (Mouse.current != null)
         {
             passedData.p2Device = new InputDevice[] { Keyboard.current, Mouse.current };
@@ -79,7 +79,7 @@ public class menu : MonoBehaviour
         uiMenu.SetActive(true);
         uiCustomize.SetActive(false);
         uiSettings.SetActive(false);
-        //change background
+        menuUpdate();
     }
     public void fight()//btn_fight
     {
@@ -126,7 +126,7 @@ public class menu : MonoBehaviour
     {
         if (!response.success)
             return;
-        if(response.player == "p1")
+        if (response.player == "p1")
         {
             //DATABASE NEEDED
             //passedData.p1Name=database reference
@@ -197,14 +197,13 @@ public class menu : MonoBehaviour
             else
             {
                 string username = "girmany", password = "gizmo";
-            //LOGIN REQUEST
-            StartCoroutine(APIManager.Login(username, password, "p1", loginCallback));
+                //LOGIN REQUEST
+                StartCoroutine(APIManager.Login(username, password, "p1", loginCallback));
 
             }
-            
+
         }
     }
-    
     public void loginP2()//btn_player2
     {
         if (passedData.p1Login)//if both logged in
@@ -225,8 +224,8 @@ public class menu : MonoBehaviour
             else
             {
                 string username = "batyuzo", password = "batyuzik";
-            //LOGIN REQUEST
-            StartCoroutine(APIManager.Login(username, password, "p2", loginCallback));
+                //LOGIN REQUEST
+                StartCoroutine(APIManager.Login(username, password, "p2", loginCallback));
 
             }
         }
@@ -280,6 +279,17 @@ public class menu : MonoBehaviour
             //musicKit update
             kitInv.sprite = passedData.p2Kit.coverart;
             kitDesc.text = passedData.p2Kit.desc;
+        }
+    }
+    public void menuUpdate()
+    {
+        if (passedData.p1Name != "p1")
+        {
+            playerbodyP1.skinSwitch(playerAssets, passedData.p1Skin);
+        }
+        if (passedData.p2Name != "p2")
+        {
+            playerbodyP2.skinSwitch(playerAssets, passedData.p2Skin);
         }
     }
     public void setSkinDesc(string skin)
