@@ -40,7 +40,63 @@ public class APIManager : MonoBehaviour
             this.player = player;
         }
     }
+    static public IEnumerator GetOwnedCharacters(string username, string player, Action<AssetResponse> callback)
+    {
+        //Define the api endpoint
+        string endpoint = $"/profile/get_player_characters.php?username={username}";
+        UnityWebRequest uwr = UnityWebRequest.Get(baseUrl + endpoint);
+        yield return uwr.SendWebRequest();
+        AssetResponse response = new AssetResponse(new Dictionary<string, bool>(), false, ""); // Initialize dictionary
 
+        if (uwr.result == UnityWebRequest.Result.Success)
+        {
+
+            //Parse JSON using SimpleJSON
+            JSONNode json = JSON.Parse(uwr.downloadHandler.text);
+            if (json != null)
+            {
+                //Extract data from JSON
+                response.success = true;
+                response.player = player;
+
+                if (json.IsArray)
+                {
+                    foreach (JSONNode item in json.AsArray)
+                    {
+                        // Check for both "name" and "active" keys, and their correct types.
+                        if (item.HasKey("name") && item["name"].IsString &&
+                            item.HasKey("active") && item["active"].IsNumber)
+                        {
+                            string name = item["name"];
+                            int active = item["active"];
+                            Debug.Log("Asset: " + name + "\t Active: " + active);
+                            response.ownedAssetName.Add(name, Convert.ToBoolean(active)); // Add both name and active status
+                        }
+                        else
+                        {
+                            Debug.LogWarning("Item in array is missing 'name' or 'active' property, or has incorrect types: " + item.ToString());
+                        }
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Expected JSON array, but received: " + json.Tag.ToString());
+                    response.success = false;
+                }
+            }
+            else
+            {
+                Debug.LogError("Failed to parse JSON response.");
+                response.success = false;
+            }
+        }
+        else
+        {
+            Debug.Log("Error: " + uwr.error + " - " + username);
+            response.success = false;
+        }
+        callback(response); // Call the callback
+    }
     static public IEnumerator GetOwnedMusic(string username, string player, Action<AssetResponse> callback)
     {
         //Define the api endpoint

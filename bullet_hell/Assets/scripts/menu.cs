@@ -87,7 +87,6 @@ public class menu : MonoBehaviour
         SceneManager.LoadScene("fight");
     }
 
-    //TODO CORRECT THE CODE
     public void LoadOwnedMusic(APIManager.AssetResponse response)
     {
         if (!response.success)
@@ -122,6 +121,42 @@ public class menu : MonoBehaviour
         }
 
     }
+
+    public void LoadOwnedCharacters(APIManager.AssetResponse response)
+    {
+                if (!response.success)
+            return;
+        if (response.player == "p1")
+        {
+            List<string> skins = new List<musicKit>();
+            string activeSkin = null;
+            foreach (KeyValuePair<string, bool> skin in response.ownedAssetName)
+            {
+                skins.Add(skin.Key);
+                if (skin.Value)
+                {
+                    activeSkin = skin.Key;
+                }
+            }
+            passedData.p1Skins = skins;
+            passedData.p1Skin = activeSkin;
+        }
+        else
+        {
+            List<string> skins = new List<musicKit>();
+            string activeSkin = null;
+            foreach (KeyValuePair<string, bool> skin in response.ownedAssetName)
+            {
+                skins.Add(skin.Key);
+                if (skin.Value)
+                {
+                    activeSkin = skin.Key;
+                }
+            }
+            passedData.p2Skins = skins;
+            passedData.p2Skin = activeSkin;
+        }
+    }
     public void loginCallback(APIManager.LoginResponse response)
     {
         if (!response.success)
@@ -134,17 +169,15 @@ public class menu : MonoBehaviour
             //passedData.p1Kits=database reference
             //passedData.p1Skins=database reference
 
-            //HARDCODED DB REFS FOR NOW
             passedData.p1Name = response.username;
             passedData.p1Rank = response.points;
 
             //Loading owned music
             StartCoroutine(APIManager.GetOwnedMusic(response.username, "p1", LoadOwnedMusic));
-
-            passedData.p1Skins = new List<string> { "bull", "butcher", "knight" };
+            //Loading owned characters
+            StartCoroutine(APIManager.GetOwnedCharacters(response.username, "p1", LoadOwnedCharacters));
             //"if playerPrefs.p1name==p1Name{} then set the following:
             //CURRENTLY SET PREFS
-            passedData.p1Skin = "bull";
             passedData.p1Login = true;
 
             btn_player1.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
@@ -166,10 +199,10 @@ public class menu : MonoBehaviour
             //Loading owned music
             StartCoroutine(APIManager.GetOwnedMusic(response.username, "p2", LoadOwnedMusic));
 
-            passedData.p2Skins = new List<string> { "bull", "butcher", "knight" };
+            //Load owned characters
+            StartCoroutine(APIManager.GetOwnedCharacters(response.username, "p2", LoadOwnedCharacters));
             //"if playerPrefs.p1name==p1Name{} then set the following:
             //CURRENTLY SET PREFS
-            passedData.p2Skin = "bull";
             passedData.p2Login = true;
 
             btn_player2.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
@@ -201,10 +234,10 @@ public class menu : MonoBehaviour
             StartCoroutine(APIManager.Login(username, password, "p1", loginCallback));
 
             }
-            
+
         }
     }
-    
+
     public void loginP2()//btn_player2
     {
         if (passedData.p1Login)//if both logged in
