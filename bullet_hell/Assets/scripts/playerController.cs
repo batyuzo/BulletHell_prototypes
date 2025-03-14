@@ -53,7 +53,6 @@ public class playerController : MonoBehaviour
         //buffer decreases mid-air
         grounded = groundCheck.getGrounded();
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -66,7 +65,6 @@ public class playerController : MonoBehaviour
         flipSprite(aimDirection.x > 0);//if need flip
         currentHealth = GetComponent<playerHealth>().currentHealth;
     }
-
     public void init(string skin, Vector3 pos, int health, playerAssets assetsRef, Vector2 initialDirection)
     {
         aimDirection = initialDirection;
@@ -90,9 +88,7 @@ public class playerController : MonoBehaviour
         gameObject.transform.position = pos;//spawn position
         gameObject.GetComponentInChildren<playerHealth>().init(200, assetsRef);//set health
         gunHolder = GetComponentInChildren<gunHolder>();
-        gunHolder.equipped = null;
-        gunHolder.weaponScript = null;
-        gunHolder.bareHandsOffset();
+        gunHolder.set();
     }
     public void flipSprite(bool right)//look left/right
     {

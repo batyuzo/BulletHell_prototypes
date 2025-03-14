@@ -47,7 +47,6 @@ public class fightUi : MonoBehaviour
         //timer
         timeLeft = time;
     }
-
     public void lightSet(string map, int winsP1, int winsP2)
     {
         light1P1.off();

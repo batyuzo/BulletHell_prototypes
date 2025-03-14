@@ -44,7 +44,7 @@ public class shotgun : weapon
         handFarOffset = new float[] { -0.863f, -0.162f, 0 };
         weaponOffset = new float[] { -0.446f, -0.061f, 0 };
     }
-    private void Awake()
+    private void Awake()//defaults
     {
         weaponName = "shotgun";
         weaponHands = new char[] { 'a', 'a' };
@@ -55,6 +55,6 @@ public class shotgun : weapon
         ranged = true;
         damage = 15;
         firerate = 0.85f;
-        projSpeed = .9f;//this is set in "bullet.cs" of prefab "shotgun_pellet"
+        projSpeed = 1.25f;//this is set in "bullet.cs" of prefab "shotgun_pellet"
     }
 }

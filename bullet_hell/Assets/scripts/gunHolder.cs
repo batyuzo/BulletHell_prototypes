@@ -33,6 +33,15 @@ public class gunHolder : MonoBehaviour
 
     [Header("weapon script ref")]
     public weapon weaponScript;
+
+    public void set()
+    {
+        offset = new Vector3(1f, -1f);
+        hideMagInfo();
+        equipped = null;
+        weaponScript = null;
+        bareHandsOffset();
+    }
     private void updateMaginfo()
     {
         if (equipped != null)
@@ -160,7 +169,7 @@ public class gunHolder : MonoBehaviour
 
         playerAnim.updateHands(weaponHands[0], weaponHands[1]);
     }
-    public void bareHandsOffset()
+    private void bareHandsOffset()
     {
         HCO = new float[] { -.4f, .3f, -65 };
         HFO = new float[] { -.7f, .3f, -65 };
@@ -233,9 +242,5 @@ public class gunHolder : MonoBehaviour
     private void Update()
     {
         updateMaginfo();
-    }
-    private void Awake()
-    {
-        offset = new Vector3(1f, -1f);
     }
 }
