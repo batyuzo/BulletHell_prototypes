@@ -95,16 +95,30 @@ public class menu : MonoBehaviour
         if (response.player == "p1")
         {
             List<musicKit> kits = new List<musicKit>();
-            foreach (string kitName in response.ownedAssetName)
-                kits.Add(musicAssets.GetAssetByName(kitName));
+            musicKit activeKit = null;
+            foreach (KeyValuePair<string, bool> kit in response.ownedAssetName)
+            {
+                kits.Add(musicAssets.GetAssetByName(kit.Key));
+                if (kit.Value)
+                {
+                    activeKit = musicAssets.GetAssetByName(kit.Key);
+                }
+            }
             passedData.p1Kits = kits;
+            passedData.p1Kit = activeKit;
         }
         else
         {
             List<musicKit> kits = new List<musicKit>();
-            foreach (string kitName in response.ownedAssetName)
-                kits.Add(musicAssets.GetAssetByName(kitName));
+            musicKit activeKit = null;
+            foreach (KeyValuePair<string, bool> kit in response.ownedAssetName)
+            {
+                kits.Add(musicAssets.GetAssetByName(kit.Key));
+                if (kit.Value)
+                    activeKit = musicAssets.GetAssetByName(kit.Key);
+            }
             passedData.p2Kits = kits;
+            passedData.p2Kit = activeKit;
         }
 
     }
@@ -131,7 +145,6 @@ public class menu : MonoBehaviour
             //"if playerPrefs.p1name==p1Name{} then set the following:
             //CURRENTLY SET PREFS
             passedData.p1Skin = "bull";
-            passedData.p1Kit = musicAssets.muteKit;
             passedData.p1Login = true;
 
             btn_player1.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
@@ -147,16 +160,18 @@ public class menu : MonoBehaviour
             //passedData.p2Skins=database reference
 
             //HARDCODED DB REFS FOR NOW
-            passedData.p2Name = "batyuzo";
-            passedData.p2Rank = 100;
-            passedData.p2Skins = new List<string> { "butcher", "rogue", "samurai", };
-            passedData.p2Kits = new List<musicKit> { musicAssets.crt1Kit, musicAssets.crt2Kit };
+            passedData.p2Name = response.username;
+            passedData.p2Rank = response.points;
 
+            //Loading owned music
+            StartCoroutine(APIManager.GetOwnedMusic(response.username, "p2", LoadOwnedMusic));
+
+            passedData.p2Skins = new List<string> { "bull", "butcher", "knight" };
             //"if playerPrefs.p1name==p1Name{} then set the following:
             //CURRENTLY SET PREFS
-            passedData.p2Skin = "butcher";
-            passedData.p2Kit = musicAssets.crt1Kit;
+            passedData.p2Skin = "bull";
             passedData.p2Login = true;
+
             btn_player2.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
             musicPlayer.changePack(passedData.p2Kit, "p2");
             playerbodyP2.skinSwitch(playerAssets, passedData.p2Skin);//in-menu playerbody

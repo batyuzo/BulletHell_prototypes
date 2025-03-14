@@ -41,7 +41,7 @@ public class APIManager : MonoBehaviour
         }
     }
 
-    public IEnumerator GetOwnedMusic(string username, string player, Action<AssetResponse> callback)
+    static public IEnumerator GetOwnedMusic(string username, string player, Action<AssetResponse> callback)
     {
         //Define the api endpoint
         string endpoint = $"/profile/get_player_musics.php?username={username}";
@@ -67,11 +67,12 @@ public class APIManager : MonoBehaviour
                     {
                         // Check for both "name" and "active" keys, and their correct types.
                         if (item.HasKey("name") && item["name"].IsString &&
-                            item.HasKey("active") && item["active"].IsBoolean)
+                            item.HasKey("active") && item["active"].IsNumber)
                         {
                             string name = item["name"];
-                            bool active = item["active"];
-                            response.ownedAssetName.Add(name, active); // Add both name and active status
+                            int active = item["active"];
+                            Debug.Log("Asset: " + name + "\t Active: " + active);
+                            response.ownedAssetName.Add(name, Convert.ToBoolean(active)); // Add both name and active status
                         }
                         else
                         {
