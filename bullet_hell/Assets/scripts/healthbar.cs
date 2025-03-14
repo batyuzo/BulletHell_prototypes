@@ -27,7 +27,7 @@ public class healthbar : MonoBehaviour
     public Vector2 position;
 
     //called by gameManager together with mapload and the rest
-    public void init(string player, string mapName)
+    public void set(string player, string mapName)
     {
         //p1
         if (player == "p1" && mapName == "ham")

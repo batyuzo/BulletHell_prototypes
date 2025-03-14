@@ -36,13 +36,18 @@ public class gameManager : MonoBehaviour
     public playerAssets playerAssets;
     public musicAssets musicAssets;
 
-    public Scene activescene;
-
     [Header("logs")]
+    public Scene activescene;
     public bool firstLaunch;
+    public int p1Wins;//0,1,2
+    public int p2Wins;//0,1,2
 
     private void Update()
     {
+        if (roundEnd())
+        {
+            resetFight();
+        }
         if (fightEnd())
         {
             SceneManager.LoadScene("menu");
@@ -51,13 +56,24 @@ public class gameManager : MonoBehaviour
 
     public bool fightEnd()
     {
+        return false;
+    }
+    public bool roundEnd()
+    {
         if (activescene.name == "fight" && (player1.GetComponent<playerHealth>().dead || player2.GetComponent<playerHealth>().dead))
         {
+            if (player1.GetComponent<playerHealth>().dead)//player1 dies
+            {
+                p2Wins++;
+            }
+            else//player2 dies
+            {
+                p1Wins++;
+            }
             return true;
         }
         return false;
     }
-
     private void Awake()
     {
         if (SceneManager.GetActiveScene().name == "menu")
@@ -81,18 +97,22 @@ public class gameManager : MonoBehaviour
     }
     public void initFight()
     {
+        setRefs("fight");
         UnityEngine.Cursor.lockState = CursorLockMode.Confined;
         activescene = SceneManager.GetActiveScene();
         UnityEngine.Cursor.visible = false;
-        setRefs("fight");
         mapLoader.loadMap(passedData.map);
         weaponLoader.spawnPositions = spawnPositions;
+        resetFight();
+        p1Wins = 0;
+        p2Wins = 0;
+    }
+    private void resetFight()
+    {
+        fightUi.set(passedData, p1Wins, p2Wins, 50);
         musicPlayer.init(passedData.p1Kit, passedData.p2Kit, 0.5f, "fight");
-        fightUi.init(passedData);
-        healthbarP1.init("p1", passedData.map);
-        healthbarP2.init("p2", passedData.map);
-
-
+        healthbarP1.set("p1", passedData.map);
+        healthbarP2.set("p2", passedData.map);
         if (passedData.map == "prac")
         {
             initPlayers(new string[] { passedData.p1Skin, passedData.p2Skin }, spawnPositions.prac_player, 200);//passeddata

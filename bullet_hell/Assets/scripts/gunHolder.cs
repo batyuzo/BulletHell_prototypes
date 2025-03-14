@@ -16,7 +16,6 @@ public class gunHolder : MonoBehaviour
     public float[] WPO = new float[3];//weapon offset
     private char[] weaponHands;
 
-
     public GameObject handClose;
     public GameObject handFar;
     public GameObject equipped = null;

@@ -74,7 +74,7 @@ public class menu : MonoBehaviour
     }
 
     //home screen
-    public void menuScreen()//btn_menu
+    public void menuScreen()//btn_menu  
     {
         uiMenu.SetActive(true);
         uiCustomize.SetActive(false);
@@ -128,7 +128,7 @@ public class menu : MonoBehaviour
             return;
         if (response.player == "p1")
         {
-            List<string> skins = new List<musicKit>();
+            List<string> skins = new List<string>();
             string activeSkin = null;
             foreach (KeyValuePair<string, bool> skin in response.ownedAssetName)
             {
@@ -143,7 +143,7 @@ public class menu : MonoBehaviour
         }
         else
         {
-            List<string> skins = new List<musicKit>();
+            List<string> skins = new List<string>();
             string activeSkin = null;
             foreach (KeyValuePair<string, bool> skin in response.ownedAssetName)
             {
