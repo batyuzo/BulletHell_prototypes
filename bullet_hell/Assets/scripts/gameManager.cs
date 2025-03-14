@@ -42,7 +42,7 @@ public class gameManager : MonoBehaviour
     public int p1Wins;//0,1,2
     public int p2Wins;//0,1,2
 
-    private void Update()
+    private void FixedUpdate()//end checks
     {
         if (roundEnd())
         {
@@ -53,24 +53,51 @@ public class gameManager : MonoBehaviour
             SceneManager.LoadScene("menu");
         }
     }
-
     public bool fightEnd()
     {
+        if (p1Wins > 1)
+        {
+            Debug.Log("player 1 wins");
+            return true;
+        }
+        if (p2Wins > 1)
+        {
+            Debug.Log("player 2 wins");
+            return true;
+        }
         return false;
     }
     public bool roundEnd()
     {
-        if (activescene.name == "fight" && (player1.GetComponent<playerHealth>().dead || player2.GetComponent<playerHealth>().dead))
+        if (activescene.name == "fight")
         {
             if (player1.GetComponent<playerHealth>().dead)//player1 dies
             {
                 p2Wins++;
+                return true;
             }
-            else//player2 dies
+            else if (player2.GetComponent<playerHealth>().dead)//player2 dies
             {
                 p1Wins++;
+                return true;
             }
-            return true;
+            else if (fightUi.timeLeft < 0 && player1.GetComponent<playerHealth>().currentHealth > player2.GetComponent<playerHealth>().currentHealth)//p1 by time
+            {
+                p1Wins++;
+                return true;
+            }
+            else if (fightUi.timeLeft < 0 && player1.GetComponent<playerHealth>().currentHealth < player2.GetComponent<playerHealth>().currentHealth)//p2 by time
+            {
+                p2Wins++;
+                return true;
+            }
+            else if (fightUi.timeLeft < 0)//time spent
+            {
+                p1Wins++;
+                p2Wins++;
+                return true;
+            }
+
         }
         return false;
     }
@@ -109,7 +136,7 @@ public class gameManager : MonoBehaviour
     }
     private void resetFight()
     {
-        fightUi.set(passedData, p1Wins, p2Wins, 50);
+        fightUi.set(passedData, p1Wins, p2Wins, 60);
         musicPlayer.init(passedData.p1Kit, passedData.p2Kit, 0.5f, "fight");
         healthbarP1.set("p1", passedData.map);
         healthbarP2.set("p2", passedData.map);
@@ -129,15 +156,35 @@ public class gameManager : MonoBehaviour
     }
     private void initPlayers(string[] playerskins, Vector2 spawnAt, int health)
     {
-        //TEMPORARY
-        Debug.Log("first player:");
-        player1.GetComponent<PlayerInput>().SwitchCurrentControlScheme(Mouse.current, Keyboard.current);
-        //player1.GetComponent<PlayerInput>().SwitchCurrentControlScheme(passedData.p1Device);
-        player1.GetComponent<playerController>().init(playerskins[0], spawnAt, health, playerAssets, new Vector2(1, 0));
+        //p1Device assign
+        if (passedData.p1Device.Count() > 0)
+        {
+            player1.GetComponent<PlayerInput>().SwitchCurrentControlScheme(passedData.p1Device.ToArray());
+        }
+        else
+        {
+            player1.GetComponent<PlayerInput>().SwitchCurrentControlScheme(Mouse.current, Keyboard.current);
+        }
+        //p2Device assign
+        if (passedData.p2Device.Count() > 0)
+        {
+            player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme(passedData.p2Device.ToArray());
+        }
+        else
+        {
+            if (Gamepad.current != null)
+            {
+                player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme(Gamepad.current);
+            }
+            else
+            {
+                player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme("Gamepad");
 
-        Debug.Log("second player:");
-        player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme("Gamepad");
-        //player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme(passedData.p2Device);
+            }
+
+        }
+        //player
+        player1.GetComponent<playerController>().init(playerskins[0], spawnAt, health, playerAssets, new Vector2(1, 0));
         player2.GetComponent<playerController>().init(playerskins[1], spawnAt * new Vector3(-1, 1), health, playerAssets, new Vector2(-1, 0));
 
     }

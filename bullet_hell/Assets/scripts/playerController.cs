@@ -90,6 +90,8 @@ public class playerController : MonoBehaviour
         gameObject.transform.position = pos;//spawn position
         gameObject.GetComponentInChildren<playerHealth>().init(200, assetsRef);//set health
         gunHolder = GetComponentInChildren<gunHolder>();
+        gunHolder.equipped = null;
+        gunHolder.weaponScript = null;
         gunHolder.bareHandsOffset();
     }
     public void flipSprite(bool right)//look left/right

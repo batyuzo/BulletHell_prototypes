@@ -24,8 +24,8 @@ public class passedData : MonoBehaviour
     public List<musicKit> p2Kits;
     public InputActionAsset p1Controls;
     public InputActionAsset p2Controls;
-    public InputDevice[] p1Device;
-    public InputDevice[] p2Device;
+    public List<InputDevice> p1Device= new List<InputDevice>();
+    public List<InputDevice> p2Device= new List<InputDevice>();
 
 
     void Awake()

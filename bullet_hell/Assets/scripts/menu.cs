@@ -64,12 +64,12 @@ public class menu : MonoBehaviour
         menuScreen();
         if (Mouse.current != null)
         {
-            passedData.p2Device = new InputDevice[] { Keyboard.current, Mouse.current };
+            passedData.p2Device = new List<InputDevice> { Keyboard.current, Mouse.current };
         }
 
         if (Gamepad.current != null)
         {
-            passedData.p1Device = new InputDevice[] { Gamepad.current };
+            passedData.p1Device = new List<InputDevice> { Gamepad.current };
         }
     }
 
@@ -124,7 +124,7 @@ public class menu : MonoBehaviour
 
     public void LoadOwnedCharacters(APIManager.AssetResponse response)
     {
-                if (!response.success)
+        if (!response.success)
             return;
         if (response.player == "p1")
         {
@@ -223,7 +223,7 @@ public class menu : MonoBehaviour
         else//first pressed
         {
 
-            if (false)
+            if (true)
             {
                 loginCallback(new APIManager.LoginResponse(true, "girmany", 50, "p1"));
             }
@@ -249,7 +249,7 @@ public class menu : MonoBehaviour
         }
         else//first pressed
         {
-            if (false)
+            if (true)
             {
                 loginCallback(new APIManager.LoginResponse(true, "batyuzo", 100, "p2"));
 
@@ -423,5 +423,10 @@ public class menu : MonoBehaviour
         uiCustomize.SetActive(false);
         uiSettings.SetActive(true);
         //update buttons n things here
+
+        passedData.p1Device = new List<InputDevice> { Keyboard.current, Mouse.current };
+        passedData.p2Device = new List<InputDevice> { Gamepad.current };
+        ;
+
     }
 }

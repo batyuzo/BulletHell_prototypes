@@ -27,22 +27,18 @@ public class weapon : MonoBehaviour
     {
         //use firing function of a weapon
     }
-
     public virtual void AltFire()
     {
         //use alt firing function of a weapon
     }
-
     public virtual void SetValues()
     {
     }
-
     public virtual void equip(GameObject parent)
     {
         transform.SetParent(parent.transform);
         SetValues();
     }
-
     public virtual void FixedUpdate()
     {
         if (cooldown > 0) { cooldown -= .016f; }

@@ -21,7 +21,7 @@ public class fightUi : MonoBehaviour
 
     private void FixedUpdate()
     {
-        timeLeft -= 1 / 60;
+        timeLeft = timeLeft - (1f / 60f);
         updateClock();
     }
 
@@ -62,19 +62,18 @@ public class fightUi : MonoBehaviour
         }
         if (winsP1 > 1)
         {
-            light1P2.on(map);
+            light2P1.on(map);
         }
         //p2 lights
         if (winsP2 > 0)
         {
-            light2P1.on(map);
+            light1P2.on(map);
         }
         if (winsP2 > 1)
         {
             light2P2.on(map);
         }
     }
-
     private void updateClock()
     {
         timer.text = Convert.ToInt32(timeLeft).ToString();
