@@ -103,31 +103,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7182172249200431270}
   coll: {fileID: 7805415079537400683}
-  handCloseOffset:
-  - 0
-  - 0
-  - 0
-  handFarOffset:
-  - 0
-  - 0
-  - 0
-  weaponOffset:
-  - 0
-  - 0
-  - 0
-  weaponName: 
-  weaponHands: 
-  magazine: 0
-  rarity: 0
-  ranged: 0
-  damage: 0
-  projSpeed: 0
-  firerate: 0
+  frame: 0
+  currentRecoil: 0
   cooldown: 0
+  handCloseOffset:
+  - -0.6
+  - 0.1
+  - -5
+  handFarOffset:
+  - -0.75
+  - -0.03
+  - 35
+  weaponOffset:
+  - -0.8
+  - 0.3
+  - 0
+  weaponName: pistol
+  weaponHands: 61006200
+  magazine: 12
+  rarity: 1
+  ranged: 1
+  damage: 35
+  auto: 0
+  recoil: 20
+  recoilSpeed: 5
+  projSpeed: 35
+  firerate: 10
+  weaponRenderer: {fileID: 2090029421810732651}
   shootingPoint: {fileID: 7027401682490116231}
   muzzleFlash: {fileID: 7403647218097492659, guid: b03ea729025bc91489ff03764180bfa2, type: 3}
   bullet: {fileID: 1780308452379566466, guid: 54a1484b4424a6949aa6cc4a61ddd64d, type: 3}
-  pelletCount: 0
+  fireAnim:
+  - {fileID: 21300000, guid: f9a52799b9215074d93509952a95bdaf, type: 3}
+  - {fileID: 21300000, guid: 350a6e083f9536f4787d99e0d72d468f, type: 3}
+  - {fileID: 21300000, guid: ac664d951ed99214ea15ff377c1ab18f, type: 3}
 --- !u!61 &7805415079537400683
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -103,35 +103,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7182172249200431270}
   coll: {fileID: 7805415079537400683}
+  frame: 0
+  currentRecoil: 0
+  cooldown: 0
   handCloseOffset:
   - 0
   - 0
   - 53
   handFarOffset:
-  - 0
-  - 863
-  - 0
-  - 162
+  - -0.863
+  - -0.162
   - 0
   weaponOffset:
+  - -0.446
+  - -0.061
   - 0
-  - 446
-  - 0
-  - 61
-  - 0
-  weaponName: 
-  weaponHands: 
-  magazine: 0
-  rarity: 0
-  ranged: 0
-  damage: 0
-  projSpeed: 0
-  firerate: 0
-  cooldown: 0
+  weaponName: shotgun
+  weaponHands: 61006200
+  magazine: 2
+  rarity: 2
+  ranged: 1
+  damage: 15
+  auto: 0
+  recoil: 40
+  recoilSpeed: 10
+  projSpeed: 25
+  firerate: 1
   shootingPoint: {fileID: 7027401682490116231}
   muzzleFlash: {fileID: 7403647218097492659, guid: 1822e9844559caa44819f65cfedf08c9, type: 3}
   bullet: {fileID: 1780308452379566466, guid: 0c8da336ce867944d892d9a496d304a2, type: 3}
-  pelletCount: 0
+  pelletCount: 2
 --- !u!61 &7805415079537400683
 BoxCollider2D:
   m_ObjectHideFlags: 0

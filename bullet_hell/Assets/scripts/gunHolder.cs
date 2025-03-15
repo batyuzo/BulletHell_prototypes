@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ExceptionServices;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,16 +25,21 @@ public class gunHolder : MonoBehaviour
     public GameObject head;
     public bodyAnim playerAnim;
     public scanner scan;
-
-    [Header("player refs")]
     public TextMeshProUGUI equippedText;
     public GameObject magInfo;
     public TextMeshProUGUI magInfoText;
-
     public Vector3 offset;
 
     [Header("weapon script ref")]
     public weapon weaponScript;
+    public float recoil;
+    public float recoilBase;
+    public float recoilSpeed;
+
+    [Header("logs")]
+    public bool flipped;
+
+
 
     public void set()
     {
@@ -58,8 +64,15 @@ public class gunHolder : MonoBehaviour
     }
     public void lookAt(Vector2 direction)
     {
-        transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(direction.y * -1, direction.x * -1) * Mathf.Rad2Deg, Vector3.forward);
-        head.transform.rotation = transform.rotation;
+        if (flipped)
+        {
+            transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(direction.y * -1, direction.x * -1) * Mathf.Rad2Deg - recoil, Vector3.forward);
+        }
+        else
+        {
+            transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(direction.y * -1, direction.x * -1) * Mathf.Rad2Deg + recoil, Vector3.forward);
+        }
+        head.transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(direction.y * -1, direction.x * -1) * Mathf.Rad2Deg, Vector3.forward);
         flip(direction.x < 0);
     }
     public void flip(bool flip)
@@ -74,6 +87,7 @@ public class gunHolder : MonoBehaviour
         //Church: Oh, stop being a baby. Just wiggle it.
         if (flip)
         {
+            flipped = true;
             //head flip
             if (head.GetComponentInChildren<SpriteRenderer>() != null)
             {
@@ -106,11 +120,13 @@ public class gunHolder : MonoBehaviour
                 {
                     child.localRotation = Quaternion.Euler(0, 0, WPO[2]);
                     child.localPosition = new Vector3(WPO[0], WPO[1], child.localPosition.z);
+                    child.GetComponent<weapon>().flip(false);//weapons look backwards
                 }
             }
         }
         else
         {
+            flipped = false;
             //head flip
             if (head.GetComponentInChildren<SpriteRenderer>() != null)
             {
@@ -142,6 +158,7 @@ public class gunHolder : MonoBehaviour
                 {
                     child.localRotation = Quaternion.Euler(0, 0, -WPO[2]);
                     child.localPosition = new Vector3(WPO[0], -WPO[1], child.localPosition.z);
+                    child.GetComponent<weapon>().flip(true);//weapons look backwards
                 }
             }
         }
@@ -208,18 +225,18 @@ public class gunHolder : MonoBehaviour
         {
             Drop();
             equipped = toEquip;
-            equipped.GetComponent<Rigidbody2D>().simulated = false;
+
             weaponScript = equipped.GetComponent<weapon>();//set weaponscript
 
             //weaponscript interactions
             weaponScript.equip(gameObject);
-            weaponScript.SetValues();
             equippedText.SetText(weaponScript.weaponName);
             //reset positions
-
-            equipped.transform.localPosition = Vector2.zero;
+            equipped.transform.localPosition = Vector3.zero;
             equipped.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
             setOffset();
+            equipped.GetComponent<Rigidbody2D>().simulated = false;
         }
     }
     public void Drop()
@@ -244,5 +261,12 @@ public class gunHolder : MonoBehaviour
     private void Update()
     {
         updateMaginfo();
+    }
+    private void FixedUpdate()
+    {
+        if (weaponScript != null)
+        {
+            recoil = weaponScript.currentRecoil;
+        }
     }
 }

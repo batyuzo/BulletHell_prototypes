@@ -38,27 +38,4 @@ public class shotgun : weapon
     {
         //no altfire
     }
-    public override void SetValues()
-    {
-        handCloseOffset = new float[] { 0, 0, 53 };
-        handFarOffset = new float[] { -0.863f, -0.162f, 0 };
-        weaponOffset = new float[] { -0.446f, -0.061f, 0 };
-    }
-    private void Awake()//defaults
-    {
-        //SET WEAPON STATS
-        weaponName = "shotgun";
-        weaponHands = new char[] { 'a', 'a' };
-        gameObject.layer = 8;
-        magazine = 7;
-        pelletCount = 7;
-        rarity = 2;
-        ranged = true;
-        firerate = 0.85f;
-        auto = false;
-
-        //SET IN PROJECTILE
-        //projSpeed = 25f;
-        //damage = 15;
-    }
 }

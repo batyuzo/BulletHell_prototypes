@@ -17,7 +17,6 @@ public class muzzleFlash : MonoBehaviour
     {
         current = 0;
         animDuration = muzzleFrames.Count;
-        Debug.Log(current + " - " + animDuration);
     }
     private void anim()
     {
