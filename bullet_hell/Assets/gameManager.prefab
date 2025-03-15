@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2577480676658199033}
   - component: {fileID: 2121183286454913215}
   - component: {fileID: 3303334643435291021}
-  - component: {fileID: 6816570369336166462}
   - component: {fileID: 653852245482239009}
+  - component: {fileID: 6816570369336166462}
   - component: {fileID: 4546172377348861396}
   - component: {fileID: 1122865906968238204}
   m_Layer: 0
@@ -63,6 +63,8 @@ MonoBehaviour:
   playerAssets: {fileID: 4546172377348861396}
   musicAssets: {fileID: 1122865906968238204}
   firstLaunch: 0
+  p1Wins: 0
+  p2Wins: 0
 --- !u!114 &3303334643435291021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +112,7 @@ MonoBehaviour:
   ham_C3: {fileID: 21300000, guid: 379357819b44faa4bbcd2d03eb433d62, type: 3}
   ham_emission: {fileID: 21300000, guid: fc6720d5a8678864f9e8311e447a131c, type: 3}
   ham_coll: {fileID: 0}
+  ham_ladder: {fileID: 0}
   ham_ecolor: {r: 1, g: 0.17254902, b: 0, a: 1}
   prac_A1: {fileID: 0}
   prac_A2: {fileID: 0}
@@ -145,6 +148,7 @@ MonoBehaviour:
   jap_C2: {fileID: 21300000, guid: c37f5d023808ee243b9df9563685d99e, type: 3}
   jap_coll: {fileID: 0}
   jap_parkour: {fileID: 0}
+  jap_ladder: {fileID: 0}
   jap_ecolor: {r: 0.81350124, g: 0.910723, b: 0.9528302, a: 1}
   jap_A1:
   - {fileID: 21300000, guid: a9a03546537d6334e9420db08ad1512e, type: 3}
@@ -176,36 +180,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3f7590ebb5824d449b0cfcc474b123a9, type: 3}
   - {fileID: 21300000, guid: 00fc295ad9b3808449ec5beaf78c3fc7, type: 3}
   - {fileID: 21300000, guid: e44c01d36c56ffd41a510bb053a65071, type: 3}
---- !u!114 &6816570369336166462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6425611289550705658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b59d3ea0ea773574db99a1f29a97e0ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ham_unique: {x: 0, y: 0}
-  ham_player: {x: -10, y: -3}
-  ham_common1: {x: 0, y: 0}
-  ham_common2: {x: 0, y: 0}
-  ham_rare1: {x: 0, y: 0}
-  ham_rare2: {x: 0, y: 0}
-  prac_unique: {x: 0, y: 0}
-  prac_player: {x: -12, y: -2.56}
-  prac_common1: {x: 0, y: 0}
-  prac_common2: {x: 0, y: 0}
-  prac_rare1: {x: 9, y: 6}
-  prac_rare2: {x: 0, y: 0}
-  jap_unique: {x: 0, y: 0}
-  jap_player: {x: -10, y: -2.56}
-  jap_common1: {x: 0, y: 0}
-  jap_common2: {x: 0, y: 0}
-  jap_rare1: {x: 8, y: 5}
-  jap_rare2: {x: 0, y: 0}
 --- !u!114 &653852245482239009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +193,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotgun: {fileID: 4014257896013216826, guid: 76c4cb68833cef8489999582eb9e7e84, type: 3}
+  pistol: {fileID: 0}
   spawnPositions: {fileID: 0}
+--- !u!114 &6816570369336166462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6425611289550705658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b59d3ea0ea773574db99a1f29a97e0ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ham_player: {x: -10, y: -3}
+  ham_unique: {x: 0, y: 0.75}
+  ham_rare: {x: -14, y: 5}
+  ham_common1: {x: -9.5, y: -3}
+  ham_common2: {x: -2.5, y: 5}
+  prac_player: {x: -12, y: -2}
+  prac_unique: {x: 0, y: 5}
+  prac_rare: {x: -9.5, y: 5}
+  prac_common1: {x: -9, y: -5}
+  prac_common2: {x: -3.5, y: -1.5}
+  jap_player: {x: -10, y: -2}
+  jap_unique: {x: 0, y: 5.8}
+  jap_rare: {x: -8, y: 2}
+  jap_common1: {x: -1.5, y: -3}
+  jap_common2: {x: -8.5, y: -3}
 --- !u!114 &4546172377348861396
 MonoBehaviour:
   m_ObjectHideFlags: 0

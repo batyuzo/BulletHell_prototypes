@@ -226,7 +226,6 @@ public class gunHolder : MonoBehaviour
         {
             Rigidbody2D temp = equipped.GetComponent<Rigidbody2D>();//control after drop
             equipped.transform.SetParent(null);
-            scan.addDropped(equipped.GetComponent<Collider2D>());
             equipped = null;
             temp.simulated = true;
             temp.velocity = Vector3.zero;

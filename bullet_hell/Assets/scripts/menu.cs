@@ -86,7 +86,6 @@ public class menu : MonoBehaviour
         passedData.map = maps[Random.Range(0, maps.Count)];
         SceneManager.LoadScene("fight");
     }
-
     public void LoadOwnedMusic(APIManager.AssetResponse response)
     {
         if (!response.success)
@@ -121,7 +120,6 @@ public class menu : MonoBehaviour
         }
 
     }
-
     public void LoadOwnedCharacters(APIManager.AssetResponse response)
     {
         if (!response.success)
@@ -265,12 +263,8 @@ public class menu : MonoBehaviour
     }
     public void quit()//btn_quit
     {
-        savePrefs();
         Application.Quit();
-    }
-    public void savePrefs()//on quit
-    {
-        Debug.Log("preferences saved. well, not yet, but i'm working on it");
+        Debug.Log("game closed");
     }
     //customize
     public void customizeScreen(string player)//called by logins (when logged in)

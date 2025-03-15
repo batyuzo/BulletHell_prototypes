@@ -6,11 +6,10 @@ using UnityEngine;
 
 public class scanner : MonoBehaviour
 {
-    public List<Collider2D> collisionWith = null;
-
+    [SerializeField] List<GameObject> collisionWith = null;
     public GameObject getEquippable()
     {
-        Collider2D toEquip = null;
+        GameObject toEquip = null;
         if (collisionWith.Count > 0)
         {
             toEquip = collisionWith[0];
@@ -19,25 +18,18 @@ public class scanner : MonoBehaviour
         }
         return null;
     }
-
-    public void addDropped(Collider2D dropped)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        collisionWith.Add(dropped);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("weapon"))
+        if (collision.CompareTag("weapon") && !collisionWith.Contains(collision.gameObject))
         {
-            collisionWith.Add(collision);
+            collisionWith.Add(collision.gameObject);
         }
     }
-
-    public void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("weapon"))
         {
-            collisionWith.Remove(collision);
+            collisionWith.Remove(collision.gameObject);
         }
     }
 }

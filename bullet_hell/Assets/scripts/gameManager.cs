@@ -37,7 +37,7 @@ public class gameManager : MonoBehaviour
     public musicAssets musicAssets;
 
     [Header("logs")]
-    public Scene activescene;
+    Scene activescene;
     public bool firstLaunch;
     public int p1Wins;//0,1,2
     public int p2Wins;//0,1,2
@@ -152,7 +152,7 @@ public class gameManager : MonoBehaviour
         {
             initPlayers(new string[] { passedData.p1Skin, passedData.p2Skin }, spawnPositions.jap_player, 200);//passeddata
         }
-        weaponLoader.init(passedData.map);
+        weaponLoader.set(passedData.map);
     }
     private void initPlayers(string[] playerskins, Vector2 spawnAt, int health)
     {
