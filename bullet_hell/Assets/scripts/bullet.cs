@@ -15,17 +15,10 @@ public class bullet : MonoBehaviour
     {
         go();
     }
-
     private void go()//fly
     {
         rb.velocity = transform.right * -speed;
     }
-
-    private void check()//player collision check
-    {
-
-    }
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -36,11 +29,5 @@ public class bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        check();
     }
 }

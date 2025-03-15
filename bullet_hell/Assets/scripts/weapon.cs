@@ -16,9 +16,10 @@ public class weapon : MonoBehaviour
     public int rarity;
     public bool ranged;
     public int damage;
+    public bool auto;
     public float projSpeed;
     public float firerate, cooldown;
-    //cooldown = 1/firerate
+    //cooldown = 60 is one second
     //firerate = [weapon specific]
     //cooldown is always 1 second.
 
@@ -42,6 +43,6 @@ public class weapon : MonoBehaviour
     }
     public virtual void FixedUpdate()
     {
-        if (cooldown > 0) { cooldown -= .016f; }
+        if (cooldown > 0) { cooldown -= 1f; }
     }
 }

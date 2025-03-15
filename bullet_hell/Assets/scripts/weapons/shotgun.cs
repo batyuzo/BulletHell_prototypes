@@ -18,7 +18,7 @@ public class shotgun : weapon
         //firing happens
         if (cooldown <= 0 && magazine > 0)
         {
-            cooldown = 1 / firerate;
+            cooldown = 60 / firerate;
             magazine--;
             //GetComponent<AudioSource>().Play();
             for (int i = 0; i < pelletCount; i++)//7 pellets
@@ -46,6 +46,7 @@ public class shotgun : weapon
     }
     private void Awake()//defaults
     {
+        //SET WEAPON STATS
         weaponName = "shotgun";
         weaponHands = new char[] { 'a', 'a' };
         gameObject.layer = 8;
@@ -53,8 +54,11 @@ public class shotgun : weapon
         pelletCount = 7;
         rarity = 2;
         ranged = true;
-        damage = 15;
         firerate = 0.85f;
-        projSpeed = 1.25f;//this is set in "bullet.cs" of prefab "shotgun_pellet"
+        auto = false;
+
+        //SET IN PROJECTILE
+        //projSpeed = 25f;
+        //damage = 15;
     }
 }

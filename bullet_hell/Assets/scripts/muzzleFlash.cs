@@ -19,8 +19,6 @@ public class muzzleFlash : MonoBehaviour
         animDuration = muzzleFrames.Count;
         Debug.Log(current + " - " + animDuration);
     }
-
-
     private void anim()
     {
         if (animDuration > 0 && frame % divide == 0)
@@ -33,8 +31,6 @@ public class muzzleFlash : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
     }
 
     private void FixedUpdate()

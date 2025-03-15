@@ -43,6 +43,7 @@ public class playerController : MonoBehaviour
     public bool grounded;//if on ground
     public bool laddered;//if touching ladder
     public bool facingRight;
+    public bool shooting;
     private void FixedUpdate()
     {
         //!----------MOVEMENT----------!
@@ -64,6 +65,13 @@ public class playerController : MonoBehaviour
         gunHolder.lookAt(aimDirection);
         flipSprite(aimDirection.x > 0);//if need flip
         currentHealth = GetComponent<playerHealth>().currentHealth;
+
+        //AUTOMATIC FIRING
+        if (shooting)
+        {
+            gunHolder.autoFire();
+        }
+
     }
     public void init(string skin, Vector3 pos, int health, playerAssets assetsRef, Vector2 initialDirection)
     {
@@ -173,9 +181,17 @@ public class playerController : MonoBehaviour
     }
     public void Fire(InputAction.CallbackContext context)
     {
+        if (context.started)
+        {
+            shooting = true;
+        }
+        if (context.canceled)
+        {
+            shooting = false;
+        }
         if (context.performed)
         {
-            gameObject.GetComponentInChildren<gunHolder>().Fire();
+            gunHolder.Fire();
         }
     }
     public void AltFire(InputAction.CallbackContext context)

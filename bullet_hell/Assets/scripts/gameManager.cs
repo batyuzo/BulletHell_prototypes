@@ -136,6 +136,7 @@ public class gameManager : MonoBehaviour
     }
     private void resetFight()
     {
+        //TEMPORARY
         fightUi.set(passedData, p1Wins, p2Wins, 60);
         musicPlayer.init(passedData.p1Kit, passedData.p2Kit, 0.5f, "fight");
         healthbarP1.set("p1", passedData.map);

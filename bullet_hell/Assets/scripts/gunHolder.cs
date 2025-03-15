@@ -16,19 +16,20 @@ public class gunHolder : MonoBehaviour
     public float[] WPO = new float[3];//weapon offset
     private char[] weaponHands;
 
+    [Header("player refs")]
     public GameObject handClose;
     public GameObject handFar;
     public GameObject equipped = null;
     public GameObject player;
     public GameObject head;
-
     public bodyAnim playerAnim;
     public scanner scan;
-    public TextMeshProUGUI equippedText;
 
-    //this is the little thing that shows your magazine-left
+    [Header("player refs")]
+    public TextMeshProUGUI equippedText;
     public GameObject magInfo;
     public TextMeshProUGUI magInfoText;
+
     public Vector3 offset;
 
     [Header("weapon script ref")]
@@ -174,16 +175,18 @@ public class gunHolder : MonoBehaviour
         HCO = new float[] { -.4f, .3f, -65 };
         HFO = new float[] { -.7f, .3f, -65 };
     }
-    public bool Fire()
+    public void Fire()
     {
         if (equipped != null)
         {
             weaponScript.Fire();
-            return true;
         }
-        else
+    }
+    public void autoFire()
+    {
+        if (equipped != null && weaponScript.auto)
         {
-            return false;
+            weaponScript.Fire();
         }
     }
     public bool AltFire()
