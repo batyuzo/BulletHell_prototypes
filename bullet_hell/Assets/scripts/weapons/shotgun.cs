@@ -21,21 +21,40 @@ public class shotgun : weapon
             cooldown = 60 / firerate;
             magazine--;
             //GetComponent<AudioSource>().Play();
+
+            //BULLET
             for (int i = 0; i < pelletCount; i++)//7 pellets
             {
 
                 Instantiate(bullet, shootingPoint.transform.position, Quaternion.Euler(shootingPoint.transform.eulerAngles.x, shootingPoint.transform.eulerAngles.y, shootingPoint.transform.eulerAngles.z * UnityEngine.Random.Range(.9f, 1.1f)));
             }
-            Instantiate(muzzleFlash, shootingPoint.transform.position, shootingPoint.transform.rotation);//muzzleFlash
+            //MUZZLE FLASH
+            Instantiate(muzzleFlash, shootingPoint.transform.position, shootingPoint.transform.rotation);
+
+            //RECOIL
+            currentRecoil = recoil;
+        }
+
+    }
+    public override void recoilAnim(float speed)
+    {
+        if (currentRecoil > 0)
+        {
+            currentRecoil -= speed;
         }
         else
         {
-            //play click sound
-            Debug.Log("*click*");
+            currentRecoil = 0;
         }
     }
-    public override void AltFire()
+    public override void FixedUpdate()
     {
-        //no altfire
+        base.FixedUpdate();
+        frame++;
+        if (frame > 1000)
+        {
+            frame = 0;
+        }
+        recoilAnim(recoilSpeed);
     }
 }

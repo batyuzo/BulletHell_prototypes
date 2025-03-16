@@ -41,10 +41,6 @@ public class pistol : weapon
             animDuration = fireAnim.Count;
         }
     }
-    public override void AltFire()
-    {
-        //no altfire
-    }
     private void playAnim(List<Sprite> anim)
     {
         if (animDuration > 0 && frame % 4 == 0)//15fps

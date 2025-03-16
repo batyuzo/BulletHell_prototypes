@@ -25,7 +25,8 @@ public class bullet : MonoBehaviour
         {
             other.gameObject.GetComponent<playerHealth>().playerDamaged(damage, "ink");
         }
-        if (!other.gameObject.CompareTag("projectile"))
+
+        if (!other.gameObject.CompareTag("projectile") && !other.gameObject.CompareTag("weapon"))
         {
             Destroy(gameObject);
         }
