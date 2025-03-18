@@ -11,6 +11,7 @@ public class weapon : MonoBehaviour
     public float currentRecoil;
     public float cooldown;//1 = 1 frame
     public Vector2 collOffset;
+    public Vector2 shootingPointOffset;
 
     [Header("WEAPON SETTINGS")]
     public float[] handCloseOffset = new float[3];
@@ -18,6 +19,7 @@ public class weapon : MonoBehaviour
     public float[] weaponOffset = new float[3];
     public string weaponName;
     public char[] weaponHands;
+    public int[] handsLayer;
     public int magazine;//single magazine cap
     public int rarity;//unique, rare, common
     public bool ranged;//ranged or melee
@@ -29,7 +31,7 @@ public class weapon : MonoBehaviour
     public float firerate;//shots per second
 
 
-
+    //FLIP SHOOTING POINT TOO
 
     public virtual void Fire()
     {
@@ -51,6 +53,7 @@ public class weapon : MonoBehaviour
     {
         if (flip)
         {
+            coll.offset = new Vector2(coll.offset.x, -collOffset.y);
             coll.offset = new Vector2(coll.offset.x, -collOffset.y);
         }
         else

@@ -29,9 +29,11 @@ public class playerHealth : MonoBehaviour
             currentHealth -= dmg;
             healthbarScript.healthUpdate(currentHealth);
             damageFx(type);
+            if (currentHealth <= 0)
+            {
+                death();
+            }
         }
-        else { death(); }
-
     }
 
     private void damageFx(string type)

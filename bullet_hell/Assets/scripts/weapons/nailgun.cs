@@ -4,14 +4,21 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class nailgun : weapon
 {
+    [SerializeField] SpriteRenderer weaponRenderer;
+
     [Header("bullet refs")]
     public GameObject shootingPoint;
     public GameObject muzzleFlash;
     public GameObject bullet;
-    [SerializeField] int pelletCount;
+
+    private int animDuration;
+    [SerializeField] List<Sprite> fireAnim;
+
+    private int current;
     public override void Fire()
     {
         //firing happens
@@ -25,10 +32,44 @@ public class nailgun : weapon
             Instantiate(bullet, shootingPoint.transform.position, Quaternion.Euler(shootingPoint.transform.eulerAngles.x, shootingPoint.transform.eulerAngles.y, shootingPoint.transform.eulerAngles.z));
             //MUZZLE FLASH
             Instantiate(muzzleFlash, shootingPoint.transform.position, shootingPoint.transform.rotation);
+
+            //RECOIL
+            currentRecoil=recoil;
+
+            //WEAPON ANIM
+            current = 0;
+            animDuration = fireAnim.Count;
         }
     }
-    public override void AltFire()
+    private void playAnim(List<Sprite> anim)
     {
-        //no altfire
+        if (animDuration > 0 && frame % 4 == 0)//15fps
+        {
+            animDuration--;
+            weaponRenderer.sprite = anim[current];
+            current++;
+        }
+    }
+    public override void recoilAnim(float speed)
+    {
+        if (currentRecoil > 0)
+        {
+            currentRecoil -= speed;
+        }
+        else
+        {
+            currentRecoil = 0;
+        }
+    }
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        frame++;
+        if (frame > 1000)
+        {
+            frame = 0;
+        }
+        recoilAnim(recoilSpeed);
+        playAnim(fireAnim);
     }
 }

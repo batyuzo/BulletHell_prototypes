@@ -8,12 +8,15 @@ public class weaponLoader : MonoBehaviour
     [Header("weapon refs")]
     public GameObject shotgun;
     public GameObject pistol;
+    public GameObject nailgun;
 
     [Header("script refs")]
     public spawnPositions spawnPositions;
 
     [Header("logs")]
     [SerializeField] int weaponsSpawned;
+
+
 
     public void set(string mapname)//called by gameManager
     {
@@ -33,7 +36,7 @@ public class weaponLoader : MonoBehaviour
             //1 - unique
             //2 - rare
             //3 - common
-            spawnWeapons(new List<GameObject>() { shotgun, pistol }, new List<GameObject>() { shotgun }, new List<GameObject>() { pistol }, spawnPositions.ham_unique, spawnPositions.ham_rare, spawnPositions.ham_common1, spawnPositions.ham_common2);
+            spawnWeapons(new List<GameObject>() { shotgun, pistol }, new List<GameObject>() { nailgun }, new List<GameObject>() { pistol }, spawnPositions.ham_unique, spawnPositions.ham_rare, spawnPositions.ham_common1, spawnPositions.ham_common2);
         }
         else if (mapname == "prac")
         {
@@ -42,7 +45,7 @@ public class weaponLoader : MonoBehaviour
             //1 - unique
             //2 - rare
             //3 - common
-            spawnWeapons(new List<GameObject>() { shotgun, pistol }, new List<GameObject>() { shotgun }, new List<GameObject>() { pistol }, spawnPositions.prac_unique, spawnPositions.prac_rare, spawnPositions.prac_common1, spawnPositions.prac_common2);
+            spawnWeapons(new List<GameObject>() { shotgun, pistol }, new List<GameObject>() { shotgun }, new List<GameObject>() { pistol, nailgun }, spawnPositions.prac_unique, spawnPositions.prac_rare, spawnPositions.prac_common1, spawnPositions.prac_common2);
         }
         else if (mapname == "jap")
         {
