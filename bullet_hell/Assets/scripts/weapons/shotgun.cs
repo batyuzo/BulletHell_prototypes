@@ -24,7 +24,6 @@ public class shotgun : weapon
             //BULLET
             for (int i = 0; i < pelletCount; i++)//7 pellets
             {
-
                 Instantiate(bullet, shootingPoint.transform.position, Quaternion.Euler(shootingPoint.transform.eulerAngles.x, shootingPoint.transform.eulerAngles.y, shootingPoint.transform.eulerAngles.z * UnityEngine.Random.Range(.9f, 1.1f)));
             }
             //MUZZLE FLASH
@@ -33,7 +32,6 @@ public class shotgun : weapon
             //RECOIL
             currentRecoil = recoil;
         }
-
     }
     public override void recoilAnim(float speed)
     {

@@ -260,8 +260,12 @@ MonoBehaviour:
   ink: {fileID: 21300000, guid: eeb270fba1c0e3b44b92724e54f49f7b, type: 3}
   weaponRenderer: {fileID: 2090029421810732651}
   weaponAnim:
-  - {x: -0.7, y: 0.45, z: -22.4}
-  - {x: -0.7, y: 0.45, z: -40}
+  - {x: -0.55, y: 0.91, z: -38}
+  - {x: -0.95, y: 0.2, z: 35}
+  - {x: -1.15, y: -0.22, z: 88}
+  - {x: -0.89, y: 0, z: 64}
+  - {x: -0.77, y: 0.07, z: 34}
+  - {x: -0.76, y: 0.24, z: 0}
 --- !u!61 &7805415079537400683
 BoxCollider2D:
   m_ObjectHideFlags: 0

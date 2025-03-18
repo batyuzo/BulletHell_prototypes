@@ -240,6 +240,7 @@ public class gunHolder : MonoBehaviour
             Rigidbody2D temp = equipped.GetComponent<Rigidbody2D>();//control after drop
             equipped.transform.SetParent(null);
             equipped = null;
+            weaponScript = null;
             temp.simulated = true;
             temp.velocity = Vector3.zero;
             temp.angularVelocity = 0;
