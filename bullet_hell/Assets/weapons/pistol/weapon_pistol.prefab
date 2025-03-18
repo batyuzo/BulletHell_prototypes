@@ -106,6 +106,9 @@ MonoBehaviour:
   frame: 0
   currentRecoil: 0
   cooldown: 0
+  collOffset: {x: 0, y: 0}
+  shootingPointOffset: {x: 0, y: 0}
+  shootingPoint: {fileID: 0}
   handCloseOffset:
   - -0.6
   - 0.1
@@ -120,6 +123,7 @@ MonoBehaviour:
   - 0
   weaponName: pistol
   weaponHands: 61006200
+  handsLayer: 
   magazine: 12
   rarity: 1
   ranged: 1
@@ -130,7 +134,6 @@ MonoBehaviour:
   projSpeed: 35
   firerate: 10
   weaponRenderer: {fileID: 2090029421810732651}
-  shootingPoint: {fileID: 7027401682490116231}
   muzzleFlash: {fileID: 7403647218097492659, guid: b03ea729025bc91489ff03764180bfa2, type: 3}
   bullet: {fileID: 1780308452379566466, guid: 54a1484b4424a6949aa6cc4a61ddd64d, type: 3}
   fireAnim:

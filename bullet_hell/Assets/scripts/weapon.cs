@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class weapon : MonoBehaviour
@@ -12,6 +14,7 @@ public class weapon : MonoBehaviour
     public float cooldown;//1 = 1 frame
     public Vector2 collOffset;
     public Vector2 shootingPointOffset;
+    public GameObject shootingPoint;
 
     [Header("WEAPON SETTINGS")]
     public float[] handCloseOffset = new float[3];
@@ -32,7 +35,6 @@ public class weapon : MonoBehaviour
 
 
     //FLIP SHOOTING POINT TOO
-
     public virtual void Fire()
     {
         //use firing function of a weapon
@@ -48,21 +50,19 @@ public class weapon : MonoBehaviour
             currentRecoil = 0;
         }
     }
-
-    public virtual void flip(bool flip)
+    public virtual void flip(bool flip)//flip collision + shootingPoint
     {
         if (flip)
         {
             coll.offset = new Vector2(coll.offset.x, -collOffset.y);
-            coll.offset = new Vector2(coll.offset.x, -collOffset.y);
+            shootingPoint.transform.localPosition = new Vector2(shootingPointOffset.x, -shootingPointOffset.y);
         }
         else
         {
             coll.offset = new Vector2(coll.offset.x, collOffset.y);
+            shootingPoint.transform.localPosition = new Vector2(shootingPointOffset.x, shootingPointOffset.y);
         }
-
     }
-
     public virtual void AltFire()
     {
         //use alt firing function of a weapon
@@ -75,9 +75,25 @@ public class weapon : MonoBehaviour
     {
         if (cooldown > 0) { cooldown -= 1f; }
     }
+    public virtual bool getShootingPoint()//get object + position
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.name=="shootingPoint")
+            {
+                shootingPoint = child.gameObject;
+                shootingPointOffset = shootingPoint.transform.localPosition;
+                ranged = true;
+                return true;
+            }
+        }
+        Debug.Log("hey i didnt find point");
+        return false;
 
+    }
     public virtual void Awake()
     {
+        ranged = getShootingPoint();
         collOffset = coll.offset;
     }
 }

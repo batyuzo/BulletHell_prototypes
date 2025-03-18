@@ -273,6 +273,8 @@ public class menu : MonoBehaviour
         uiMenu.SetActive(false);
         uiCustomize.SetActive(true);
         uiSettings.SetActive(false);
+
+        
         customUpdate();//displayed items update
         if (activePlayer == "p1")
         {

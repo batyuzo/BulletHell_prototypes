@@ -16,6 +16,7 @@ TagManager:
   - passedData
   - refHandler
   - projectile
+  - shootingPoint
   layers:
   - Default
   - TransparentFX

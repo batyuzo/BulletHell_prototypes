@@ -107,6 +107,8 @@ MonoBehaviour:
   currentRecoil: 0
   cooldown: 0
   collOffset: {x: 0.32, y: -0.23}
+  shootingPointOffset: {x: 0, y: 0}
+  shootingPoint: {fileID: 0}
   handCloseOffset:
   - -0.48
   - 0.195
@@ -132,7 +134,6 @@ MonoBehaviour:
   projSpeed: 20
   firerate: 4
   weaponRenderer: {fileID: 2090029421810732651}
-  shootingPoint: {fileID: 7027401682490116231}
   muzzleFlash: {fileID: 7403647218097492659, guid: 3364242a14a9fc14fb392029fc689126, type: 3}
   bullet: {fileID: 1780308452379566466, guid: bc6b60b5d3d6a30499dd86e59e3fa395, type: 3}
   fireAnim:

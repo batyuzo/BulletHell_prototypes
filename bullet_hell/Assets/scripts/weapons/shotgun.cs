@@ -9,7 +9,6 @@ public class shotgun : weapon
 {
 
     [Header("bullet refs")]
-    public GameObject shootingPoint;
     public GameObject muzzleFlash;
     public GameObject bullet;
     [SerializeField] int pelletCount;

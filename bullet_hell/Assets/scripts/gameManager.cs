@@ -74,29 +74,51 @@ public class gameManager : MonoBehaviour
             if (player1.GetComponent<playerHealth>().dead)//player1 dies
             {
                 p2Wins++;
+                foreach (GameObject projectile in GameObject.FindGameObjectsWithTag("projectile"))//no shot lands
+                {
+                    Destroy(projectile);
+                }
                 return true;
             }
             else if (player2.GetComponent<playerHealth>().dead)//player2 dies
             {
                 p1Wins++;
+                foreach (GameObject projectile in GameObject.FindGameObjectsWithTag("projectile"))//no shot lands
+                {
+                    Destroy(projectile);
+                }
                 return true;
             }
             else if (fightUi.timeLeft < 0 && player1.GetComponent<playerHealth>().currentHealth > player2.GetComponent<playerHealth>().currentHealth)//p1 by time
             {
                 p1Wins++;
+                foreach (GameObject projectile in GameObject.FindGameObjectsWithTag("projectile"))//no shot lands
+                {
+                    Destroy(projectile);
+                }
                 return true;
             }
             else if (fightUi.timeLeft < 0 && player1.GetComponent<playerHealth>().currentHealth < player2.GetComponent<playerHealth>().currentHealth)//p2 by time
             {
                 p2Wins++;
+                foreach(GameObject projectile in GameObject.FindGameObjectsWithTag("projectile"))//no shot lands
+                {
+                    Destroy(projectile);
+                }
                 return true;
             }
             else if (fightUi.timeLeft < 0)//time spent
             {
+                foreach (GameObject projectile in GameObject.FindGameObjectsWithTag("projectile"))//no shot lands
+                {
+                    Destroy(projectile);
+                }
                 p1Wins++;
                 p2Wins++;
                 return true;
             }
+
+
 
         }
         return false;

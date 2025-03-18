@@ -11,7 +11,6 @@ public class pistol : weapon
     [SerializeField] SpriteRenderer weaponRenderer;
 
     [Header("bullet refs")]
-    public GameObject shootingPoint;
     public GameObject muzzleFlash;
     public GameObject bullet;
 
