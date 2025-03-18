@@ -117,9 +117,6 @@ public class gameManager : MonoBehaviour
                 p2Wins++;
                 return true;
             }
-
-
-
         }
         return false;
     }

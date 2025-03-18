@@ -86,10 +86,6 @@ public class playerController : MonoBehaviour
             gamepad = false;
         }
 
-        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("weapon"))
-        {
-            Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), obj.GetComponent<Collider2D>(), true);
-        }
         playerAssets = assetsRef;
         deadzone = .25f;//gamepad deadzone
         gameObject.GetComponentInChildren<bodyAnim>().init(skin, assetsRef);//skin

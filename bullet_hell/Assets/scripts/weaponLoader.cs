@@ -6,9 +6,10 @@ using UnityEngine.UIElements;
 public class weaponLoader : MonoBehaviour
 {
     [Header("weapon refs")]
-    public GameObject shotgun;
-    public GameObject pistol;
-    public GameObject nailgun;
+    [SerializeField] GameObject shotgun;
+    [SerializeField] GameObject pistol;
+    [SerializeField] GameObject nailgun;
+    [SerializeField] GameObject cleaver;
 
     [Header("script refs")]
     public spawnPositions spawnPositions;
@@ -36,7 +37,7 @@ public class weaponLoader : MonoBehaviour
             //1 - unique
             //2 - rare
             //3 - common
-            spawnWeapons(new List<GameObject>() { shotgun, pistol }, new List<GameObject>() { nailgun }, new List<GameObject>() { pistol }, spawnPositions.ham_unique, spawnPositions.ham_rare, spawnPositions.ham_common1, spawnPositions.ham_common2);
+            spawnWeapons(new List<GameObject>() { shotgun }, new List<GameObject>() { nailgun, pistol }, new List<GameObject>() { cleaver }, spawnPositions.ham_unique, spawnPositions.ham_rare, spawnPositions.ham_common1, spawnPositions.ham_common2);
         }
         else if (mapname == "prac")
         {

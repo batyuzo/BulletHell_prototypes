@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class weapon : MonoBehaviour
@@ -22,7 +21,7 @@ public class weapon : MonoBehaviour
     public float[] weaponOffset = new float[3];
     public string weaponName;
     public char[] weaponHands;
-    public int[] handsLayer;
+    public int farLayer;
     public int magazine;//single magazine cap
     public int rarity;//unique, rare, common
     public bool ranged;//ranged or melee
@@ -55,12 +54,20 @@ public class weapon : MonoBehaviour
         if (flip)
         {
             coll.offset = new Vector2(coll.offset.x, -collOffset.y);
-            shootingPoint.transform.localPosition = new Vector2(shootingPointOffset.x, -shootingPointOffset.y);
+            if (ranged)
+            {
+                shootingPoint.transform.localPosition = new Vector2(shootingPointOffset.x, -shootingPointOffset.y);
+            }
+
         }
         else
         {
             coll.offset = new Vector2(coll.offset.x, collOffset.y);
-            shootingPoint.transform.localPosition = new Vector2(shootingPointOffset.x, shootingPointOffset.y);
+            if (ranged)
+            {
+                shootingPoint.transform.localPosition = new Vector2(shootingPointOffset.x, shootingPointOffset.y);
+            }
+
         }
     }
     public virtual void AltFire()
@@ -79,7 +86,7 @@ public class weapon : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            if (child.name=="shootingPoint")
+            if (child.name == "shootingPoint")
             {
                 shootingPoint = child.gameObject;
                 shootingPointOffset = shootingPoint.transform.localPosition;
@@ -87,7 +94,6 @@ public class weapon : MonoBehaviour
                 return true;
             }
         }
-        Debug.Log("hey i didnt find point");
         return false;
 
     }

@@ -38,9 +38,6 @@ public class gunHolder : MonoBehaviour
 
     [Header("logs")]
     public bool flipped;
-
-
-
     public void set()
     {
         offset = new Vector3(1f, -1f);
@@ -51,7 +48,7 @@ public class gunHolder : MonoBehaviour
     }
     private void updateMaginfo()
     {
-        if (equipped != null)
+        if (equipped != null && weaponScript.ranged)
         {
             magInfo.transform.position = player.transform.position + offset;
             magInfoText.SetText(weaponScript.magazine.ToString());
@@ -165,12 +162,10 @@ public class gunHolder : MonoBehaviour
     }
     public void setOffset()//executes on Equip
     {
-
         //grab values from children
         HCO = weaponScript.handCloseOffset;
         HFO = weaponScript.handFarOffset;
         WPO = weaponScript.weaponOffset;
-        weaponHands = weaponScript.weaponHands;
 
         //set grabbed values to sprites
 
@@ -184,8 +179,6 @@ public class gunHolder : MonoBehaviour
         //equipped weapon
         equipped.transform.localPosition = new Vector2(WPO[0], WPO[1]);
         equipped.transform.localRotation = Quaternion.Euler(0, 0, WPO[2]);
-
-        playerAnim.updateHands(weaponHands[0], weaponHands[1]);
     }
     private void bareHandsOffset()
     {
@@ -225,7 +218,6 @@ public class gunHolder : MonoBehaviour
         {
             Drop();
             equipped = toEquip;
-
             weaponScript = equipped.GetComponent<weapon>();//set weaponscript
 
             //weaponscript interactions
@@ -234,8 +226,9 @@ public class gunHolder : MonoBehaviour
             //reset positions
             equipped.transform.localPosition = Vector3.zero;
             equipped.transform.localRotation = Quaternion.Euler(0, 0, 0);
-
             setOffset();
+            weaponHands = weaponScript.weaponHands;
+            playerAnim.updateHands(weaponHands[0], weaponHands[1]);
             equipped.GetComponent<Rigidbody2D>().simulated = false;
         }
     }
@@ -267,6 +260,10 @@ public class gunHolder : MonoBehaviour
         if (weaponScript != null)
         {
             recoil = weaponScript.currentRecoil;
+        }
+        if(weaponScript!=null&& weaponScript.ranged)
+        {
+            setOffset();
         }
     }
 }

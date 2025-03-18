@@ -17,6 +17,7 @@ TagManager:
   - refHandler
   - projectile
   - shootingPoint
+  - meleeCheck
   layers:
   - Default
   - TransparentFX

@@ -195,6 +195,7 @@ MonoBehaviour:
   shotgun: {fileID: 4014257896013216826, guid: 76c4cb68833cef8489999582eb9e7e84, type: 3}
   pistol: {fileID: 4014257896013216826, guid: e7e92b5698970f54e8d4dd2409325a7d, type: 3}
   nailgun: {fileID: 4014257896013216826, guid: 795ba4e28b48df84bb43ee93e38c348b, type: 3}
+  cleaver: {fileID: 4014257896013216826, guid: d660ee3661a79644a824e5576f38b1dd, type: 3}
   spawnPositions: {fileID: 6816570369336166462}
   weaponsSpawned: 0
 --- !u!114 &6816570369336166462
