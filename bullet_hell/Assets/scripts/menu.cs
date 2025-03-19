@@ -26,6 +26,7 @@ public class menu : MonoBehaviour
     public GameObject uiMenu;
     public GameObject uiCustomize;
     public GameObject uiSettings;
+    public GameObject uiLogin;
 
     [Header("playerbody menu refs")]
     public displaySkin playerbodyP1;
@@ -36,6 +37,12 @@ public class menu : MonoBehaviour
     public List<musicKit> p2Kits;
     public List<string> p1Skins;
     public List<string> p2Skins;
+
+    [Header("login refs")]
+    public string input_username;
+    public string input_password;
+    public TMP_InputField field_username;
+    public TMP_InputField field_password;
 
     [Header("button refs menu")]
     public UnityEngine.UI.Button btn_fight;
@@ -79,6 +86,7 @@ public class menu : MonoBehaviour
         uiMenu.SetActive(true);
         uiCustomize.SetActive(false);
         uiSettings.SetActive(false);
+        uiLogin.SetActive(false);
         menuUpdate();
     }
     public void fight()//btn_fight
@@ -220,7 +228,7 @@ public class menu : MonoBehaviour
         }
         else//first pressed
         {
-
+            loginScreen("p1");
             if (true)
             {
                 loginCallback(new APIManager.LoginResponse(true, "girmany", 50, "p1"));
@@ -230,7 +238,6 @@ public class menu : MonoBehaviour
                 string username = "girmany", password = "gizmo";
                 //LOGIN REQUEST
                 StartCoroutine(APIManager.Login(username, password, "p1", loginCallback));
-
             }
 
         }
@@ -239,6 +246,7 @@ public class menu : MonoBehaviour
     {
         if (passedData.p1Login)//if both logged in
         {
+
             btn_fight.interactable = true;
         }
         if (passedData.p2Login)//if logged in
@@ -247,17 +255,16 @@ public class menu : MonoBehaviour
         }
         else//first pressed
         {
+            loginScreen("p2");
             if (true)
             {
                 loginCallback(new APIManager.LoginResponse(true, "batyuzo", 100, "p2"));
-
             }
             else
             {
                 string username = "batyuzo", password = "batyuzik";
                 //LOGIN REQUEST
                 StartCoroutine(APIManager.Login(username, password, "p2", loginCallback));
-
             }
         }
     }
@@ -273,8 +280,9 @@ public class menu : MonoBehaviour
         uiMenu.SetActive(false);
         uiCustomize.SetActive(true);
         uiSettings.SetActive(false);
+        uiLogin.SetActive(false);
 
-        
+
         customUpdate();//displayed items update
         if (activePlayer == "p1")
         {
@@ -424,5 +432,23 @@ public class menu : MonoBehaviour
         passedData.p2Device = new List<InputDevice> { Gamepad.current };
         ;
 
+    }
+    public void loginScreen(string player)
+    {
+        uiMenu.SetActive(false);
+        uiCustomize.SetActive(false);
+        uiSettings.SetActive(false);
+        uiLogin.SetActive(true);
+        input_username = null;
+        input_password = null;
+        field_username.text = null;
+        field_password.text = null;
+    }
+
+    public void loginPlayer()
+    {
+        input_username = field_username.text;
+        input_password = field_password.text;
+        Debug.Log(input_username +" and "+ input_password);
     }
 }
