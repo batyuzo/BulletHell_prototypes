@@ -230,11 +230,18 @@ MonoBehaviour:
   cooldown: 0
   collOffset: {x: 0, y: 0}
   shootingPointOffset: {x: 0, y: 0}
+  weaponAnim:
+  - {x: 0.23, y: -0.32, z: -80}
+  - {x: -0.12, y: -0.4, z: -90}
+  - {x: -0.4, y: -0.4, z: -90}
+  - {x: -0.25, y: -0.35, z: -30}
+  - {x: 0, y: 0, z: 0}
+  weaponAnimCurrent: {x: 0, y: 0, z: 0}
   shootingPoint: {fileID: 0}
   flipped: 0
   handCloseOffset:
   - -0.45
-  - -0.1
+  - 0.08
   - 0
   handFarOffset:
   - -0.37
@@ -264,14 +271,6 @@ MonoBehaviour:
   weaponRenderer: {fileID: 0}
   check: 0
   projectileMode: 0
-  weaponAnim:
-  - {x: -0.2, y: 0.2, z: 90}
-  - {x: 0, y: 0.2, z: 90}
-  - {x: -0.725, y: 0.2, z: 90}
-  - {x: -0.5, y: 0.25, z: 30}
-  - {x: -0.5, y: 0.3, z: 0}
-  hcAnimOffset: {x: 0, y: -0.2}
-  hfAnimOffset: {x: 0, y: -0.2}
 --- !u!61 &7805415079537400683
 BoxCollider2D:
   m_ObjectHideFlags: 0

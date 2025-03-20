@@ -12,7 +12,7 @@ public class playerHealth : MonoBehaviour
     public healthbar healthbarScript;
     public List<GameObject> inkFx;
     public bool dead;
-
+    public List<float> dmgReceived;
 
     public void init(int health, playerAssets playerAssets)
     {
@@ -26,6 +26,7 @@ public class playerHealth : MonoBehaviour
     {
         if (currentHealth > 0)
         {
+            dmgReceived.Add(dmg);
             currentHealth -= dmg;
             healthbarScript.healthUpdate(currentHealth);
             damageFx(type);

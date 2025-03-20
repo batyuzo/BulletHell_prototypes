@@ -48,11 +48,6 @@ public class bodyAnim : MonoBehaviour
         walk = new Sprite[] { walk1, walk2, walk3, walk4, walk5, walk6 };
         divide = 60 / player.fps;
         playerAssets = assetsRef;
-        //refs
-        handCloseObj = transform.Find("gunHolder/handClose").gameObject;
-        handFarObj = transform.Find("gunHolder/handFar").gameObject;
-        headObj = transform.Find("headPos/head").gameObject;
-        bodyObj = transform.Find("playerBody/body").gameObject;
         playerAssets = GameObject.FindGameObjectWithTag("gameManager").GetComponent<playerAssets>();
 
         //base skin

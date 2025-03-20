@@ -7,25 +7,31 @@ using UnityEngine.UIElements;
 
 public class shotgun : weapon
 {
-
     [Header("bullet refs")]
     public GameObject muzzleFlash;
     public GameObject bullet;
     [SerializeField] int pelletCount;
+    int currentPellets;
     public override void Fire()
     {
         //firing happens
         if (cooldown <= 0 && magazine > 0)
         {
+            int nothing=0;
+            currentPellets = 0;
             cooldown = 60 / firerate;
             magazine--;
             //GetComponent<AudioSource>().Play();
 
             //BULLET
-            for (int i = 0; i < pelletCount; i++)//7 pellets
+            for (int i = 0; i < pelletCount; i++)
             {
-                Instantiate(bullet, shootingPoint.transform.position, Quaternion.Euler(shootingPoint.transform.eulerAngles.x, shootingPoint.transform.eulerAngles.y, shootingPoint.transform.eulerAngles.z * UnityEngine.Random.Range(.9f, 1.1f)));
+                nothing += damage;
+                Debug.Log(i+": " + damage);
+                Instantiate(bullet, shootingPoint.transform.position, Quaternion.Euler(shootingPoint.transform.eulerAngles.x, shootingPoint.transform.eulerAngles.y, shootingPoint.transform.eulerAngles.z + UnityEngine.Random.Range(-10f, 10f)));
             }
+            Debug.Log(nothing);
+
             //MUZZLE FLASH
             Instantiate(muzzleFlash, shootingPoint.transform.position, shootingPoint.transform.rotation);
 

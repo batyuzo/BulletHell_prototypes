@@ -706,8 +706,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 497114540}
-  - {fileID: 1750013740}
+  - {fileID: 1201518132}
   m_Father: {fileID: 390778649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &111249044
@@ -737,6 +736,7 @@ MonoBehaviour:
   handClose: {fileID: 497114538}
   handFar: {fileID: 1750013738}
   equipped: {fileID: 0}
+  meleeAnim: {fileID: 1201518131}
   player: {fileID: 390778648}
   head: {fileID: 693699322}
   playerAnim: {fileID: 390778655}
@@ -1737,10 +1737,10 @@ MonoBehaviour:
   handCloseB: {fileID: 0}
   handFarA: {fileID: 0}
   handFarB: {fileID: 0}
-  bodyObj: {fileID: 0}
-  handCloseObj: {fileID: 0}
-  handFarObj: {fileID: 0}
-  headObj: {fileID: 0}
+  bodyObj: {fileID: 370473844}
+  handCloseObj: {fileID: 497114538}
+  handFarObj: {fileID: 1750013738}
+  headObj: {fileID: 1707219596}
   walk1: {fileID: 21300000, guid: a45bc14786136c84cb0ca35f6d9b0947, type: 3}
   walk2: {fileID: 21300000, guid: be6b1c1657d91e84eada0ec25cc8eea2, type: 3}
   walk3: {fileID: 21300000, guid: 638e5b5be6105a649a215c0843af6fa9, type: 3}
@@ -2109,12 +2109,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497114538}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 111249043}
+  m_Father: {fileID: 1201518132}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -3622,6 +3622,72 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2000256277}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1198129195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1198129196}
+  m_Layer: 0
+  m_Name: meleeAnim
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1198129196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198129195}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1424360889}
+  - {fileID: 2068750620}
+  m_Father: {fileID: 1538271489}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1201518131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1201518132}
+  m_Layer: 0
+  m_Name: meleeAnim
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1201518132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201518131}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1750013740}
+  - {fileID: 497114540}
+  m_Father: {fileID: 111249043}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1205054400
 GameObject:
   m_ObjectHideFlags: 0
@@ -4233,12 +4299,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424360888}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1538271489}
+  m_Father: {fileID: 1198129196}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1424360890
 SpriteRenderer:
@@ -4650,10 +4716,10 @@ MonoBehaviour:
   handCloseB: {fileID: 0}
   handFarA: {fileID: 0}
   handFarB: {fileID: 0}
-  bodyObj: {fileID: 0}
-  handCloseObj: {fileID: 0}
-  handFarObj: {fileID: 0}
-  headObj: {fileID: 0}
+  bodyObj: {fileID: 1205054400}
+  handCloseObj: {fileID: 1424360888}
+  handFarObj: {fileID: 2068750618}
+  headObj: {fileID: 758420255}
   walk1: {fileID: 21300000, guid: a45bc14786136c84cb0ca35f6d9b0947, type: 3}
   walk2: {fileID: 21300000, guid: be6b1c1657d91e84eada0ec25cc8eea2, type: 3}
   walk3: {fileID: 21300000, guid: 638e5b5be6105a649a215c0843af6fa9, type: 3}
@@ -4851,6 +4917,7 @@ MonoBehaviour:
   handClose: {fileID: 1424360888}
   handFar: {fileID: 2068750618}
   equipped: {fileID: 0}
+  meleeAnim: {fileID: 1198129195}
   player: {fileID: 1428454085}
   head: {fileID: 595374546}
   playerAnim: {fileID: 1428454091}
@@ -4890,8 +4957,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1424360889}
-  - {fileID: 2068750620}
+  - {fileID: 1198129196}
   m_Father: {fileID: 1428454093}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &1538271490
@@ -5724,7 +5790,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 111249043}
+  m_Father: {fileID: 1201518132}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1771612602
 PrefabInstance:
@@ -6544,7 +6610,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1538271489}
+  m_Father: {fileID: 1198129196}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2094511440
 GameObject:

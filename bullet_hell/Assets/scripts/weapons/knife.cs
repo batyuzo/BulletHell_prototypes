@@ -18,10 +18,7 @@ public class knife : weapon
     [Header("logs n settings")]
     public bool check;
     public bool projectileMode;
-    private int current;
-    public List<Vector3> weaponAnim;//x, y, rotation
-    public Vector2 hcAnimOffset;//x,y,rota orignal hcOffset
-    public Vector2 hfAnimOffset;//x,y,rota orignal hfOffset
+    private int current;//current frame
     private int animDuration;
 
     public override void Fire()
@@ -50,29 +47,24 @@ public class knife : weapon
             if (animDuration > 0 && frame % 4 == 0)//15fps
             {
                 animDuration--;
-                weaponOffset[0] = weaponAnim[current].x;//x pos
-                weaponOffset[1] = weaponAnim[current].y;//y pos
-                weaponOffset[2] = weaponAnim[current].z;//rotation
-
-                handCloseOffset[0] = weaponAnim[current].x + hcAnimOffset.x;
-                handCloseOffset[1] = weaponAnim[current].y + hcAnimOffset.y;
-                //rotation
-                handCloseOffset[2] = weaponAnim[current].z;
-
-                handFarOffset[0] = weaponAnim[current].x + hfAnimOffset.x;
-                handFarOffset[1] = weaponAnim[current].y + hfAnimOffset.y;
-                //rotation
-                handFarOffset[2] = weaponAnim[current].z;
+                if (flipped)
+                {
+                    weaponAnimCurrent = weaponAnim[current];
+                }
+                else
+                {
+                    weaponAnimCurrent = new Vector3(weaponAnim[current].x, -weaponAnim[current].y, -weaponAnim[current].z);
+                }
                 current++;
             }
         }
         else
         {
             trail.on(false);
+            weaponAnimCurrent = Vector3.zero;
         }
         if (animDuration == 3 && check)
         {
-
             trail.on(true);
             if (meleeCheck.getColl() != null)
             {

@@ -21,9 +21,11 @@ public class bullet : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.GetComponent<playerHealth>()!=null)
+        if (other.gameObject.name=="Player1" || other.gameObject.name=="Player2")
         {
             other.gameObject.GetComponent<playerHealth>().playerDamaged(damage, "ink");
+            damage = 0;
+            Destroy(this);
         }
 
         if (!other.gameObject.CompareTag("projectile") && !other.gameObject.CompareTag("weapon"))

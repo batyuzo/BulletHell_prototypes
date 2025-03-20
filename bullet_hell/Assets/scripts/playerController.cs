@@ -70,9 +70,6 @@ public class playerController : MonoBehaviour
         gunHolder.lookAt(aimDirection);
         flipSprite(aimDirection.x > 0);//if need flip
         currentHealth = GetComponent<playerHealth>().currentHealth;
-
-
-
     }
     public void init(string skin, Vector3 pos, int health, playerAssets assetsRef, Vector2 initialDirection)
     {

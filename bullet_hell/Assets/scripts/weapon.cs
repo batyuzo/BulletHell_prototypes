@@ -13,6 +13,8 @@ public class weapon : MonoBehaviour
     public float cooldown;//1 = 1 frame
     public Vector2 collOffset;
     public Vector2 shootingPointOffset;
+    public List<Vector3> weaponAnim;//x, y, rotation
+    public Vector3 weaponAnimCurrent;
     public GameObject shootingPoint;
     public bool flipped;
 
@@ -49,9 +51,10 @@ public class weapon : MonoBehaviour
             currentRecoil = 0;
         }
     }
-    public virtual void flip(bool flip)//doesn't affect sprite
+    public virtual void flip(bool flip)
     {
         flipped = flip;
+        GetComponent<SpriteRenderer>().flipY = flip;
         if (flip)
         {
             coll.offset = new Vector2(coll.offset.x, -collOffset.y);
@@ -60,7 +63,7 @@ public class weapon : MonoBehaviour
                 shootingPoint.transform.localPosition = new Vector2(shootingPointOffset.x, -shootingPointOffset.y);
             }
         }
-        else
+        if (!flip)
         {
             coll.offset = new Vector2(coll.offset.x, collOffset.y);
             if (ranged)
@@ -76,10 +79,7 @@ public class weapon : MonoBehaviour
     public virtual void equip(GameObject parent)
     {
         transform.SetParent(parent.transform);
-    }
-    public virtual void FixedUpdate()
-    {
-        if (cooldown > 0) { cooldown -= 1f; }
+        rb.simulated = false;
     }
     public virtual bool getShootingPoint()//get object + position
     {
@@ -95,6 +95,10 @@ public class weapon : MonoBehaviour
         }
         return false;
 
+    }
+    public virtual void FixedUpdate()
+    {
+        if (cooldown > 0) { cooldown -= 1f; }
     }
     public virtual void Awake()
     {

@@ -21,6 +21,7 @@ public class gunHolder : MonoBehaviour
     public GameObject handClose;
     public GameObject handFar;
     public GameObject equipped = null;
+    public GameObject meleeAnim;
     public GameObject player;
     public GameObject head;
     public bodyAnim playerAnim;
@@ -85,41 +86,35 @@ public class gunHolder : MonoBehaviour
         if (flip)
         {
             flipped = true;
+
             //head flip
             if (head.GetComponentInChildren<SpriteRenderer>() != null)
             {
                 head.GetComponentInChildren<SpriteRenderer>().flipY = false;
             }
             //children flip
-            foreach (Transform child in transform)
+            //handClose
+            handClose.transform.localRotation = Quaternion.Euler(0, 0, HCO[2]);
+            handClose.transform.localPosition = new Vector3(HCO[0], HCO[1], handClose.transform.localPosition.z);
+            handClose.transform.GetComponent<SpriteRenderer>().flipY = false;
+            //handFar
+            handFar.transform.localRotation = Quaternion.Euler(0, 0, HFO[2]);
+            handFar.transform.localPosition = new Vector3(HFO[0], HFO[1], handFar.transform.localPosition.z);
+            handClose.transform.GetComponent<SpriteRenderer>().flipY = false;
+
+            //weapon
+            if (equipped != null)
             {
-                //check if 'spriterenderer exists'
-                if (child.GetComponentInChildren<SpriteRenderer>() != null)
-                {
-                    child.GetComponentInChildren<SpriteRenderer>().flipY = false;
-                }
-
-                //handClose
-                if (child.name == "handClose")
-                {
-                    child.localRotation = Quaternion.Euler(0, 0, HCO[2]);
-                    child.localPosition = new Vector3(HCO[0], HCO[1], child.localPosition.z);
-                }
-                //handFar
-                if (child.name == "handFar")
-                {
-                    child.localRotation = Quaternion.Euler(0, 0, HFO[2]);
-                    child.localPosition = new Vector3(HFO[0], HFO[1], child.localPosition.z);
-                }
-
-                //weapon
-                if (child.CompareTag("weapon"))
-                {
-                    child.localRotation = Quaternion.Euler(0, 0, WPO[2]);
-                    child.localPosition = new Vector3(WPO[0], WPO[1], child.localPosition.z);
-                    child.GetComponent<weapon>().flip(false);//weapons look backwards
-                }
+                equipped.transform.localRotation = Quaternion.Euler(0, 0, WPO[2]);
+                equipped.transform.localPosition = new Vector3(WPO[0], WPO[1], equipped.transform.localPosition.z);
+                weaponScript.flip(!flipped);
             }
+            if (weaponScript != null && !weaponScript.ranged)
+            {
+                meleeAnim.transform.localPosition = new Vector2(weaponScript.weaponAnimCurrent.x, weaponScript.weaponAnimCurrent.y);
+                meleeAnim.transform.localRotation = Quaternion.Euler(0, 0, weaponScript.weaponAnimCurrent.z);
+            }
+
         }
         else
         {
@@ -130,36 +125,33 @@ public class gunHolder : MonoBehaviour
                 head.GetComponentInChildren<SpriteRenderer>().flipY = true;
             }
             //children flip
-            foreach (Transform child in transform)
+
+            //handClose
+            handClose.transform.localRotation = Quaternion.Euler(0, 0, -HCO[2]);
+            handClose.transform.localPosition = new Vector3(HCO[0], -HCO[1], handClose.transform.localPosition.z);
+            handClose.transform.GetComponent<SpriteRenderer>().flipY = true;
+
+            //handFar
+            handFar.transform.localRotation = Quaternion.Euler(0, 0, -HFO[2]);
+            handFar.transform.localPosition = new Vector3(HFO[0], -HFO[1], handFar.transform.localPosition.z);
+            handClose.transform.GetComponent<SpriteRenderer>().flipY = true;
+
+            //weapon
+            if (equipped != null)
             {
-                if (child.GetComponentInChildren<SpriteRenderer>() != null)
-                {
-                    child.GetComponentInChildren<SpriteRenderer>().flipY = true;
-                }
-
-                //handClose
-                if (child.name == "handClose")
-                {
-                    child.localRotation = Quaternion.Euler(0, 0, -HCO[2]);
-                    child.localPosition = new Vector3(HCO[0], -HCO[1], child.localPosition.z);
-                }
-                //handFar
-                if (child.name == "handFar")
-                {
-                    child.localRotation = Quaternion.Euler(0, 0, -HFO[2]);
-                    child.localPosition = new Vector3(HFO[0], -HFO[1], child.localPosition.z);
-                }
-
-                //weapon
-                if (child.CompareTag("weapon"))
-                {
-                    child.localRotation = Quaternion.Euler(0, 0, -WPO[2]);
-                    child.localPosition = new Vector3(WPO[0], -WPO[1], child.localPosition.z);
-                    child.GetComponent<weapon>().flip(true);//weapons look backwards
-                }
+                equipped.transform.localRotation = Quaternion.Euler(0, 0, -WPO[2]);
+                equipped.transform.localPosition = new Vector3(WPO[0], -WPO[1], equipped.transform.localPosition.z);
+                weaponScript.flip(!flipped);
+            }
+            if (weaponScript != null && !weaponScript.ranged)
+            {
+                meleeAnim.transform.localPosition = new Vector2(weaponScript.weaponAnimCurrent.x, weaponScript.weaponAnimCurrent.y);
+                meleeAnim.transform.localRotation = Quaternion.Euler(0, 0, weaponScript.weaponAnimCurrent.z);
             }
         }
+
     }
+
     public void setOffset()//executes on Equip
     {
         //grab values from children
@@ -189,11 +181,7 @@ public class gunHolder : MonoBehaviour
     {
         if (equipped != null)
         {
-            if (weaponScript.cooldown <= 0)
-            {
-                weaponScript.Fire();
-            }
-
+            weaponScript.Fire();
         }
     }
     public void autoFire()
@@ -225,7 +213,7 @@ public class gunHolder : MonoBehaviour
             weaponScript = equipped.GetComponent<weapon>();//set weaponscript
 
             //weaponscript interactions
-            weaponScript.equip(gameObject);
+            weaponScript.equip(meleeAnim);
             equippedText.SetText(weaponScript.weaponName);
             //reset positions
             equipped.transform.localPosition = Vector3.zero;
@@ -233,7 +221,6 @@ public class gunHolder : MonoBehaviour
             setOffset();
             weaponHands = weaponScript.weaponHands;
             playerAnim.updateHands(weaponHands[0], weaponHands[1]);
-            equipped.GetComponent<Rigidbody2D>().simulated = false;
         }
     }
     public void Drop()
