@@ -108,8 +108,17 @@ public class menu : MonoBehaviour
                     activeKit = musicAssets.GetAssetByName(kit.Key);
                 }
             }
-            passedData.p1Kits = kits;
-            passedData.p1Kit = activeKit;
+            //set owned kits
+            if (kits!=null)
+            {
+                passedData.p1Kits = kits;
+            }
+
+            //set active kit
+            if (activeKit!=null)
+            {
+                passedData.p1Kit = activeKit;
+            }
         }
         else
         {
@@ -121,10 +130,18 @@ public class menu : MonoBehaviour
                 if (kit.Value)
                     activeKit = musicAssets.GetAssetByName(kit.Key);
             }
-            passedData.p2Kits = kits;
-            passedData.p2Kit = activeKit;
-        }
+            //set owned kits
+            if (kits != null)
+            {
+                passedData.p2Kits = kits;
+            }
 
+            //set active kit
+            if (activeKit != null)
+            {
+                passedData.p2Kit = activeKit;
+            }
+        }
     }
     public void LoadOwnedCharacters(APIManager.AssetResponse response)
     {

@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class cleaver : weapon
+public class knife : weapon
 {
     [Header("dependencies")]
     public meleeCheck meleeCheck;
@@ -20,14 +20,16 @@ public class cleaver : weapon
     public bool projectileMode;
     private int current;
     public List<Vector3> weaponAnim;//x, y, rotation
+    public Vector2 hcAnimOffset;//x,y,rota orignal hcOffset
+    public Vector2 hfAnimOffset;//x,y,rota orignal hfOffset
     private int animDuration;
 
     public override void Fire()
     {
-        check = true;
         //firing happens
         if (cooldown <= 0 && magazine > 0)
         {
+            check = true;
             cooldown = 60 / firerate;
             //GetComponent<AudioSource>().Play();
 
@@ -45,7 +47,6 @@ public class cleaver : weapon
     {
         if (animDuration > 0)
         {
-            trail.on(true);
             if (animDuration > 0 && frame % 4 == 0)//15fps
             {
                 animDuration--;
@@ -53,12 +54,14 @@ public class cleaver : weapon
                 weaponOffset[1] = weaponAnim[current].y;//y pos
                 weaponOffset[2] = weaponAnim[current].z;//rotation
 
-                handCloseOffset[0] = weaponAnim[current].x;
-                handCloseOffset[1] = weaponAnim[current].y;
+                handCloseOffset[0] = weaponAnim[current].x + hcAnimOffset.x;
+                handCloseOffset[1] = weaponAnim[current].y + hcAnimOffset.y;
+                //rotation
                 handCloseOffset[2] = weaponAnim[current].z;
 
-                handFarOffset[0] = weaponAnim[current].x;
-                handFarOffset[1] = weaponAnim[current].y;
+                handFarOffset[0] = weaponAnim[current].x + hfAnimOffset.x;
+                handFarOffset[1] = weaponAnim[current].y + hfAnimOffset.y;
+                //rotation
                 handFarOffset[2] = weaponAnim[current].z;
                 current++;
             }
@@ -69,6 +72,8 @@ public class cleaver : weapon
         }
         if (animDuration == 3 && check)
         {
+
+            trail.on(true);
             if (meleeCheck.getColl() != null)
             {
                 check = false;

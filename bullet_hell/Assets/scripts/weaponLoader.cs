@@ -10,19 +10,16 @@ public class weaponLoader : MonoBehaviour
     [SerializeField] GameObject pistol;
     [SerializeField] GameObject nailgun;
     [SerializeField] GameObject cleaver;
+    [SerializeField] GameObject knife;
 
     [Header("script refs")]
     public spawnPositions spawnPositions;
 
     [Header("logs")]
     [SerializeField] int weaponsSpawned;
-
-
-
     public void set(string mapname)//called by gameManager
     {
         weaponsSpawned = 0;
-
         //destroy past weapons
         foreach (GameObject weapon in GameObject.FindGameObjectsWithTag("weapon"))
         {
@@ -37,7 +34,7 @@ public class weaponLoader : MonoBehaviour
             //1 - unique
             //2 - rare
             //3 - common
-            spawnWeapons(new List<GameObject>() { shotgun }, new List<GameObject>() { nailgun, pistol }, new List<GameObject>() { cleaver }, spawnPositions.ham_unique, spawnPositions.ham_rare, spawnPositions.ham_common1, spawnPositions.ham_common2);
+            spawnWeapons(new List<GameObject>() { shotgun }, new List<GameObject>() { nailgun, pistol }, new List<GameObject>() { cleaver, knife }, spawnPositions.ham_unique, spawnPositions.ham_rare, spawnPositions.ham_common1, spawnPositions.ham_common2);
         }
         else if (mapname == "prac")
         {

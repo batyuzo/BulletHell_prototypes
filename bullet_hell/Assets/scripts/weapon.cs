@@ -14,6 +14,7 @@ public class weapon : MonoBehaviour
     public Vector2 collOffset;
     public Vector2 shootingPointOffset;
     public GameObject shootingPoint;
+    public bool flipped;
 
     [Header("WEAPON SETTINGS")]
     public float[] handCloseOffset = new float[3];
@@ -32,7 +33,6 @@ public class weapon : MonoBehaviour
     public float projSpeed;
     public float firerate;//shots per second
 
-
     //FLIP SHOOTING POINT TOO
     public virtual void Fire()
     {
@@ -49,8 +49,9 @@ public class weapon : MonoBehaviour
             currentRecoil = 0;
         }
     }
-    public virtual void flip(bool flip)//flip collision + shootingPoint
+    public virtual void flip(bool flip)//doesn't affect sprite
     {
+        flipped = flip;
         if (flip)
         {
             coll.offset = new Vector2(coll.offset.x, -collOffset.y);
@@ -58,7 +59,6 @@ public class weapon : MonoBehaviour
             {
                 shootingPoint.transform.localPosition = new Vector2(shootingPointOffset.x, -shootingPointOffset.y);
             }
-
         }
         else
         {
@@ -67,7 +67,6 @@ public class weapon : MonoBehaviour
             {
                 shootingPoint.transform.localPosition = new Vector2(shootingPointOffset.x, shootingPointOffset.y);
             }
-
         }
     }
     public virtual void AltFire()

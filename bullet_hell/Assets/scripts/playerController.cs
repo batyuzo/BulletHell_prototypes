@@ -53,6 +53,11 @@ public class playerController : MonoBehaviour
         if (coyoteCount > 0 && !grounded) { coyoteCount -= 0.2f; }
         //buffer decreases mid-air
         grounded = groundCheck.getGrounded();
+        //AUTOMATIC FIRING
+        if (shooting)
+        {
+            gunHolder.autoFire();
+        }
     }
     // Update is called once per frame
     void Update()
@@ -66,11 +71,7 @@ public class playerController : MonoBehaviour
         flipSprite(aimDirection.x > 0);//if need flip
         currentHealth = GetComponent<playerHealth>().currentHealth;
 
-        //AUTOMATIC FIRING
-        if (shooting)
-        {
-            gunHolder.autoFire();
-        }
+
 
     }
     public void init(string skin, Vector3 pos, int health, playerAssets assetsRef, Vector2 initialDirection)

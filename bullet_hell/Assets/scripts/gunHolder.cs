@@ -262,7 +262,7 @@ public class gunHolder : MonoBehaviour
         {
             recoil = weaponScript.currentRecoil;
         }
-        if(weaponScript!=null&& weaponScript.ranged)
+        if (weaponScript != null && weaponScript.ranged)
         {
             setOffset();
         }
