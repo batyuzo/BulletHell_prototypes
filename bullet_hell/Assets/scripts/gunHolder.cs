@@ -189,14 +189,18 @@ public class gunHolder : MonoBehaviour
     {
         if (equipped != null)
         {
-            weaponScript.Fire();
+            if (weaponScript.cooldown <= 0)
+            {
+                weaponScript.Fire();
+            }
+
         }
     }
     public void autoFire()
     {
         if (equipped != null && weaponScript.auto)
         {
-            weaponScript.Fire();
+            Fire();
         }
     }
     public bool AltFire()

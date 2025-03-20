@@ -24,7 +24,6 @@ public class weaponLoader : MonoBehaviour
         foreach (GameObject weapon in GameObject.FindGameObjectsWithTag("weapon"))
         {
             Destroy(weapon);
-            Debug.Log(weapon.name + " destroyed");
         }
 
         //spawn new weapons
