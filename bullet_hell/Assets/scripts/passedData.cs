@@ -26,6 +26,7 @@ public class passedData : MonoBehaviour
     public InputActionAsset p2Controls;
     public List<InputDevice> p1Device= new List<InputDevice>();
     public List<InputDevice> p2Device= new List<InputDevice>();
+    public bool firstLoad;
 
 
     void Awake()

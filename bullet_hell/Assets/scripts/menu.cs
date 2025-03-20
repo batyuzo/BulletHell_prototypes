@@ -39,8 +39,6 @@ public class menu : MonoBehaviour
     public List<string> p2Skins;
 
     [Header("login refs")]
-    public string input_username;
-    public string input_password;
     public TMP_InputField field_username;
     public TMP_InputField field_password;
 
@@ -73,11 +71,11 @@ public class menu : MonoBehaviour
         {
             passedData.p2Device = new List<InputDevice> { Keyboard.current, Mouse.current };
         }
-
         if (Gamepad.current != null)
         {
             passedData.p1Device = new List<InputDevice> { Gamepad.current };
         }
+        else { passedData.p1Device = new List<InputDevice> { Keyboard.current, Mouse.current }; }
     }
 
     //home screen
@@ -144,10 +142,25 @@ public class menu : MonoBehaviour
                     activeSkin = skin.Key;
                 }
             }
-            passedData.p1Skins = skins;
-            passedData.p1Skin = activeSkin;
+            if (skins != null)
+            {
+                passedData.p1Skins = skins;
+            }
+            else
+            {
+                passedData.p1Skins = new List<string> { "knight" };
+            }
+
+            if (activeSkin != null)
+            {
+                passedData.p1Skin = activeSkin;
+            }
+            else
+            {
+                passedData.p1Skin = "knight";
+            }
         }
-        else
+        else//p2
         {
             List<string> skins = new List<string>();
             string activeSkin = null;
@@ -159,22 +172,38 @@ public class menu : MonoBehaviour
                     activeSkin = skin.Key;
                 }
             }
-            passedData.p2Skins = skins;
-            passedData.p2Skin = activeSkin;
+            if (skins != null)
+            {
+                passedData.p2Skins = skins;
+            }
+            else
+            {
+                passedData.p2Skins = new List<string> { "knight" };
+            }
+
+            if (activeSkin != null)
+            {
+                passedData.p2Skin = activeSkin;
+            }
+            else
+            {
+                passedData.p2Skin = "knight";
+            }
         }
     }
     public void loginCallback(APIManager.LoginResponse response)
     {
         if (!response.success)
+        {
             return;
+        }
+
+        if (response.player == "p1")
+            passedData.p1Login = true;
+        else
+            passedData.p2Login = true;
         if (response.player == "p1")
         {
-            //DATABASE NEEDED
-            //passedData.p1Name=database reference
-            //passedData.p1Rank=database reference
-            //passedData.p1Kits=database reference
-            //passedData.p1Skins=database reference
-
             passedData.p1Name = response.username;
             passedData.p1Rank = response.points;
 
@@ -185,32 +214,22 @@ public class menu : MonoBehaviour
             //"if playerPrefs.p1name==p1Name{} then set the following:
             //CURRENTLY SET PREFS
             passedData.p1Login = true;
-
             btn_player1.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
             musicPlayer.changePack(passedData.p1Kit, "p1");
             playerbodyP1.skinSwitch(playerAssets, passedData.p1Skin);//in-menu playerbody
         }
         else
         {
-            //DATABASE NEEDED
-            //passedData.p2Name=database reference
-            //passedData.p2Rank=database reference
-            //passedData.p2Kits=database reference
-            //passedData.p2Skins=database reference
-
-            //HARDCODED DB REFS FOR NOW
             passedData.p2Name = response.username;
             passedData.p2Rank = response.points;
 
             //Loading owned music
             StartCoroutine(APIManager.GetOwnedMusic(response.username, "p2", LoadOwnedMusic));
-
             //Load owned characters
             StartCoroutine(APIManager.GetOwnedCharacters(response.username, "p2", LoadOwnedCharacters));
             //"if playerPrefs.p1name==p1Name{} then set the following:
             //CURRENTLY SET PREFS
             passedData.p2Login = true;
-
             btn_player2.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "edit";
             musicPlayer.changePack(passedData.p2Kit, "p2");
             playerbodyP2.skinSwitch(playerAssets, passedData.p2Skin);//in-menu playerbody
@@ -218,10 +237,6 @@ public class menu : MonoBehaviour
     }
     public void loginP1()//btn_player1
     {
-        if (passedData.p2Login)//if both logged in
-        {
-            btn_fight.interactable = true;
-        }
         if (passedData.p1Login)//if logged in
         {
             customizeScreen("p1");
@@ -229,26 +244,10 @@ public class menu : MonoBehaviour
         else//first pressed
         {
             loginScreen("p1");
-            if (true)
-            {
-                loginCallback(new APIManager.LoginResponse(true, "girmany", 50, "p1"));
-            }
-            else
-            {
-                string username = "girmany", password = "gizmo";
-                //LOGIN REQUEST
-                StartCoroutine(APIManager.Login(username, password, "p1", loginCallback));
-            }
-
         }
     }
     public void loginP2()//btn_player2
     {
-        if (passedData.p1Login)//if both logged in
-        {
-
-            btn_fight.interactable = true;
-        }
         if (passedData.p2Login)//if logged in
         {
             customizeScreen("p2");
@@ -256,16 +255,55 @@ public class menu : MonoBehaviour
         else//first pressed
         {
             loginScreen("p2");
-            if (true)
+        }
+    }
+    public void loginScreen(string player)
+    {
+        uiMenu.SetActive(false);
+        uiCustomize.SetActive(false);
+        uiSettings.SetActive(false);
+        uiLogin.SetActive(true);
+        activePlayer = player;
+        field_username.text = null;
+        field_password.text = null;
+    }
+    public void checkLogin()//btn_login on loginScreen
+    {
+        Debug.Log(field_username.text + " and " + field_password.text);
+
+        if (field_username.text != passedData.p1Name && field_username.text != passedData.p2Name)
+        {
+            if (loginPlayer(field_username.text, field_password.text))
             {
-                loginCallback(new APIManager.LoginResponse(true, "batyuzo", 100, "p2"));
+                menuScreen();
             }
             else
             {
-                string username = "batyuzo", password = "batyuzik";
-                //LOGIN REQUEST
-                StartCoroutine(APIManager.Login(username, password, "p2", loginCallback));
+                loginScreen(activePlayer);
             }
+        }
+        else
+        {
+            //Show login error
+        }
+    }
+    public bool loginPlayer(string username, string password)
+    {
+        //Getting hold of username and password
+        if (true)
+        {
+            loginCallback(new APIManager.LoginResponse(true, username, 50, activePlayer));
+            return true;
+        }
+        else
+        {
+            //LOGIN REQUEST
+            StartCoroutine(APIManager.Login(username, password, activePlayer, loginCallback));
+            if (activePlayer == "p1")
+                return passedData.p1Login;
+            else
+                return passedData.p2Login;
+            //please return true if login successful, false if unsuccessful
         }
     }
     public void quit()//btn_quit
@@ -282,16 +320,8 @@ public class menu : MonoBehaviour
         uiSettings.SetActive(false);
         uiLogin.SetActive(false);
 
-
         customUpdate();//displayed items update
-        if (activePlayer == "p1")
-        {
-            tileManager.init(musicAssets, passedData, activePlayer);
-        }
-        else if (player == "p2")
-        {
-            tileManager.init(musicAssets, passedData, activePlayer);
-        }
+        tileManager.init(musicAssets, passedData, activePlayer);
     }
     public void customUpdate()
     {
@@ -320,6 +350,11 @@ public class menu : MonoBehaviour
     }
     public void menuUpdate()
     {
+
+        if (passedData.p2Login && passedData.p1Login)//if both logged in
+        {
+            btn_fight.interactable = true;
+        }
         if (passedData.p1Name != "p1")
         {
             playerbodyP1.skinSwitch(playerAssets, passedData.p1Skin);
@@ -432,23 +467,5 @@ public class menu : MonoBehaviour
         passedData.p2Device = new List<InputDevice> { Gamepad.current };
         ;
 
-    }
-    public void loginScreen(string player)
-    {
-        uiMenu.SetActive(false);
-        uiCustomize.SetActive(false);
-        uiSettings.SetActive(false);
-        uiLogin.SetActive(true);
-        input_username = null;
-        input_password = null;
-        field_username.text = null;
-        field_password.text = null;
-    }
-
-    public void loginPlayer()
-    {
-        input_username = field_username.text;
-        input_password = field_password.text;
-        Debug.Log(input_username +" and "+ input_password);
     }
 }

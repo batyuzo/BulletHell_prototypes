@@ -130,6 +130,7 @@ public class gameManager : MonoBehaviour
         {
             initFight();
         }
+        passedData.firstLoad = false;
     }
     public void initMenu()
     {
@@ -137,7 +138,10 @@ public class gameManager : MonoBehaviour
         activescene = SceneManager.GetActiveScene();
         UnityEngine.Cursor.visible = true;
         setRefs("menu");
-        passedData.defaults(musicAssets.crt1Kit, "knight", playerAssets.knight_desc, musicAssets.crt1Kit.desc, "prac");
+        if (passedData.firstLoad)
+        {
+            passedData.defaults(musicAssets.crt1Kit, "knight", playerAssets.knight_desc, musicAssets.crt1Kit.desc, "prac");
+        }
         menuScript.init(passedData, musicPlayer, musicAssets, playerAssets);
         musicPlayer.init(passedData.p1Kit, passedData.p2Kit, 0.5f, "menu");
     }
@@ -218,7 +222,6 @@ public class gameManager : MonoBehaviour
             //initMenu fetch
             menuScript = menuRefs.menuScript;
             musicPlayer = menuRefs.musicPlayer;
-
         }
         else if (scene == "fight")//fight
         {

@@ -1774,7 +1774,7 @@ PrefabInstance:
       objectReference: {fileID: 855051568}
     - target: {fileID: 666806251656581747, guid: 06816d93d65218b42b3e68f9561c1b4b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: loginPlayer
+      value: checkLogin
       objectReference: {fileID: 0}
     - target: {fileID: 2207192903858780182, guid: 06816d93d65218b42b3e68f9561c1b4b, type: 3}
       propertyPath: m_Name
@@ -2681,8 +2681,6 @@ MonoBehaviour:
   p2Kits: []
   p1Skins: []
   p2Skins: []
-  input_username: 
-  input_password: 
   field_username: {fileID: 245041483}
   field_password: {fileID: 1614264445}
   btn_fight: {fileID: 1308902048}
@@ -5094,10 +5092,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.2
     y: 0
-    width: 1
-    height: 1
+    width: 0.41875002
+    height: 0.41875002
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -5251,7 +5249,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1990678861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5567,6 +5565,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1990678864}
     m_Modifications:
     - target: {fileID: 1798335420504505609, guid: a082a8ccb13823342a3f22a347b7074a, type: 3}
+      propertyPath: m_CustomCaretColor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1798335420504505609, guid: a082a8ccb13823342a3f22a347b7074a, type: 3}
       propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -5610,9 +5612,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: input_username
       objectReference: {fileID: 0}
+    - target: {fileID: 5294213872487134099, guid: a082a8ccb13823342a3f22a347b7074a, type: 3}
+      propertyPath: m_overflowMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294213872487134099, guid: a082a8ccb13823342a3f22a347b7074a, type: 3}
+      propertyPath: m_horizontalMapping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7023022737132456813, guid: a082a8ccb13823342a3f22a347b7074a, type: 3}
       propertyPath: m_text
       value: username
+      objectReference: {fileID: 0}
+    - target: {fileID: 7023022737132456813, guid: a082a8ccb13823342a3f22a347b7074a, type: 3}
+      propertyPath: m_overflowMode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7023022737132456813, guid: a082a8ccb13823342a3f22a347b7074a, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8967529568724569502, guid: a082a8ccb13823342a3f22a347b7074a, type: 3}
       propertyPath: m_Pivot.x

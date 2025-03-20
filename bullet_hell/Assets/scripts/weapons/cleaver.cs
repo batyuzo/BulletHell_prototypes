@@ -9,7 +9,7 @@ public class cleaver : weapon
 {
     public meleeCheck meleeCheck;
     public List<GameObject> collisionWith;
-
+    public meleeTrail trail;
     public Sprite clean;
     public Sprite ink;
     public SpriteRenderer weaponRenderer;
@@ -44,6 +44,7 @@ public class cleaver : weapon
     {
         if (animDuration > 0)
         {
+            trail.on(true);
             if (animDuration > 0 && frame % 4 == 0)//15fps
             {
                 animDuration--;
@@ -60,6 +61,10 @@ public class cleaver : weapon
                 handFarOffset[2] = weaponAnim[current].z;
                 current++;
             }
+        }
+        else
+        {
+            trail.on(false);
         }
         if (animDuration == 3 && check)
         {
@@ -82,6 +87,7 @@ public class cleaver : weapon
     {
         base.flip(flip);
         meleeCheck.flip(flip);
+        trail.flip(flip);
     }
     public override void FixedUpdate()
     {
@@ -97,6 +103,7 @@ public class cleaver : weapon
     {
         base.Awake();
         meleeCheck = GetComponentInChildren<meleeCheck>();
+        trail = GetComponentInChildren<meleeTrail>();
         weaponRenderer = GetComponent<SpriteRenderer>();
     }
 }
