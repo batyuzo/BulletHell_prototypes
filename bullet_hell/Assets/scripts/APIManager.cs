@@ -119,6 +119,32 @@ public class APIManager : MonoBehaviour
         }
         callback(response); // Call the callback
     }
+    static public IEnumerator AddMusicLoot(string username, string musicKit, Action<Response> callback)
+    {
+        string endpoint = $"/src/php/add_music_pack_to_player.php";
+        string jsonData = "{" +
+                "\"username\":\"" + username + "\"," +
+                "\"musicKit\":\"" + musicKit + "\","
+                "}";
+        UnityWebRequest uwr = UnityWebRequest.Post(baseUrl + endpoint, jsonData, "application/json");
+        yield return uwr.SendWebRequest();
+        Response response = new Response(false, "", "");
+        response.success = (uwr.result == UnityWebRequest.Result.Success);
+        callback?.Invoke(response);
+    }
+    static public IEnumerator AddSkinLoot(string username, string skinName, Action<Response> callback)
+    {
+        string endpoint = $"/src/php/add_skin_to_player.php";
+        string jsonData = "{" +
+                "\"username\":\"" + username + "\"," +
+                "\"skinName\":\"" + skinName + "\","
+                "}";
+        UnityWebRequest uwr = UnityWebRequest.Post(baseUrl + endpoint, jsonData, "application/json");
+        yield return uwr.SendWebRequest();
+        Response response = new Response(false, "", "");
+        response.success = (uwr.result == UnityWebRequest.Result.Success);
+        callback?.Invoke(response);
+    }
     static public IEnumerator GetOwnedMusic(string username, string player, Action<AssetResponse> callback)
     {
         //Define the api endpoint
