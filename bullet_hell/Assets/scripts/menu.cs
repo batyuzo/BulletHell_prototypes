@@ -53,8 +53,8 @@ public class menu : MonoBehaviour
     public TextMeshProUGUI nameInv;
     public SpriteRenderer kitInv;
     //right part
-    public TextMeshProUGUI skinDesc;
-    public TextMeshProUGUI kitDesc;
+    public TextMeshProUGUI itemName;
+    public TextMeshProUGUI itemDesc;
 
     [Header("some help")]
     public string activePlayer;
@@ -109,13 +109,13 @@ public class menu : MonoBehaviour
                 }
             }
             //set owned kits
-            if (kits!=null)
+            if (kits != null)
             {
                 passedData.p1Kits = kits;
             }
 
             //set active kit
-            if (activeKit!=null)
+            if (activeKit != null)
             {
                 passedData.p1Kit = activeKit;
             }
@@ -339,6 +339,9 @@ public class menu : MonoBehaviour
 
         customUpdate();//displayed items update
         tileManager.init(musicAssets, passedData, activePlayer);
+
+        itemName.text = "inventory";
+        itemDesc.text = "you will want to look your best when your opponent looks into your eyes in despair...";
     }
     public void customUpdate()
     {
@@ -346,23 +349,19 @@ public class menu : MonoBehaviour
         {
             //skin update
             skinInv.skinSwitch(playerAssets, passedData.p1Skin);
-            setSkinDesc(passedData.p1Skin);
             //name update
             nameInv.text = passedData.p1Name;
             //musicKit update
             kitInv.sprite = passedData.p1Kit.coverart;
-            kitDesc.text = passedData.p1Kit.desc;
         }
         else if (activePlayer == "p2")
         {
             //skin update
             skinInv.skinSwitch(playerAssets, passedData.p2Skin);
-            setSkinDesc(passedData.p2Skin);
             //name update
             nameInv.text = passedData.p2Name;
             //musicKit update
             kitInv.sprite = passedData.p2Kit.coverart;
-            kitDesc.text = passedData.p2Kit.desc;
         }
     }
     public void menuUpdate()
@@ -381,68 +380,47 @@ public class menu : MonoBehaviour
             playerbodyP2.skinSwitch(playerAssets, passedData.p2Skin);
         }
     }
-    public void setSkinDesc(string skin)
-    {
-        if (skin == "bull")
-        {
-            skinDesc.text = playerAssets.bull_desc;
-        }
-        else if (skin == "butcher")
-        {
-            skinDesc.text = playerAssets.butcher_desc;
-        }
-        else if (skin == "knight")
-        {
-            skinDesc.text = playerAssets.knight_desc;
-        }
-        else if (skin == "entity")
-        {
-            skinDesc.text = playerAssets.entity_desc;
-        }
-        else if (skin == "rogue")
-        {
-            skinDesc.text = playerAssets.rogue_desc;
-        }
-        else if (skin == "samurai")
-        {
-            skinDesc.text = playerAssets.samurai_desc;
-        }
-    }
     //---music selection---
     public void selectBull()
     {
         tileManager.selectSkin(activePlayer, "bull");//passedData update here
-        skinDesc.text = playerAssets.bull_desc;
+        itemName.text = "bull";
+        itemDesc.text = playerAssets.bull_desc;
         customUpdate();
     }
     public void selectButcher()
     {
         tileManager.selectSkin(activePlayer, "butcher");
-        skinDesc.text = playerAssets.butcher_desc;
+        itemName.text = "butcher";
+        itemDesc.text = playerAssets.butcher_desc;
         customUpdate();
     }
     public void selectKnight()
     {
         tileManager.selectSkin(activePlayer, "knight");
-        skinDesc.text = playerAssets.knight_desc;
+        itemName.text = "knight";
+        itemDesc.text = playerAssets.knight_desc;
         customUpdate();
     }
     public void selectEntity()
     {
         tileManager.selectSkin(activePlayer, "entity");
-        skinDesc.text = playerAssets.entity_desc;
+        itemName.text = "entity";
+        itemDesc.text = playerAssets.entity_desc;
         customUpdate();
     }
     public void selectRogue()
     {
         tileManager.selectSkin(activePlayer, "rogue");
-        skinDesc.text = playerAssets.rogue_desc;
+        itemName.text = "rogue";
+        itemDesc.text = playerAssets.rogue_desc;
         customUpdate();
     }
     public void selectSamurai()
     {
         tileManager.selectSkin(activePlayer, "samurai");
-        skinDesc.text = playerAssets.samurai_desc;
+        itemName.text = "samurai";
+        itemDesc.text = playerAssets.samurai_desc;
         customUpdate();
     }
     //--------------------
@@ -450,21 +428,29 @@ public class menu : MonoBehaviour
     public void selectCrt1()
     {
         tileManager.selectKit(activePlayer, musicAssets.crt1Kit);
+        itemName.text = "crt kit";
+        itemDesc.text = musicAssets.crt1Kit.desc;
         customUpdate();
     }
     public void selectCrt2()
     {
         tileManager.selectKit(activePlayer, musicAssets.crt2Kit);
+        itemName.text = "crt kit 2";
+        itemDesc.text = musicAssets.crt2Kit.desc;
         customUpdate();
     }
     public void selectHellstar()
     {
         tileManager.selectKit(activePlayer, musicAssets.hellstarKit);
+        itemName.text = "hellstar kit";
+        itemDesc.text = musicAssets.hellstarKit.desc;
         customUpdate();
     }
     public void selectMute()
     {
         tileManager.selectKit(activePlayer, musicAssets.muteKit);
+        itemName.text = "mute kit";
+        itemDesc.text = musicAssets.muteKit.desc;
         customUpdate();
     }
     //--------------------

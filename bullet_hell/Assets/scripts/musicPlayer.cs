@@ -8,13 +8,13 @@ public class musicPlayer : MonoBehaviour
     private string scenario;
     public Sprite activeCover;//cover of current music
     public string activeTitle;
+    public string activeArtist;
     public AudioSource player;
     public musicKit packP1;
     public musicKit packP2;
-    //ui element for showing what we play
-    //ui element for the artwork
-
-
+    public musicShowFight musicShowFight;
+    public musicShowMenu musicShowMenu;
+    private bool ready = false;
     public void init(musicKit activePack1, musicKit activePack2, float vol, string scenarioRef)
     {
         scenario = scenarioRef;
@@ -22,13 +22,13 @@ public class musicPlayer : MonoBehaviour
         player.loop = false;
         packP1 = activePack1;
         packP2 = activePack2;
+        ready = true;
         playMusic(scenario);
     }
-
     public void changePack(musicKit newPack, string player)
     {
         //pnum1 -> player1
-        if (player=="p1")
+        if (player == "p1")
         {
             packP1 = newPack;
         }
@@ -38,21 +38,21 @@ public class musicPlayer : MonoBehaviour
             packP2 = newPack;
         }
     }
-
     public void playMusic(string scenario)
     {
         player.Stop();
         player.clip = null;
-
         if (scenario == "p1win" && packP1 != null)
         {
             activeCover = packP1.coverart;
+            activeArtist = packP1.artist;
             activeTitle = packP1.titleMVP;
             player.clip = packP1.MVP;
         }
         else if (scenario == "p2win" && packP2 != null)
         {
             activeCover = packP2.coverart;
+            activeArtist = packP2.artist;
             activeTitle = packP2.titleMVP;
             player.clip = packP2.MVP;
 
@@ -61,8 +61,6 @@ public class musicPlayer : MonoBehaviour
         {
             //default kit
         }
-
-
         else if (scenario == "fight")
         {
             int current = UnityEngine.Random.Range(0, 3);
@@ -71,6 +69,7 @@ public class musicPlayer : MonoBehaviour
             {
                 //which music from pack1
                 activeCover = packP1.coverart;
+                activeArtist = packP1.artist;
                 if (current == 0)
                 {
                     activeTitle = packP1.titleF1;
@@ -91,6 +90,7 @@ public class musicPlayer : MonoBehaviour
             {
                 //which music from pack2
                 activeCover = packP2.coverart;
+                activeArtist = packP2.artist;
                 if (current == 0)
                 {
 
@@ -108,6 +108,7 @@ public class musicPlayer : MonoBehaviour
                     player.clip = packP2.fight3;
                 }
             }
+            musicShowFight.updateShow(activeCover, activeTitle, activeArtist);
         }
         else if (scenario == "menu")
         {
@@ -119,6 +120,7 @@ public class musicPlayer : MonoBehaviour
             {
                 //random from pack1
                 activeCover = packP1.coverart;
+                activeArtist = packP1.artist;
                 if (current == 0)
                 {
                     activeTitle = packP1.titleM1;
@@ -128,14 +130,13 @@ public class musicPlayer : MonoBehaviour
                 {
                     activeTitle = packP1.titleM2;
                     player.clip = packP1.menu2;
-
                 }
-
             }
             else if (packP2 != null)
             {
                 //random from pack2
                 activeCover = packP2.coverart;
+                activeArtist = packP2.artist;
                 if (current == 0)
                 {
                     activeTitle = packP2.titleM1;
@@ -148,14 +149,15 @@ public class musicPlayer : MonoBehaviour
 
                 }
             }
+            musicShowMenu.updateShow(activeTitle, activeArtist);
         }
         player.Play();
-    }
 
+    }
     private void Update()
     {
         //music. always.
-        if (!player.isPlaying)
+        if (ready && !player.isPlaying)
         {
             playMusic(scenario);
         }

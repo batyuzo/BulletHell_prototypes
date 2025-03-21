@@ -11,14 +11,12 @@ public class shotgun : weapon
     public GameObject muzzleFlash;
     public GameObject bullet;
     [SerializeField] int pelletCount;
-    int currentPellets;
     public override void Fire()
     {
         //firing happens
         if (cooldown <= 0 && magazine > 0)
         {
             int nothing=0;
-            currentPellets = 0;
             cooldown = 60 / firerate;
             magazine--;
             //GetComponent<AudioSource>().Play();

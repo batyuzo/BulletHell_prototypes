@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   artist: MUTE CITY
   coverart: {fileID: 21300000, guid: 0030ac958cd727b4ea62bc7c28504c49, type: 3}
-  titleF1: COMPUTER PAUSE PTOGRAM
+  titleF1: COMPUTER PAUSE PROGRAM
   fight1: {fileID: 8300000, guid: 420cdb70904312844a9aa3ec1d1256fa, type: 3}
   titleF2: DEEP FOREST
   fight2: {fileID: 8300000, guid: 25baaf592d0eae240b089e38561a1d0d, type: 3}

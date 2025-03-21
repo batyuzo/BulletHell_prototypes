@@ -7,4 +7,5 @@ public class menuRefs : MonoBehaviour
     //for gameManager
     public menu menuScript;
     public musicPlayer musicPlayer;//!!!!
+    public musicShowFight musicShowFight;
 }

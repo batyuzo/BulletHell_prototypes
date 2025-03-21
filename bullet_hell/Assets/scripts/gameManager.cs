@@ -20,14 +20,17 @@ public class gameManager : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
     public fightUi fightUi;
+    public musicShowFight musicShowFight;
     //+mapLoader dependency on init
 
     [Header("menu refs")]//fetched on menuInit
     public menu menuScript;
+    public musicShowMenu musicShowMenu;
 
     [Header("common refs")]//fetched on both
     public musicPlayer musicPlayer;
     public passedData passedData;
+
 
     [Header("permanent refs")]//fetched on awake, or hardcoded from UI
     public mapLoader mapLoader;
@@ -159,7 +162,6 @@ public class gameManager : MonoBehaviour
     }
     private void resetFight()
     {
-        //TEMPORARY
         fightUi.set(passedData, p1Wins, p2Wins, 60);
         musicPlayer.init(passedData.p1Kit, passedData.p2Kit, 0.5f, "fight");
         healthbarP1.set("p1", passedData.map);
@@ -222,6 +224,7 @@ public class gameManager : MonoBehaviour
             //initMenu fetch
             menuScript = menuRefs.menuScript;
             musicPlayer = menuRefs.musicPlayer;
+            
         }
         else if (scene == "fight")//fight
         {
@@ -233,6 +236,7 @@ public class gameManager : MonoBehaviour
             player2 = fightRefs.player2;
             fightUi = fightRefs.fightUi;
             musicPlayer = fightRefs.musicPlayer;
+            musicShowFight = fightRefs.musicShow;
             mapLoader.init(fightRefs);//junking it for less lines
         }
     }

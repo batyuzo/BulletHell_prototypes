@@ -14,6 +14,7 @@ public class fightRefs : MonoBehaviour
     public GameObject player2;
     public fightUi fightUi;
     public musicPlayer musicPlayer;//!!!!
+    public musicShowFight musicShow;
 
     //for mapLoader
     public Light2D global, emission;
