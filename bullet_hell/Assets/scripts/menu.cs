@@ -79,7 +79,7 @@ public class menu : MonoBehaviour
     }
 
     //home screen
-    public void menuScreen()//btn_menu  
+    public void menuScreen()//btn_menu
     {
         uiMenu.SetActive(true);
         uiCustomize.SetActive(false);
@@ -208,12 +208,49 @@ public class menu : MonoBehaviour
             }
         }
     }
-    public void loginCallback(APIManager.LoginResponse response)
+    public void loginP1()//btn_player1
     {
-        if (!response.success)
+        if (passedData.p1Login)//if logged in
         {
-            return;
+            customizeScreen("p1");
         }
+        else//first pressed
+        {
+            loginScreen("p1");
+        }
+    }
+    public void loginP2()//btn_player2
+    {
+        if (passedData.p2Login)//if logged in
+        {
+            customizeScreen("p2");
+        }
+        else//first pressed
+        {
+            loginScreen("p2");
+        }
+    }
+    public void loginScreen(string player)
+    {
+        uiMenu.SetActive(false);
+        uiCustomize.SetActive(false);
+        uiSettings.SetActive(false);
+        uiLogin.SetActive(true);
+        activePlayer = player;
+        field_username.text = null;
+        field_password.text = null;
+    }
+    public void checkLogin()//btn_login on loginScreen
+    {
+        Debug.Log(field_username.text + " and " + field_password.text);
+        loginPlayer(field_username.text, field_password.text);
+    }
+    public void loginSuccess(LoginResponse response)
+    {
+        menuScreen();
+
+         if (!response.success)
+            return;
 
         if (response.player == "p1")
             passedData.p1Login = true;
@@ -252,75 +289,29 @@ public class menu : MonoBehaviour
             playerbodyP2.skinSwitch(playerAssets, passedData.p2Skin);//in-menu playerbody
         }
     }
-    public void loginP1()//btn_player1
+    public void loginFailure(LoginResponse response)
     {
-        if (passedData.p1Login)//if logged in
-        {
-            customizeScreen("p1");
-        }
-        else//first pressed
-        {
-            loginScreen("p1");
-        }
+        loginScreen(activePlayer);
+        Debug.Log("Login authentication failed");
     }
-    public void loginP2()//btn_player2
+    public void loginPlayer(string username, string password)
     {
-        if (passedData.p2Login)//if logged in
+        if (username != passedData.p1Name && username != passedData.p2Name)
         {
-            customizeScreen("p2");
-        }
-        else//first pressed
-        {
-            loginScreen("p2");
-        }
-    }
-    public void loginScreen(string player)
-    {
-        uiMenu.SetActive(false);
-        uiCustomize.SetActive(false);
-        uiSettings.SetActive(false);
-        uiLogin.SetActive(true);
-        activePlayer = player;
-        field_username.text = null;
-        field_password.text = null;
-    }
-    public void checkLogin()//btn_login on loginScreen
-    {
-        Debug.Log(field_username.text + " and " + field_password.text);
-
-        if (field_username.text != passedData.p1Name && field_username.text != passedData.p2Name)
-        {
-            if (loginPlayer(field_username.text, field_password.text))
+            //Getting hold of username and password
+            if (true)
             {
-                menuScreen();
+                loginSuccess(new APIManager.LoginResponse(true, username, 50, activePlayer));
+                return true;
             }
             else
             {
-                loginScreen(activePlayer);
+                //LOGIN REQUEST
+                StartCoroutine(APIManager.Login(username, password, activePlayer, loginSuccess, loginFailure));
             }
-        }
-        else
-        {
-            //Show login error
-        }
-    }
-    public bool loginPlayer(string username, string password)
-    {
-        //Getting hold of username and password
-        if (true)
-        {
-            loginCallback(new APIManager.LoginResponse(true, username, 50, activePlayer));
-            return true;
-        }
-        else
-        {
-            //LOGIN REQUEST
-            StartCoroutine(APIManager.Login(username, password, activePlayer, loginCallback));
-            if (activePlayer == "p1")
-                return passedData.p1Login;
-            else
-                return passedData.p2Login;
-            //please return true if login successful, false if unsuccessful
+        }else{
+            // Show login error
+            Debug.Log("This user is already logged in");
         }
     }
     public void quit()//btn_quit
