@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3263876288291591054}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.2855976, y: 0.14009903, z: -0.007839698}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -108,7 +108,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.25883508, y: 0.18205607}
+  m_Offset: {x: -0.01, y: 0.3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -119,7 +119,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6433346, y: 1.5251169}
+  m_Size: {x: 0.65, y: 1.5}
   m_EdgeRadius: 0
 --- !u!1 &4014257896013216826
 GameObject:
@@ -229,15 +229,15 @@ MonoBehaviour:
   currentRecoil: 0
   cooldown: 0
   collOffset: {x: 0, y: 0}
-  shootingPointOffset: {x: 0, y: 0}
   weaponAnim:
-  - {x: 0.23, y: -0.32, z: -80}
-  - {x: -0.12, y: -0.4, z: -90}
-  - {x: -0.4, y: -0.4, z: -90}
-  - {x: -0.25, y: -0.35, z: -30}
+  - {x: 0.2, y: 0, z: 40}
+  - {x: 0.3, y: 0.25, z: 85}
+  - {x: -0.25, y: 0.35, z: 90}
+  - {x: -0.475, y: 0.35, z: 90}
+  - {x: 0.1, y: 0.1, z: 55}
   - {x: 0, y: 0, z: 0}
   weaponAnimCurrent: {x: 0, y: 0, z: 0}
-  shootingPoint: {fileID: 0}
+  shootingPointObj: {fileID: 0}
   flipped: 0
   handCloseOffset:
   - -0.45
@@ -263,12 +263,12 @@ MonoBehaviour:
   recoilSpeed: 0
   projSpeed: 0
   firerate: 1.5
-  meleeCheck: {fileID: 0}
+  meleeCheck: {fileID: 6618613950777938181}
   collisionWith: []
-  trail: {fileID: 0}
+  trail: {fileID: 2184811856337898514}
   clean: {fileID: 21300000, guid: 1005c405fb52e624dbf236a1304d7fb3, type: 3}
   ink: {fileID: 21300000, guid: 020f2347e274bc34eaff31d6bc5dd79b, type: 3}
-  weaponRenderer: {fileID: 0}
+  weaponRenderer: {fileID: 2090029421810732651}
   check: 0
   projectileMode: 0
 --- !u!61 &7805415079537400683

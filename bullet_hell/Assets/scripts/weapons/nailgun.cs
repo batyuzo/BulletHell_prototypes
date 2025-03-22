@@ -13,10 +13,8 @@ public class nailgun : weapon
     [Header("bullet refs")]
     public GameObject muzzleFlash;
     public GameObject bullet;
-
     private int animDuration;
     [SerializeField] List<Sprite> fireAnim;
-
     private int current;
     public override void Fire()
     {
@@ -27,15 +25,16 @@ public class nailgun : weapon
             magazine--;
             //GetComponent<AudioSource>().Play();
 
-            //BULLET
-            Instantiate(bullet, shootingPoint.transform.position, Quaternion.Euler(shootingPoint.transform.eulerAngles.x, shootingPoint.transform.eulerAngles.y, shootingPoint.transform.eulerAngles.z));
-            //MUZZLE FLASH
-            Instantiate(muzzleFlash, shootingPoint.transform.position, shootingPoint.transform.rotation);
+            //---BULLET---
+            Instantiate(bullet, transform.position, transform.rotation);
 
-            //RECOIL
-            currentRecoil=recoil;
+            //---MUZZLE FLASH---
+            Instantiate(muzzleFlash, transform.position, transform.rotation);
 
-            //WEAPON ANIM
+            //---RECOIL---
+            currentRecoil = recoil;
+
+            //---WEAPON ANIM---
             current = 0;
             animDuration = fireAnim.Count;
         }

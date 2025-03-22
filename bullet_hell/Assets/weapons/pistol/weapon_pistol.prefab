@@ -107,8 +107,10 @@ MonoBehaviour:
   currentRecoil: 0
   cooldown: 0
   collOffset: {x: 0, y: 0}
-  shootingPointOffset: {x: 0, y: 0}
-  shootingPoint: {fileID: 0}
+  weaponAnim: []
+  weaponAnimCurrent: {x: 0, y: 0, z: 0}
+  shootingPointObj: {fileID: 7027401682490116231}
+  flipped: 0
   handCloseOffset:
   - -0.6
   - 0.1
@@ -123,7 +125,7 @@ MonoBehaviour:
   - 0
   weaponName: pistol
   weaponHands: 61006200
-  handsLayer: 
+  farLayer: 0
   magazine: 12
   rarity: 1
   ranged: 1

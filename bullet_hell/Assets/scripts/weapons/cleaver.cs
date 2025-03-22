@@ -74,11 +74,11 @@ public class cleaver : weapon
             }
         }
     }
-    public override void equip(GameObject parent)//parent is gunHolder
+    public override void equip(GameObject parent)//meleeAnim or null (called by gunHolder)
     {
         base.equip(parent);
+        meleeCheck.ignore(parent);
         projectileMode = false;
-        meleeCheck.setOwner(parent.GetComponentInParent<playerHealth>().gameObject);
         animDuration = 0;
     }
     public override void flip(bool flip)
@@ -100,9 +100,6 @@ public class cleaver : weapon
     public override void Awake()
     {
         base.Awake();
-        meleeCheck = GetComponentInChildren<meleeCheck>();
-        trail = GetComponentInChildren<meleeTrail>();
-        weaponRenderer = GetComponent<SpriteRenderer>();
         animDuration = 0;
     }
 }

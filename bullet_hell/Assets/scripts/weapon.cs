@@ -12,10 +12,9 @@ public class weapon : MonoBehaviour
     public float currentRecoil;
     public float cooldown;//1 = 1 frame
     public Vector2 collOffset;
-    public Vector2 shootingPointOffset;
     public List<Vector3> weaponAnim;//x, y, rotation
     public Vector3 weaponAnimCurrent;
-    public GameObject shootingPoint;
+    public GameObject shootingPointObj;
     public bool flipped;
 
     [Header("WEAPON SETTINGS")]
@@ -51,25 +50,18 @@ public class weapon : MonoBehaviour
             currentRecoil = 0;
         }
     }
-    public virtual void flip(bool flip)
+    public virtual void flip(bool right)
     {
-        flipped = flip;
-        GetComponent<SpriteRenderer>().flipY = flip;
-        if (flip)
+        flipped = right;//used by "swing"
+        if (right)
         {
-            coll.offset = new Vector2(coll.offset.x, -collOffset.y);
-            if (ranged)
-            {
-                shootingPoint.transform.localPosition = new Vector2(shootingPointOffset.x, -shootingPointOffset.y);
-            }
-        }
-        if (!flip)
-        {
+            GetComponent<SpriteRenderer>().flipY = false;
             coll.offset = new Vector2(coll.offset.x, collOffset.y);
-            if (ranged)
-            {
-                shootingPoint.transform.localPosition = new Vector2(shootingPointOffset.x, shootingPointOffset.y);
-            }
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipY = true;
+            coll.offset = new Vector2(coll.offset.x, -collOffset.y);
         }
     }
     public virtual void AltFire()
@@ -78,23 +70,20 @@ public class weapon : MonoBehaviour
     }
     public virtual void equip(GameObject parent)
     {
-        transform.SetParent(parent.transform);
-        rb.simulated = false;
-    }
-    public virtual bool getShootingPoint()//get object + position
-    {
-        foreach (Transform child in transform)
+        if (parent != null)
         {
-            if (child.name == "shootingPoint")
-            {
-                shootingPoint = child.gameObject;
-                shootingPointOffset = shootingPoint.transform.localPosition;
-                ranged = true;
-                return true;
-            }
+            transform.SetParent(parent.transform);
+            rb.mass = 0;
+            rb.simulated = false;
         }
-        return false;
-
+        else
+        {
+            transform.SetParent(null);
+            rb.simulated = true;
+            rb.mass = 1;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = 0;
+        }
     }
     public virtual void FixedUpdate()
     {
@@ -102,7 +91,6 @@ public class weapon : MonoBehaviour
     }
     public virtual void Awake()
     {
-        ranged = getShootingPoint();
         collOffset = coll.offset;
     }
 }

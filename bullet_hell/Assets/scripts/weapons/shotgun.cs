@@ -16,24 +16,28 @@ public class shotgun : weapon
         //firing happens
         if (cooldown <= 0 && magazine > 0)
         {
-            int nothing=0;
-            cooldown = 60 / firerate;
+            //---SHOOTING POINT---
+            Vector2 shootingPoint;
+            if (flipped)
+            {
+                shootingPoint = new Vector2(shootingPointObj.transform.position.x, -shootingPointObj.transform.position.y);
+            }
+            else
+            {
+                shootingPoint = new Vector2(shootingPointObj.transform.position.x, shootingPointObj.transform.position.y);
+            }
+
+            cooldown = 60 / firerate;//60=1s
             magazine--;
             //GetComponent<AudioSource>().Play();
 
-            //BULLET
-            for (int i = 0; i < pelletCount; i++)
-            {
-                nothing += damage;
-                Debug.Log(i+": " + damage);
-                Instantiate(bullet, shootingPoint.transform.position, Quaternion.Euler(shootingPoint.transform.eulerAngles.x, shootingPoint.transform.eulerAngles.y, shootingPoint.transform.eulerAngles.z + UnityEngine.Random.Range(-10f, 10f)));
-            }
-            Debug.Log(nothing);
+            //---BULLET---
+            Instantiate(bullet, shootingPoint, transform.rotation);
 
-            //MUZZLE FLASH
-            Instantiate(muzzleFlash, shootingPoint.transform.position, shootingPoint.transform.rotation);
+            //---MUZZLE FLASH---
+            Instantiate(muzzleFlash, shootingPoint, transform.rotation);
 
-            //RECOIL
+            //---RECOIL---
             currentRecoil = recoil;
         }
     }

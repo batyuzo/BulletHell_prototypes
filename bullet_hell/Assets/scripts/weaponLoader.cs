@@ -6,11 +6,37 @@ using UnityEngine.UIElements;
 public class weaponLoader : MonoBehaviour
 {
     [Header("weapon refs")]
-    [SerializeField] GameObject shotgun;
-    [SerializeField] GameObject pistol;
-    [SerializeField] GameObject nailgun;
-    [SerializeField] GameObject cleaver;
-    [SerializeField] GameObject knife;
+    //---SLAUGHTERHOUSE WEAPONS---
+    [SerializeField] GameObject death;//ham, unique
+    [SerializeField] GameObject nailgun;//ham, rare
+    //[SerializeField] GameObject chainsaw;//ham, rare
+    [SerializeField] GameObject cleaver;//ham, common
+    [SerializeField] GameObject knife;//ham, common
+    [SerializeField] GameObject taser;//ham, common
+
+    //---PRACTICE WEAPONS---
+    //[SerializeField] GameObject pow;//unique
+    //[SerializeField] GameObject sniper;//unique
+    //[SerializeField] GameObject switchrifle;//unique
+    //[SerializeField] GameObject ak;//rare
+    //[SerializeField] GameObject mp40;//rare
+    //[SerializeField] GameObject blitzwerfer;//rare
+    //[SerializeField] GameObject ebow;//rare
+    [SerializeField] GameObject shotgun;//rare
+    [SerializeField] GameObject pistol;//common
+    //[SerializeField] GameObject revolver;//common
+    //[SerializeField] GameObject ebaton;//common
+    //[SerializeField] GameObject esmg;//common
+    //[SerializeField] GameObject epistol;//common
+    //[SerializeField] GameObject molotov;//common
+
+    //---PALACE OF THE SETTING SUN WEAPONS---
+    //[SerializeField] GameObject musket;//unique
+    //[SerializeField] GameObject bow;//rare
+    //[SerializeField] GameObject katana;//rare
+    //[SerializeField] GameObject kusarigama;//rare
+    //[SerializeField] GameObject kunai;//common
+    //[SerializeField] GameObject dagger;//common
 
     [Header("script refs")]
     public spawnPositions spawnPositions;
@@ -33,7 +59,7 @@ public class weaponLoader : MonoBehaviour
             //1 - unique
             //2 - rare
             //3 - common
-            spawnWeapons(new List<GameObject>() { shotgun }, new List<GameObject>() { nailgun, pistol }, new List<GameObject>() { cleaver, knife }, spawnPositions.ham_unique, spawnPositions.ham_rare, spawnPositions.ham_common1, spawnPositions.ham_common2);
+            spawnWeapons(new List<GameObject>() { death }, new List<GameObject>() { nailgun }, new List<GameObject>() { cleaver, knife, taser }, spawnPositions.ham_unique, spawnPositions.ham_rare, spawnPositions.ham_common1, spawnPositions.ham_common2);
         }
         else if (mapname == "prac")
         {
@@ -57,12 +83,17 @@ public class weaponLoader : MonoBehaviour
     private void spawnWeapons(List<GameObject> unique, List<GameObject> rare, List<GameObject> common, Vector2 uniquePos, Vector2 rare1Pos, Vector2 common1Pos, Vector2 common2Pos)
     {
         //UNIQUE
-        Instantiate(unique[Random.Range(0, unique.Count)], uniquePos, Quaternion.Euler(0, 0, 0)); weaponsSpawned++;
+        single(unique[Random.Range(0, unique.Count)], uniquePos);
         //RARE
         mirror(rare[Random.Range(0, rare.Count)], rare1Pos);
         //COMMON
         mirror(common[Random.Range(0, common.Count)], common1Pos);
         mirror(common[Random.Range(0, common.Count)], common2Pos);
+    }
+    private void single(GameObject weapon, Vector2 spawnAt)//spawn per side
+    {
+        Instantiate(weapon, spawnAt, Quaternion.Euler(0, 180 * Random.Range(0, 1), 0)).name = weaponsSpawned + weapon.name;
+        weaponsSpawned++;
     }
     private void mirror(GameObject weapon, Vector2 spawnAt)//spawn per side
     {

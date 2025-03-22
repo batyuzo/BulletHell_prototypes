@@ -10,11 +10,11 @@ public class meleeTrail : MonoBehaviour
     {
         if (flip)
         {
-            gameObject.gameObject.transform.localPosition = new Vector2(myOffset.x, -myOffset.y);
+            gameObject.gameObject.transform.localPosition = new Vector2(myOffset.x, myOffset.y);
         }
         else
         {
-            gameObject.gameObject.transform.localPosition = new Vector2(myOffset.x, myOffset.y);
+            gameObject.gameObject.transform.localPosition = new Vector2(myOffset.x, -myOffset.y);
         }
     }
     public void on(bool enabled)

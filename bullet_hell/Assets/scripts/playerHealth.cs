@@ -11,6 +11,7 @@ public class playerHealth : MonoBehaviour
     public int currentHealth;
     public healthbar healthbarScript;
     public List<GameObject> inkFx;
+    public List<GameObject> zapFx;
     public bool dead;
     public List<float> dmgReceived;
 
@@ -19,6 +20,7 @@ public class playerHealth : MonoBehaviour
         dead = false;
         currentHealth = health;
         inkFx = playerAssets.ink_damageFx;
+        zapFx = playerAssets.zap_damageFx;
     }
 
     //player gets damaged
@@ -42,6 +44,10 @@ public class playerHealth : MonoBehaviour
         if (type == "ink" && inkFx.Count > 0)
         {
             Instantiate(inkFx[UnityEngine.Random.Range(0, inkFx.Count)], this.gameObject.transform.position, Quaternion.Euler(0, 0, 0));
+        }
+        if (type == "zap" && inkFx.Count > 0)
+        {
+            Instantiate(zapFx[UnityEngine.Random.Range(0, zapFx.Count)], this.gameObject.transform.position, Quaternion.Euler(0, 0, 0));
         }
     }
 

@@ -13,7 +13,6 @@ public class pistol : weapon
     [Header("bullet refs")]
     public GameObject muzzleFlash;
     public GameObject bullet;
-
     private int animDuration;
     [SerializeField] List<Sprite> fireAnim;
 
@@ -23,19 +22,31 @@ public class pistol : weapon
         //firing happens
         if (cooldown <= 0 && magazine > 0)
         {
+            //---SHOOTING POINT---
+            Vector2 shootingPoint;
+            if (flipped)
+            {
+                shootingPoint = new Vector2(shootingPointObj.transform.position.x, -shootingPointObj.transform.position.y);
+            }
+            else
+            {
+                shootingPoint = new Vector2(shootingPointObj.transform.position.x, shootingPointObj.transform.position.y);
+            }
+
             cooldown = 60 / firerate;//60=1s
             magazine--;
             //GetComponent<AudioSource>().Play();
 
-            //BULLET
-            Instantiate(bullet, shootingPoint.transform.position, Quaternion.Euler(shootingPoint.transform.eulerAngles.x, shootingPoint.transform.eulerAngles.y, shootingPoint.transform.eulerAngles.z));
-            //MUZZLE FLASH
-            Instantiate(muzzleFlash, shootingPoint.transform.position, shootingPoint.transform.rotation);
+            //---BULLET---
+            Instantiate(bullet, shootingPoint, transform.rotation);
 
-            //RECOIL
-            currentRecoil=recoil;
+            //---MUZZLE FLASH---
+            Instantiate(muzzleFlash, shootingPoint, transform.rotation);
 
-            //WEAPON ANIM
+            //---RECOIL---
+            currentRecoil = recoil;
+
+            //---WEAPON ANIM---
             current = 0;
             animDuration = fireAnim.Count;
         }

@@ -77,8 +77,9 @@ public class knife : weapon
     public override void equip(GameObject parent)//parent is gunHolder
     {
         base.equip(parent);
+        //don't cut yourself
+        meleeCheck.ignore(parent);
         projectileMode = false;
-        meleeCheck.setOwner(parent.GetComponentInParent<playerHealth>().gameObject);
         animDuration = 0;
     }
     public override void flip(bool flip)
@@ -100,9 +101,6 @@ public class knife : weapon
     public override void Awake()
     {
         base.Awake();
-        meleeCheck = GetComponentInChildren<meleeCheck>();
-        trail = GetComponentInChildren<meleeTrail>();
-        weaponRenderer = GetComponent<SpriteRenderer>();
         animDuration = 0;
     }
 }

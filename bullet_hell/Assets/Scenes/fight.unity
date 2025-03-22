@@ -753,7 +753,6 @@ MonoBehaviour:
   recoil: 0
   recoilBase: 0
   recoilSpeed: 0
-  flipped: 0
 --- !u!114 &111249045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2176,10 +2175,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.19101563
+    x: 0
     y: 0
-    width: 0.41597223
-    height: 0.41597223
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -4937,7 +4936,6 @@ MonoBehaviour:
   recoil: 0
   recoilBase: 0
   recoilSpeed: 0
-  flipped: 0
 --- !u!114 &1538271488
 MonoBehaviour:
   m_ObjectHideFlags: 0

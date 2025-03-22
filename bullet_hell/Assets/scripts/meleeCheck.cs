@@ -9,10 +9,13 @@ public class meleeCheck : MonoBehaviour
     public List<GameObject> collisionWith = new List<GameObject>();
 
     public string ignorePlayer;
-    public void setOwner(GameObject playerRef)//by gunHolder
+    public void ignore(GameObject playerRef)//by gunHolder
     {
         collisionWith.Clear();
-        ignorePlayer = playerRef.name;
+        if (playerRef != null && playerRef.GetComponentInParent<playerController>()!=null)
+        {
+            ignorePlayer = playerRef.GetComponentInParent<playerController>().gameObject.name;
+        }
     }
     public GameObject getColl()
     {
@@ -29,11 +32,11 @@ public class meleeCheck : MonoBehaviour
     {
         if (flip)
         {
-            check.offset = new Vector2(checkOffset.x, -checkOffset.y);
+            check.offset = new Vector2(checkOffset.x, checkOffset.y);
         }
         else
         {
-            check.offset = new Vector2(checkOffset.x, checkOffset.y);
+            check.offset = new Vector2(checkOffset.x, -checkOffset.y);
         }
     }
     private void OnTriggerEnter2D(Collider2D other)

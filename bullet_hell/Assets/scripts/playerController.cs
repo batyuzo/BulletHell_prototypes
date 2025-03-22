@@ -14,8 +14,8 @@ public class playerController : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
 
     [Header("Player Settings")]
-    [SerializeField] float speed;
-    [SerializeField] float jumpingPower;
+    public float speed;//affected by taser
+    public float jumpingPower;//affected by taser
     [SerializeField] float coyote;
     public int fps;
     [SerializeField] Transform flip;
@@ -65,8 +65,8 @@ public class playerController : MonoBehaviour
         if (!gamepad)//m+k only
         {
             aimDirection = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-            Climb();
         }
+        Climb();
         gunHolder.lookAt(aimDirection);
         flipSprite(aimDirection.x > 0);//if need flip
         currentHealth = GetComponent<playerHealth>().currentHealth;
@@ -142,9 +142,6 @@ public class playerController : MonoBehaviour
         //VALUES
         horizontal = context.ReadValue<Vector2>().x;
         vertical = context.ReadValue<Vector2>().y;
-
-        //CLIMB
-        Climb();//m+k in update 
         //WALK
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
@@ -228,5 +225,9 @@ public class playerController : MonoBehaviour
         {
             laddered = false;
         }
+    }
+    private void Awake()
+    {
+        shooting = false;
     }
 }

@@ -54,7 +54,9 @@ MonoBehaviour:
   player1: {fileID: 0}
   player2: {fileID: 0}
   fightUi: {fileID: 0}
+  musicShowFight: {fileID: 0}
   menuScript: {fileID: 0}
+  musicShowMenu: {fileID: 0}
   musicPlayer: {fileID: 0}
   passedData: {fileID: 0}
   mapLoader: {fileID: 3303334643435291021}
@@ -192,11 +194,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d2476fd9d30e3d48afcb2e5e5703a6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotgun: {fileID: 4014257896013216826, guid: 76c4cb68833cef8489999582eb9e7e84, type: 3}
-  pistol: {fileID: 4014257896013216826, guid: e7e92b5698970f54e8d4dd2409325a7d, type: 3}
+  death: {fileID: 4014257896013216826, guid: f97f050f770190a4ca640b316a2e1cb0, type: 3}
   nailgun: {fileID: 4014257896013216826, guid: 795ba4e28b48df84bb43ee93e38c348b, type: 3}
   cleaver: {fileID: 4014257896013216826, guid: d660ee3661a79644a824e5576f38b1dd, type: 3}
   knife: {fileID: 4014257896013216826, guid: 9c626a04d325343408c3bbb8243c28d7, type: 3}
+  taser: {fileID: 4014257896013216826, guid: b877f5cab3cfc0f429b9f5227c3a8b66, type: 3}
+  shotgun: {fileID: 4014257896013216826, guid: 76c4cb68833cef8489999582eb9e7e84, type: 3}
+  pistol: {fileID: 4014257896013216826, guid: e7e92b5698970f54e8d4dd2409325a7d, type: 3}
   spawnPositions: {fileID: 6816570369336166462}
   weaponsSpawned: 0
 --- !u!114 &6816570369336166462
@@ -331,6 +335,8 @@ MonoBehaviour:
   ink_damageFx:
   - {fileID: 7403647218097492659, guid: 45071eb285ae1214da98df3c405d3080, type: 3}
   - {fileID: 7403647218097492659, guid: 5c786e69f58811a47a52babc54966ab2, type: 3}
+  - {fileID: 7403647218097492659, guid: 6be232c7642e0bd44ac9f67366d23a78, type: 3}
+  zap_damageFx:
   - {fileID: 7403647218097492659, guid: 9ddb28c4f1b64824d9d896168a9134ef, type: 3}
 --- !u!114 &1122865906968238204
 MonoBehaviour:

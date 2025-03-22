@@ -31,7 +31,6 @@ public class gameManager : MonoBehaviour
     public musicPlayer musicPlayer;
     public passedData passedData;
 
-
     [Header("permanent refs")]//fetched on awake, or hardcoded from UI
     public mapLoader mapLoader;
     public weaponLoader weaponLoader;

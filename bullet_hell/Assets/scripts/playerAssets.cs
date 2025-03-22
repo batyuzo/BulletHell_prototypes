@@ -72,4 +72,5 @@ public class playerAssets : MonoBehaviour {
 
     [Header("FX REFS")]
     public List<GameObject> ink_damageFx;
+    public List<GameObject> zap_damageFx;
 }
