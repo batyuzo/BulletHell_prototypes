@@ -11,7 +11,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using System.Linq;
-
 public class gameManager : MonoBehaviour
 {
     [Header("fight refs")]//fetched on initFight
@@ -43,6 +42,11 @@ public class gameManager : MonoBehaviour
     public bool firstLaunch;
     public int p1Wins;//0,1,2
     public int p2Wins;//0,1,2
+    
+    public void RecordResult(APIManager.Response response)
+    {
+        Debug.Log("Result: " + response.success);
+    }
 
     private void FixedUpdate()//end checks
     {
@@ -52,6 +56,8 @@ public class gameManager : MonoBehaviour
         }
         if (fightEnd())
         {
+            Debug.Log(passedData.p1Name + passedData.p2Name + p1Wins + p2Wins + p2Wins+p1Wins);
+            StartCoroutine(APIManager.RecordGameResult(passedData.p1Name, passedData.p2Name, p1Wins, p2Wins, p2Wins, p1Wins, RecordResult));
             SceneManager.LoadScene("menu");
         }
     }

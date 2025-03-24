@@ -51,7 +51,6 @@ public class APIManager : MonoBehaviour
     static public IEnumerator RecordGameResult(string player1, string player2, int p1kills, int p1deaths, int p2kills, int p2deaths, Action<Response> callback){
         //Api endpoint
         string endpoint=$"/src/php/record_game_result.php";
-        string fooo = $"{{fdsfsd }}";
         string jsonData = "{" +
                       "\"player1\":\"" + player1 + "\"," +
                       "\"player2\":\"" + player2 + "\"," +
@@ -64,6 +63,7 @@ public class APIManager : MonoBehaviour
         yield return uwr.SendWebRequest();
         Response response = new Response(false, "", "");
         response.success = (uwr.result == UnityWebRequest.Result.Success);
+        Debug.Log(uwr.error);
         callback?.Invoke(response);
     }
     static public IEnumerator GetOwnedCharacters(string username, string player, Action<AssetResponse> callback)
@@ -95,7 +95,6 @@ public class APIManager : MonoBehaviour
                         {
                             string name = item["name"];
                             int active = item["active"];
-                            Debug.Log("Asset: " + name + "\t Active: " + active);
                             response.ownedAssetName.Add(name, Convert.ToBoolean(active)); // Add both name and active status
                         }
                         else

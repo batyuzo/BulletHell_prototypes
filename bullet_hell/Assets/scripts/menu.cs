@@ -153,7 +153,8 @@ public class menu : MonoBehaviour
             string activeSkin = null;
             foreach (KeyValuePair<string, bool> skin in response.ownedAssetName)
             {
-                skins.Add(skin.Key);
+
+                skins.Add(skin.Key.ToLower());
                 if (skin.Value)
                 {
                     activeSkin = skin.Key;
@@ -162,6 +163,10 @@ public class menu : MonoBehaviour
             if (skins != null)
             {
                 passedData.p1Skins = skins;
+                foreach(var data in passedData.p1Skins)
+                {
+                    Debug.Log("p1 skin: "+data);
+                }
             }
             else
             {
@@ -183,7 +188,7 @@ public class menu : MonoBehaviour
             string activeSkin = null;
             foreach (KeyValuePair<string, bool> skin in response.ownedAssetName)
             {
-                skins.Add(skin.Key);
+                skins.Add(skin.Key.ToLower());
                 if (skin.Value)
                 {
                     activeSkin = skin.Key;
@@ -247,7 +252,7 @@ public class menu : MonoBehaviour
     }
     public void loginSuccess(APIManager.LoginResponse response)
     {
-        menuScreen();
+   
 
          if (!response.success)
             return;
@@ -260,7 +265,7 @@ public class menu : MonoBehaviour
         {
             passedData.p1Name = response.username;
             passedData.p1Rank = response.points;
-
+            menuScreen();
             //Loading owned music
             StartCoroutine(APIManager.GetOwnedMusic(response.username, "p1", LoadOwnedMusic));
             //Loading owned characters
@@ -276,7 +281,7 @@ public class menu : MonoBehaviour
         {
             passedData.p2Name = response.username;
             passedData.p2Rank = response.points;
-
+            menuScreen();
             //Loading owned music
             StartCoroutine(APIManager.GetOwnedMusic(response.username, "p2", LoadOwnedMusic));
             //Load owned characters
@@ -288,6 +293,7 @@ public class menu : MonoBehaviour
             musicPlayer.changePack(passedData.p2Kit, "p2");
             playerbodyP2.skinSwitch(playerAssets, passedData.p2Skin);//in-menu playerbody
         }
+
     }
     public void loginFailure(APIManager.LoginResponse response)
     {
@@ -299,7 +305,7 @@ public class menu : MonoBehaviour
         if (username != passedData.p1Name && username != passedData.p2Name)
         {
             //Getting hold of username and password
-            if (true)
+            if (false)
             {
                 loginSuccess(new APIManager.LoginResponse(true, username, 50, activePlayer));
             }
