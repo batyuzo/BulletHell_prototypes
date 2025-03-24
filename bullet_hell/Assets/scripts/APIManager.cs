@@ -21,24 +21,27 @@ public class APIManager : MonoBehaviour
             this.player = player;
             this.data = data;
         }
+        public Response(bool success, string player)
+        {
+            this.success = success;
+            this.player = player;
+        }
     }
 
     public class LoginResponse : Response
     {
         public int points;
         public string username;
-        public LoginResponse(bool success, string username, int points, string player)
+        public LoginResponse(bool success, string username, int points, string player) : base(success, player)
         {
-            this.success = success;
             this.username = username;
             this.points = points;
-            this.player = player;
         }
     }
     public class AssetResponse : Response
     {
         public Dictionary<string, bool> ownedAssetName;
-        public AssetResponse(Dictionary<string, bool> ownedAssetName, bool success, string player)
+        public AssetResponse(Dictionary<string, bool> ownedAssetName, bool success, string player):base(success, player)
         {
             this.ownedAssetName = ownedAssetName;
             this.success = success;
@@ -48,6 +51,7 @@ public class APIManager : MonoBehaviour
     static public IEnumerator RecordGameResult(string player1, string player2, int p1kills, int p1deaths, int p2kills, int p2deaths, Action<Response> callback){
         //Api endpoint
         string endpoint=$"/src/php/record_game_result.php";
+        string fooo = $"{{fdsfsd }}";
         string jsonData = "{" +
                       "\"player1\":\"" + player1 + "\"," +
                       "\"player2\":\"" + player2 + "\"," +
@@ -124,7 +128,7 @@ public class APIManager : MonoBehaviour
         string endpoint = $"/src/php/add_music_pack_to_player.php";
         string jsonData = "{" +
                 "\"username\":\"" + username + "\"," +
-                "\"musicKit\":\"" + musicKit + "\","
+                "\"musicKit\":\"" + musicKit + "\"," +
                 "}";
         UnityWebRequest uwr = UnityWebRequest.Post(baseUrl + endpoint, jsonData, "application/json");
         yield return uwr.SendWebRequest();
@@ -137,7 +141,7 @@ public class APIManager : MonoBehaviour
         string endpoint = $"/src/php/add_skin_to_player.php";
         string jsonData = "{" +
                 "\"username\":\"" + username + "\"," +
-                "\"skinName\":\"" + skinName + "\","
+                "\"skinName\":\"" + skinName + "\"," +
                 "}";
         UnityWebRequest uwr = UnityWebRequest.Post(baseUrl + endpoint, jsonData, "application/json");
         yield return uwr.SendWebRequest();

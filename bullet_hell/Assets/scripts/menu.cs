@@ -245,7 +245,7 @@ public class menu : MonoBehaviour
         Debug.Log(field_username.text + " and " + field_password.text);
         loginPlayer(field_username.text, field_password.text);
     }
-    public void loginSuccess(LoginResponse response)
+    public void loginSuccess(APIManager.LoginResponse response)
     {
         menuScreen();
 
@@ -289,7 +289,7 @@ public class menu : MonoBehaviour
             playerbodyP2.skinSwitch(playerAssets, passedData.p2Skin);//in-menu playerbody
         }
     }
-    public void loginFailure(LoginResponse response)
+    public void loginFailure(APIManager.LoginResponse response)
     {
         loginScreen(activePlayer);
         Debug.Log("Login authentication failed");
@@ -302,7 +302,6 @@ public class menu : MonoBehaviour
             if (true)
             {
                 loginSuccess(new APIManager.LoginResponse(true, username, 50, activePlayer));
-                return true;
             }
             else
             {
