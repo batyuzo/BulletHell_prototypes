@@ -32,7 +32,10 @@ public class shotgun : weapon
             //GetComponent<AudioSource>().Play();
 
             //---BULLET---
-            Instantiate(bullet, shootingPoint, transform.rotation);
+            for (int i = 0; i < 7; i++)
+            {
+                Instantiate(bullet, shootingPoint, Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z + UnityEngine.Random.Range(-15f, 15f)));
+            }
 
             //---MUZZLE FLASH---
             Instantiate(muzzleFlash, shootingPoint, transform.rotation);

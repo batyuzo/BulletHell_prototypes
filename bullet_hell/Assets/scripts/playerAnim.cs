@@ -37,7 +37,6 @@ public class bodyAnim : MonoBehaviour
     public Sprite[] walk;
     public int current = 0;
     public int i;
-    private int divide;
     private void Awake()
     {
         //init("knight");
@@ -46,7 +45,6 @@ public class bodyAnim : MonoBehaviour
     {
         i = 0;
         walk = new Sprite[] { walk1, walk2, walk3, walk4, walk5, walk6 };
-        divide = 60 / player.fps;
         playerAssets = assetsRef;
         playerAssets = GameObject.FindGameObjectWithTag("gameManager").GetComponent<playerAssets>();
 
@@ -148,11 +146,11 @@ public class bodyAnim : MonoBehaviour
         //moving forward
         if (forward)
         {
-            if (frame % divide == 0 && current < 5)
+            if (frame % 4 == 0 && current < 5)
             {
                 current++;
             }
-            else if (frame % divide == 0)
+            else if (frame % 4 == 0)
             {
                 current = 0;
             }
@@ -160,11 +158,11 @@ public class bodyAnim : MonoBehaviour
         //moving backwards
         else
         {
-            if (frame % divide == 0 && current > 0)
+            if (frame % 4 == 0 && current > 0)
             {
                 current--;
             }
-            else if (frame % divide == 0)
+            else if (frame % 4 == 0)
             {
                 current = 5;
             }
