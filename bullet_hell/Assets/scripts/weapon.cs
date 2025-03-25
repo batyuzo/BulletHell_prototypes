@@ -15,6 +15,7 @@ public class weapon : MonoBehaviour
     public List<Vector3> weaponAnim;//x, y, rotation
     public Vector3 weaponAnimCurrent;
     public GameObject shootingPointObj;
+    public Vector2 spOffset;
     public bool flipped;
 
     [Header("WEAPON SETTINGS")]
@@ -57,11 +58,14 @@ public class weapon : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().flipY = false;
             coll.offset = new Vector2(coll.offset.x, collOffset.y);
+            shootingPointObj.transform.localPosition = new Vector2(spOffset.x, spOffset.y);
         }
         else
         {
             GetComponent<SpriteRenderer>().flipY = true;
             coll.offset = new Vector2(coll.offset.x, -collOffset.y);
+            shootingPointObj.transform.localPosition = new Vector2(spOffset.x, -spOffset.y);
+
         }
     }
     public virtual void AltFire()
@@ -92,5 +96,6 @@ public class weapon : MonoBehaviour
     public virtual void Awake()
     {
         collOffset = coll.offset;
+        spOffset = shootingPointObj.transform.localPosition;
     }
 }

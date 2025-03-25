@@ -1719,6 +1719,7 @@ MonoBehaviour:
   currentHealth: 0
   healthbarScript: {fileID: 23143743}
   inkFx: []
+  zapFx: []
   dead: 0
   dmgReceived: []
 --- !u!114 &390778655
@@ -1901,7 +1902,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
       propertyPath: map
-      value: ham
+      value: prac
       objectReference: {fileID: 0}
     - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
       propertyPath: p1Kit
@@ -4700,6 +4701,7 @@ MonoBehaviour:
   currentHealth: 0
   healthbarScript: {fileID: 318335055}
   inkFx: []
+  zapFx: []
   dead: 0
   dmgReceived: []
 --- !u!114 &1428454091
