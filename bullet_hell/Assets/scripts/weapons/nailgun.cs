@@ -25,8 +25,14 @@ public class nailgun : weapon
             magazine--;
             //GetComponent<AudioSource>().Play();
 
+            //---BULLET ATTRIBUTES---
+            GameObject tempBullet = bullet;
+            tempBullet.GetComponent<bullet>().ignored=GetComponentInParent<playerController>().name;
+            tempBullet.GetComponent<bullet>().damage = damage;
+            tempBullet.GetComponent<bullet>().speed = projSpeed - (13 - magazine);//first bullet: max speed -> last bullet: max speed-13
+
             //---BULLET---
-            Instantiate(bullet, transform.position, transform.rotation);
+            Instantiate(tempBullet, transform.position, transform.rotation);
 
             //---MUZZLE FLASH---
             Instantiate(muzzleFlash, transform.position, transform.rotation);

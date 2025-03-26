@@ -65,7 +65,6 @@ public class weapon : MonoBehaviour
             GetComponent<SpriteRenderer>().flipY = true;
             coll.offset = new Vector2(coll.offset.x, -collOffset.y);
             shootingPointObj.transform.localPosition = new Vector2(spOffset.x, -spOffset.y);
-
         }
     }
     public virtual void AltFire()

@@ -9,6 +9,7 @@ public class bullet : MonoBehaviour
     public BoxCollider2D col;
     public float speed;
     public int damage;
+    public string ignored;
 
     // Start is called before the first frame update
     void Awake()
@@ -21,16 +22,19 @@ public class bullet : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.name=="Player1" || other.gameObject.name=="Player2")
+        if (other.gameObject.name != ignored)
         {
-            other.gameObject.GetComponent<playerHealth>().playerDamaged(damage, "ink");
-            damage = 0;
-            Destroy(this);
-        }
-
-        if (!other.gameObject.CompareTag("projectile") && !other.gameObject.CompareTag("weapon"))
-        {
-            Destroy(gameObject);
+            if (other.gameObject.name == "Player1" || other.gameObject.name == "Player2")
+            {
+                other.gameObject.GetComponent<playerHealth>().playerDamaged(damage, "ink");
+                damage = 0;
+                Destroy(this);
+            }
+            if (!other.gameObject.CompareTag("projectile") && !other.gameObject.CompareTag("weapon"))
+            {
+                Destroy(gameObject);
+            }
         }
     }
+
 }

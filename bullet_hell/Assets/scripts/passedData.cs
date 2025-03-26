@@ -27,7 +27,7 @@ public class passedData : MonoBehaviour
     public List<InputDevice> p1Device= new List<InputDevice>();
     public List<InputDevice> p2Device= new List<InputDevice>();
     public bool firstLoad;
-
+    public List<string> drops;//playerID, itemname
 
     void Awake()
     {

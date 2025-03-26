@@ -33,12 +33,18 @@ public class pistol : weapon
                 shootingPoint = new Vector2(shootingPointObj.transform.position.x, shootingPointObj.transform.position.y);
             }
 
+            //---BULLET ATTRIBUTES---
+            GameObject tempBullet = bullet;
+            tempBullet.GetComponent<bullet>().ignored = GetComponentInParent<playerController>().name;
+            tempBullet.GetComponent<bullet>().damage = damage;
+            tempBullet.GetComponent<bullet>().speed = projSpeed;
+
             cooldown = 60 / firerate;//60=1s
             magazine--;
             //GetComponent<AudioSource>().Play();
 
             //---BULLET---
-            Instantiate(bullet, shootingPoint, transform.rotation);
+            Instantiate(tempBullet, shootingPoint, transform.rotation);
 
             //---MUZZLE FLASH---
             Instantiate(muzzleFlash, shootingPoint, transform.rotation);

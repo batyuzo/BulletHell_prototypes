@@ -1678,6 +1678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 390778651}
+  coll: {fileID: 390778650}
   speed: 12
   jumpingPower: 15
   coyote: 1
@@ -4750,6 +4751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1428454089}
+  coll: {fileID: 1428454088}
   speed: 12
   jumpingPower: 15
   coyote: 1

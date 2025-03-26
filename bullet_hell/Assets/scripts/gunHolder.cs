@@ -236,8 +236,4 @@ public class gunHolder : MonoBehaviour
             recoil = weaponScript.currentRecoil;
         }
     }
-    private void Awake()
-    {
-        
-    }
 }

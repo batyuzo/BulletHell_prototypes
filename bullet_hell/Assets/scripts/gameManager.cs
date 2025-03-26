@@ -42,10 +42,16 @@ public class gameManager : MonoBehaviour
     public bool firstLaunch;
     public int p1Wins;//0,1,2
     public int p2Wins;//0,1,2
-    
+    public string winner;//"p1" or "p2"
+
     public void RecordResult(APIManager.Response response)
     {
         Debug.Log("Result: " + response.success);
+    }
+
+    public void rewards()
+    {
+
     }
 
     private void FixedUpdate()//end checks
@@ -56,7 +62,8 @@ public class gameManager : MonoBehaviour
         }
         if (fightEnd())
         {
-            Debug.Log(passedData.p1Name + passedData.p2Name + p1Wins + p2Wins + p2Wins+p1Wins);
+            //winner exists
+            Debug.Log(passedData.p1Name + passedData.p2Name + p1Wins + p2Wins + p2Wins + p1Wins);
             StartCoroutine(APIManager.RecordGameResult(passedData.p1Name, passedData.p2Name, p1Wins, p2Wins, p2Wins, p1Wins, RecordResult));
             SceneManager.LoadScene("menu");
         }
@@ -65,11 +72,14 @@ public class gameManager : MonoBehaviour
     {
         if (p1Wins > 1)
         {
+            winner = "p1";
             Debug.Log("player 1 wins");
             return true;
         }
+
         if (p2Wins > 1)
         {
+            winner = "p2";
             Debug.Log("player 2 wins");
             return true;
         }
@@ -109,7 +119,7 @@ public class gameManager : MonoBehaviour
             else if (fightUi.timeLeft < 0 && player1.GetComponent<playerHealth>().currentHealth < player2.GetComponent<playerHealth>().currentHealth)//p2 by time
             {
                 p2Wins++;
-                foreach(GameObject projectile in GameObject.FindGameObjectsWithTag("projectile"))//no shot lands
+                foreach (GameObject projectile in GameObject.FindGameObjectsWithTag("projectile"))//no shot lands
                 {
                     Destroy(projectile);
                 }
@@ -121,8 +131,8 @@ public class gameManager : MonoBehaviour
                 {
                     Destroy(projectile);
                 }
-                p1Wins++;
-                p2Wins++;
+                Debug.Log("no activity, restarting");
+                
                 return true;
             }
         }
@@ -229,7 +239,7 @@ public class gameManager : MonoBehaviour
             //initMenu fetch
             menuScript = menuRefs.menuScript;
             musicPlayer = menuRefs.musicPlayer;
-            
+
         }
         else if (scene == "fight")//fight
         {

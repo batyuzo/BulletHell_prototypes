@@ -102,8 +102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 691134682466634567}
   col: {fileID: 3682364757851219370}
-  speed: 30
-  damage: 15
+  speed: 0
+  damage: 0
 --- !u!50 &691134682466634567
 Rigidbody2D:
   serializedVersion: 4

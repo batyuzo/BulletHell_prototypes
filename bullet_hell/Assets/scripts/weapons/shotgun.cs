@@ -10,6 +10,7 @@ public class shotgun : weapon
     public GameObject muzzleFlash;
     public GameObject bullet;
     [SerializeField] int pelletCount;
+    float aimDir;
     public override void Fire()
     {
         //firing happens
@@ -19,10 +20,16 @@ public class shotgun : weapon
             magazine--;
             //GetComponent<AudioSource>().Play();
 
+            //---BULLET ATTRIBUTES---
+            GameObject tempBullet = bullet;
+            tempBullet.GetComponent<bullet>().ignored = GetComponentInParent<playerController>().name;
+            tempBullet.GetComponent<bullet>().damage = damage;
+            tempBullet.GetComponent<bullet>().speed = projSpeed;
+
             //---BULLET---
             for (int i = 0; i < 7; i++)
             {
-                Instantiate(bullet, shootingPointObj.transform.position,transform.rotation);
+                Instantiate(tempBullet, shootingPointObj.transform.position, Quaternion.Euler(0, 0, transform.eulerAngles.z + UnityEngine.Random.Range(-15f, 15f)));
             }
 
             //---MUZZLE FLASH---
@@ -48,6 +55,11 @@ public class shotgun : weapon
     {
         base.flip(right);
 
+    }
+
+    private void Update()
+    {
+        aimDir = transform.rotation.z;
     }
 
     public override void FixedUpdate()

@@ -27,6 +27,7 @@ public class mapLoader : MonoBehaviour
     public PolygonCollider2D ham_coll;
     public PolygonCollider2D ham_ladder;
     public Color ham_ecolor;
+    public List<string> hamDrops;
 
     [Header("practice_refs")]
     [SerializeField] Sprite prac_A1;
@@ -38,6 +39,7 @@ public class mapLoader : MonoBehaviour
     public Sprite[] prac_C1;
     public Sprite[] prac_C2;
     public Sprite[] prac_emission;
+    public List<string> pracDrops;
 
     [Header("medieval_japan_refs")]
     [SerializeField] Sprite jap_A2;
@@ -51,6 +53,7 @@ public class mapLoader : MonoBehaviour
     public Color jap_ecolor;
     public Sprite[] jap_A1;
     public Sprite[] jap_emission;
+    public List<string> japDrops;
     public void init(fightRefs fightRefs)
     {
         a1 = fightRefs.a1;
@@ -228,4 +231,5 @@ public class mapLoader : MonoBehaviour
         i++;
         layerAnim(i);
     }
+
 }

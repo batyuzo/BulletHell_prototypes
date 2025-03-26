@@ -12,6 +12,7 @@ public class playerController : MonoBehaviour
 {
     [Header("Player Component Reference")]
     [SerializeField] Rigidbody2D rb;
+    public Collider2D coll;//prevent self-damage
 
     [Header("Player Settings")]
     public float speed;//affected by taser
