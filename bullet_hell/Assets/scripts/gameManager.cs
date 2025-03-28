@@ -73,6 +73,8 @@ public class gameManager : MonoBehaviour
         if (p1Wins > 1)
         {
             winner = "p1";
+            player1.SetActive(false);
+            player2.SetActive(false);
             Debug.Log("player 1 wins");
             return true;
         }
@@ -80,6 +82,8 @@ public class gameManager : MonoBehaviour
         if (p2Wins > 1)
         {
             winner = "p2";
+            player1.SetActive(false);
+            player2.SetActive(false);
             Debug.Log("player 2 wins");
             return true;
         }

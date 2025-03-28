@@ -37,7 +37,6 @@ public class gunHolder : MonoBehaviour
     public float recoil;
     public float recoilBase;
     public float recoilSpeed;
-
     public void set()
     {
         offset = new Vector3(1f, -1f);
@@ -45,7 +44,7 @@ public class gunHolder : MonoBehaviour
         equipped = null;
         weaponScript = null;
         meleeAnim.transform.localPosition = Vector2.zero;
-        meleeAnim.transform.localRotation = Quaternion.Euler(0,0,0);
+        meleeAnim.transform.localRotation = Quaternion.Euler(0, 0, 0);
         bareHandsOffset();
     }
     private void updateMaginfo()
@@ -172,23 +171,11 @@ public class gunHolder : MonoBehaviour
             weaponScript.Fire();
         }
     }
-    public void autoFire()
-    {
-        if (equipped != null && weaponScript.auto)
-        {
-            Fire();
-        }
-    }
-    public bool AltFire()
+    public void AltFire()
     {
         if (equipped != null)
         {
             weaponScript.AltFire();
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
     public void Equip()

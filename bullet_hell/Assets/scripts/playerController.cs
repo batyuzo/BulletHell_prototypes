@@ -45,6 +45,7 @@ public class playerController : MonoBehaviour
     public bool laddered;//if touching ladder
     public bool facingRight;
     public bool shooting;
+    public bool altShooting;
     private void FixedUpdate()
     {
         //!----------MOVEMENT----------!
@@ -54,10 +55,14 @@ public class playerController : MonoBehaviour
         if (coyoteCount > 0 && !grounded) { coyoteCount -= 0.2f; }
         //buffer decreases mid-air
         grounded = groundCheck.getGrounded();
-        //AUTOMATIC FIRING
+        //shooting
         if (shooting)
         {
-            gunHolder.autoFire();
+            gunHolder.Fire();
+        }
+        if (altShooting)
+        {
+            gunHolder.AltFire();
         }
     }
     // Update is called once per frame
@@ -185,12 +190,28 @@ public class playerController : MonoBehaviour
         {
             gunHolder.Fire();
         }
+        if (gunHolder.weaponScript != null)
+        {
+            gunHolder.weaponScript.shooting = shooting;
+        }
     }
     public void AltFire(InputAction.CallbackContext context)
     {
+        if (context.started)
+        {
+            altShooting = true;
+        }
+        if (context.canceled)
+        {
+            altShooting = false;
+        }
         if (context.performed)
         {
-            gameObject.GetComponentInChildren<gunHolder>().AltFire();
+            gunHolder.AltFire();
+        }
+        if (gunHolder.weaponScript != null)
+        {
+            gunHolder.weaponScript.altShooting = altShooting;
         }
     }
     public void Equip(InputAction.CallbackContext context)

@@ -16,7 +16,7 @@ public class weaponLoader : MonoBehaviour
 
     //---PRACTICE WEAPONS---
     //[SerializeField] GameObject pow;//unique
-    //[SerializeField] GameObject sniper;//unique
+    [SerializeField] GameObject cyclops;//unique
     //[SerializeField] GameObject switchrifle;//unique
     //[SerializeField] GameObject ak;//rare
     //[SerializeField] GameObject mp40;//rare
@@ -68,7 +68,10 @@ public class weaponLoader : MonoBehaviour
             //1 - unique
             //2 - rare
             //3 - common
-            spawnWeapons(new List<GameObject>() { shotgun, pistol }, new List<GameObject>() { shotgun }, new List<GameObject>() { pistol, nailgun }, spawnPositions.prac_unique, spawnPositions.prac_rare, spawnPositions.prac_common1, spawnPositions.prac_common2);
+            spawnWeapons(new List<GameObject>() { cyclops, death }, new List<GameObject>() { shotgun }, new List<GameObject>() { pistol, nailgun, cleaver, knife, taser }, spawnPositions.prac_unique, spawnPositions.prac_rare, spawnPositions.prac_common1, spawnPositions.prac_common2);
+
+            //debug version
+            //spawnWeapons(new List<GameObject>() { cyclops }, new List<GameObject>() { pistol }, new List<GameObject>() { cyclops }, spawnPositions.prac_unique, spawnPositions.prac_rare, spawnPositions.prac_common1, spawnPositions.prac_common2);
         }
         else if (mapname == "jap")
         {

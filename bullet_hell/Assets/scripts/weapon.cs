@@ -17,6 +17,8 @@ public class weapon : MonoBehaviour
     public GameObject shootingPointObj;
     public Vector2 spOffset;
     public bool flipped;
+    public bool shooting;
+    public bool altShooting;
 
     [Header("WEAPON SETTINGS")]
     public float[] handCloseOffset = new float[3];
@@ -58,13 +60,19 @@ public class weapon : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().flipY = false;
             coll.offset = new Vector2(coll.offset.x, collOffset.y);
-            shootingPointObj.transform.localPosition = new Vector2(spOffset.x, spOffset.y);
+            if (shootingPointObj != null)
+            {
+                shootingPointObj.transform.localPosition = new Vector2(spOffset.x, spOffset.y);
+            }
         }
         else
         {
             GetComponent<SpriteRenderer>().flipY = true;
             coll.offset = new Vector2(coll.offset.x, -collOffset.y);
-            shootingPointObj.transform.localPosition = new Vector2(spOffset.x, -spOffset.y);
+            if (shootingPointObj != null)
+            {
+                shootingPointObj.transform.localPosition = new Vector2(spOffset.x, -spOffset.y);
+            }
         }
     }
     public virtual void AltFire()

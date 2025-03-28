@@ -67,6 +67,7 @@ MonoBehaviour:
   firstLaunch: 0
   p1Wins: 0
   p2Wins: 0
+  winner: 
 --- !u!114 &3303334643435291021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +117,7 @@ MonoBehaviour:
   ham_coll: {fileID: 0}
   ham_ladder: {fileID: 0}
   ham_ecolor: {r: 1, g: 0.17254902, b: 0, a: 1}
+  hamDrops: []
   prac_A1: {fileID: 0}
   prac_A2: {fileID: 0}
   prac_B1: {fileID: 21300000, guid: 57fa0ef0a21c35a41b73b81043250625, type: 3}
@@ -143,6 +145,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3671b9ee7d25cf94cb996da0937b4051, type: 3}
   - {fileID: 21300000, guid: 3f68b479002c86b4684219cc1a24f3cf, type: 3}
   - {fileID: 21300000, guid: d00d18900780870488a2a399222eca2f, type: 3}
+  pracDrops: []
   jap_A2: {fileID: 21300000, guid: 4a1e7a611dd7c474c96ed4a18cbb9d15, type: 3}
   jap_B1: {fileID: 21300000, guid: 74435fe2df5fc084a8ac35e67e95f304, type: 3}
   jap_B2: {fileID: 21300000, guid: 1c39590d30e69a249af1f6e4e0b778a8, type: 3}
@@ -182,6 +185,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3f7590ebb5824d449b0cfcc474b123a9, type: 3}
   - {fileID: 21300000, guid: 00fc295ad9b3808449ec5beaf78c3fc7, type: 3}
   - {fileID: 21300000, guid: e44c01d36c56ffd41a510bb053a65071, type: 3}
+  japDrops: []
 --- !u!114 &653852245482239009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +203,7 @@ MonoBehaviour:
   cleaver: {fileID: 4014257896013216826, guid: d660ee3661a79644a824e5576f38b1dd, type: 3}
   knife: {fileID: 4014257896013216826, guid: 9c626a04d325343408c3bbb8243c28d7, type: 3}
   taser: {fileID: 4014257896013216826, guid: b877f5cab3cfc0f429b9f5227c3a8b66, type: 3}
+  cyclops: {fileID: 4014257896013216826, guid: f416b74929f77ae46aa767b6bd99c986, type: 3}
   shotgun: {fileID: 4014257896013216826, guid: 76c4cb68833cef8489999582eb9e7e84, type: 3}
   pistol: {fileID: 4014257896013216826, guid: e7e92b5698970f54e8d4dd2409325a7d, type: 3}
   spawnPositions: {fileID: 6816570369336166462}

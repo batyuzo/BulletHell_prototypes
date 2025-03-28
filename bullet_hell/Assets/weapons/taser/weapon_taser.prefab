@@ -30,11 +30,12 @@ Transform:
   m_GameObject: {fileID: 4014257896013216826}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.286, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4611652495532439404}
+  - {fileID: 3085654056009199910}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2090029421810732651
@@ -278,7 +279,10 @@ MonoBehaviour:
   weaponAnim: []
   weaponAnimCurrent: {x: 0, y: 0, z: 0}
   shootingPointObj: {fileID: 0}
+  spOffset: {x: 0, y: 0}
   flipped: 0
+  shooting: 0
+  altShooting: 0
   handCloseOffset:
   - -0.375
   - 0.1
@@ -428,3 +432,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.138891, y: 0.5909438}
   m_EdgeRadius: 0
+--- !u!1 &6096683487358449654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3085654056009199910}
+  m_Layer: 0
+  m_Name: shootingPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3085654056009199910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6096683487358449654}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.275, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8607758490773619562}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
