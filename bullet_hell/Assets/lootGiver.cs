@@ -1,24 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public class lootGiver : MonoBehaviour
 {
     [Header("refs")]
-    [SerializeField] passedData passedData;
+    public passedData passedData;
 
-    List<string> allSkins = new List<string> { "bull", "butcher", "knight", "entity", "rogue", "samurai" };
-    List<string> allMusic = new List<string> { "Dusqk", "CRT_HEAD1", "CRT_HEAD2", "hellstar plus", "Mute City" };
-    List<string> available = null;
+    public List<string> allSkins = new List<string> { "bull", "butcher", "knight", "entity", "rogue", "samurai" };
+    public List<string> allMusic = new List<string> { "Dusqk", "CRT_HEAD1", "CRT_HEAD2", "hellstar plus", "Mute City" };
+    public List<string> available = new List<string>();
 
     //called by gameManager
-    public string getSkinReward(string player, string map)
+    public string getSkinReward(string player, string map, passedData passedDataRef)
     {
+        passedData = passedDataRef;
         string temp = null;
         //available = all-unowned
         if (player == "p1")
         {
+            Debug.Log("Allskins: " + allSkins[0]);
+            Debug.Log("p1ksins: " + passedData.p1Skins[0]);
             determine(allSkins, passedData.p1Skins);//available changed            
         }
         else if (player == "p2")
@@ -49,8 +53,9 @@ public class lootGiver : MonoBehaviour
         //all mapItems owned
         return available[Random.Range(0, available.Count)];
     }
-    public string getMusicReward(string player, string map)
+    public string getMusicReward(string player, string map, passedData passedDataRef)
     {
+        passedData = passedDataRef;
         //available = all-unowned
         if (player == "p1")
         {
@@ -84,7 +89,7 @@ public class lootGiver : MonoBehaviour
     //internal functions
     private void determine(List<string> all, List<string> owned)//all.remove(owned)
     {
-        available.Clear();
+        available = new List<string>();
         foreach (string item in all)
         {
             if (!owned.Contains(item))
@@ -110,6 +115,7 @@ public class lootGiver : MonoBehaviour
     private List<string> kitsConvert(List<musicKit> toConvert)
     {
         List<string> musicOwned = new List<string>();
+        Debug.Log(toConvert.ToString());
         foreach (musicKit kit in toConvert)
         {
             if (kit.name == "Dusqk")

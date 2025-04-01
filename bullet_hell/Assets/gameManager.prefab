@@ -65,10 +65,12 @@ MonoBehaviour:
   spawnPositions: {fileID: 6816570369336166462}
   playerAssets: {fileID: 4546172377348861396}
   musicAssets: {fileID: 1122865906968238204}
+  lootGiver: {fileID: 4053418828330628861}
   firstLaunch: 0
   p1Wins: 0
   p2Wins: 0
   winner: 
+  timer: 0
 --- !u!114 &3303334643435291021
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,12 +19,10 @@ public class gameManager : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
     public fightUi fightUi;
-    public musicShowFight musicShowFight;
     //+mapLoader dependency on init
 
     [Header("menu refs")]//fetched on menuInit
     public menu menuScript;
-    public musicShowMenu musicShowMenu;
 
     [Header("common refs")]//fetched on both
     public musicPlayer musicPlayer;
@@ -45,6 +43,7 @@ public class gameManager : MonoBehaviour
     public int p2Wins;//0,1,2
     public string winner;//"p1" or "p2"
     public int timer = 0;
+    public bool ended = false;
 
     public void RecordResult(APIManager.Response response)
     {
@@ -57,51 +56,55 @@ public class gameManager : MonoBehaviour
         {
             resetFight();
         }
-        if (fightEnd())
+        if (!ended && fightEnd())
         {
+            ended = true;
             //winner by fightEnd
-            Debug.Log(passedData.p1Name + passedData.p2Name + p1Wins + p2Wins + p2Wins + p1Wins);
             StartCoroutine(APIManager.RecordGameResult(passedData.p1Name, passedData.p2Name, p1Wins, p2Wins, p2Wins, p1Wins, RecordResult));
-            Debug.Log("recorded game result");
-            string reward = null;
-            if (UnityEngine.Random.Range(0, 2) > 0)
+            giveReward();
+            if (timer == 0) SceneManager.LoadScene("menu");
+
+        }
+    }
+
+    public void giveReward()
+    {
+        string reward = null;
+        if (UnityEngine.Random.Range(0, 2) > 0)
+        {
+            reward = lootGiver.getSkinReward(winner, passedData.map, passedData);
+            if (reward != null)
             {
-                reward = lootGiver.getSkinReward(winner, passedData.map);
-                if (reward != null)
-                {
-                    StartCoroutine(APIManager.AddSkinLoot(winner == "p1" ? passedData.p1Name : passedData.p2Name, reward));
-                }
-                else
-                {
-                    reward = lootGiver.getMusicReward(winner, passedData.map);
-                    if (reward != null)
-                    {
-                        StartCoroutine(APIManager.AddMusicLoot(winner == "p1" ? passedData.p1Name : passedData.p2Name, reward));
-                    }
-                }
-                //REACHING THIS PART MEANS NO SKIN IS AVAILABLE AS A REWARD
+                StartCoroutine(APIManager.AddSkinLoot(winner == "p1" ? passedData.p1Name : passedData.p2Name, reward));
             }
             else
             {
-                reward = lootGiver.getMusicReward(winner, passedData.map);
+                reward = lootGiver.getMusicReward(winner, passedData.map, passedData);
                 if (reward != null)
                 {
                     StartCoroutine(APIManager.AddMusicLoot(winner == "p1" ? passedData.p1Name : passedData.p2Name, reward));
                 }
-                else
-                {
-                    reward = lootGiver.getSkinReward(winner, passedData.map);
-                    if (reward != null)
-                    {
-                        StartCoroutine(APIManager.AddSkinLoot(winner == "p1" ? passedData.p1Name : passedData.p2Name, reward));
-                    }
-                }
-                //REACHING THIS PART MEANS NO SKIN IS AVAILABLE AS A REWARD
             }
-            timer = 5 * 60;//5 seconds
-            if (timer == 0) SceneManager.LoadScene("menu");
-
+            //REACHING THIS PART MEANS NO SKIN IS AVAILABLE AS A REWARD
         }
+        else
+        {
+            reward = lootGiver.getMusicReward(winner, passedData.map, passedData);
+            if (reward != null)
+            {
+                StartCoroutine(APIManager.AddMusicLoot(winner == "p1" ? passedData.p1Name : passedData.p2Name, reward));
+            }
+            else
+            {
+                reward = lootGiver.getSkinReward(winner, passedData.map, passedData);
+                if (reward != null)
+                {
+                    StartCoroutine(APIManager.AddSkinLoot(winner == "p1" ? passedData.p1Name : passedData.p2Name, reward));
+                }
+            }
+            //REACHING THIS PART MEANS NO SKIN IS AVAILABLE AS A REWARD
+        }
+        timer = 5 * 60;//5 seconds
     }
     public bool fightEnd()
     {
@@ -288,7 +291,6 @@ public class gameManager : MonoBehaviour
             player2 = fightRefs.player2;
             fightUi = fightRefs.fightUi;
             musicPlayer = fightRefs.musicPlayer;
-            musicShowFight = fightRefs.musicShow;
             mapLoader.init(fightRefs);//junking it for less lines
         }
     }
