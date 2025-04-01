@@ -51,15 +51,24 @@ public class APIManager : MonoBehaviour
     static public IEnumerator RecordGameResult(string player1, string player2, int p1kills, int p1deaths, int p2kills, int p2deaths, Action<Response> callback){
         //Api endpoint
         string endpoint=$"/src/php/record_game_result.php";
-        string jsonData = "{" +
-                      "\"player1\":\"" + player1 + "\"," +
-                      "\"player2\":\"" + player2 + "\"," +
-                      "\"p1kills\":" + p1kills + "," +
-                      "\"p1deaths\":" + p1deaths + "," +
-                      "\"p2kills\":" + p2kills + "," +
-                      "\"p2deaths\":" + p2deaths +
-                      "}";
-        UnityWebRequest uwr = UnityWebRequest.Post(baseUrl + endpoint, jsonData, "application/json");
+        //string jsonData = "{" +
+        //              "\"player1\":\"" + player1 + "\"," +
+        //              "\"player2\":\"" + player2 + "\"," +
+        //              "\"p1kills\":" + p1kills + "," +
+        //              "\"p1deaths\":" + p1deaths + "," +
+        //              "\"p2kills\":" + p2kills + "," +
+        //              "\"p2deaths\":" + p2deaths +
+        //              "}";
+
+        WWWForm form = new WWWForm();
+        form.AddField("player1", player1);
+        form.AddField("player2", player2);
+        form.AddField("p1kills", p1kills.ToString()); // Send numbers as strings
+        form.AddField("p1deaths", p1deaths.ToString());
+        form.AddField("p2kills", p2kills.ToString());
+        form.AddField("p2deaths", p2deaths.ToString());
+
+        UnityWebRequest uwr = UnityWebRequest.Post(baseUrl + endpoint, form);
         yield return uwr.SendWebRequest();
         Response response = new Response(false, "", "");
         response.success = (uwr.result == UnityWebRequest.Result.Success);
