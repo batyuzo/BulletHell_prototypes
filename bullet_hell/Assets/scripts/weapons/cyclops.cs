@@ -18,12 +18,14 @@ public class cyclops : weapon
     private int animDuration;
     [SerializeField] List<Sprite> fireAnim;
     [SerializeField] List<Sprite> laserAnim;
-
+    private bool owned;
     public float currentAim;
     public float dispersion;
     private float currentDisp;
     private int laserCurrent;
     private int fireCurrent;
+    private float baseSpeed;
+
     public override void Fire()
     {
         //firing happens
@@ -41,6 +43,7 @@ public class cyclops : weapon
 
             //---BULLET---
             Instantiate(tempBullet, shootingPointObj.transform.position, Quaternion.Euler(0, 0, transform.eulerAngles.z + UnityEngine.Random.Range(-currentDisp, currentDisp)));
+            Debug.Log(currentDisp);
 
             //---MUZZLE FLASH---
             Instantiate(muzzleFlash, shootingPointObj.transform.position, transform.rotation);
@@ -59,21 +62,35 @@ public class cyclops : weapon
     {
         if (altShooting)
         {
+            GetComponentInParent<playerController>().speed = baseSpeed / 2;
+            Debug.Log(currentAim);
+
+            //aim anim
             if (laserCurrent < laserAnim.Count && frame % 4 == 0)//15fps
             {
                 laser.GetComponent<Light2D>().lightCookieSprite = laserAnim[laserCurrent];
                 Debug.Log("altFiring");
                 laserCurrent++;
             }
-            if (currentAim > 1)
+            //aim
+            if (currentAim < 1)
             {
-                currentAim += .2f;
-                currentDisp = currentAim / 1;
+                currentAim += .06f;
+                currentDisp = dispersion - dispersion * currentAim;
+            }
+            //clamp aim
+            else if (currentAim > 1)
+            {
+                currentAim = 1;
             }
         }
         else
         {
             resetAim();
+            if (owned)
+            {
+                GetComponentInParent<playerController>().speed = baseSpeed;
+            }
         }
     }
     private void resetAim()
@@ -116,6 +133,19 @@ public class cyclops : weapon
             currentRecoil = 0;
         }
     }
+    public override void equip(GameObject parent)
+    {
+        base.equip(parent);
+        baseSpeed = GetComponentInParent<playerController>().speed;
+        if (parent != null)
+        {
+            owned = true;
+        }
+        else
+        {
+            owned = false;
+        }
+    }
     public override void FixedUpdate()
     {
         base.FixedUpdate();
@@ -127,5 +157,9 @@ public class cyclops : weapon
         recoilAnim(recoilSpeed);
         playAnim(fireAnim);
         checkAim();
+    }
+    public override void Awake()
+    {
+        base.Awake();
     }
 }

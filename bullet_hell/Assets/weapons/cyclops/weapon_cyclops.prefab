@@ -108,7 +108,11 @@ MonoBehaviour:
   currentRecoil: 0
   cooldown: 0
   collOffset: {x: 0, y: 0}
-  weaponAnim: []
+  weaponAnim:
+  - {x: 0, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0.5, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   weaponAnimCurrent: {x: 0, y: 0, z: 0}
   shootingPointObj: {fileID: 7027401682490116231}
   spOffset: {x: 0, y: 0}
