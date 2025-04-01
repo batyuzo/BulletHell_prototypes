@@ -220,7 +220,6 @@ public class playerController : MonoBehaviour
         {
             gunHolder.Equip();
         }
-
     }
     public void Drop(InputAction.CallbackContext context)
     {

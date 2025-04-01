@@ -163,9 +163,9 @@ public class menu : MonoBehaviour
             if (skins != null)
             {
                 passedData.p1Skins = skins;
-                foreach(var data in passedData.p1Skins)
+                foreach (var data in passedData.p1Skins)
                 {
-                    Debug.Log("p1 skin: "+data);
+                    Debug.Log("p1 skin: " + data);
                 }
             }
             else
@@ -252,9 +252,9 @@ public class menu : MonoBehaviour
     }
     public void loginSuccess(APIManager.LoginResponse response)
     {
-   
 
-         if (!response.success)
+
+        if (!response.success)
             return;
 
         if (response.player == "p1")
@@ -314,7 +314,9 @@ public class menu : MonoBehaviour
                 //LOGIN REQUEST
                 StartCoroutine(APIManager.Login(username, password, activePlayer, loginSuccess, loginFailure));
             }
-        }else{
+        }
+        else
+        {
             // Show login error
             Debug.Log("This user is already logged in");
         }
@@ -464,7 +466,5 @@ public class menu : MonoBehaviour
 
         passedData.p1Device = new List<InputDevice> { Keyboard.current, Mouse.current };
         passedData.p2Device = new List<InputDevice> { Gamepad.current };
-        ;
-
     }
 }

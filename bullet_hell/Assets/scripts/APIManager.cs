@@ -51,15 +51,6 @@ public class APIManager : MonoBehaviour
     static public IEnumerator RecordGameResult(string player1, string player2, int p1kills, int p1deaths, int p2kills, int p2deaths, Action<Response> callback){
         //Api endpoint
         string endpoint=$"/src/php/record_game_result.php";
-        //string jsonData = "{" +
-        //              "\"player1\":\"" + player1 + "\"," +
-        //              "\"player2\":\"" + player2 + "\"," +
-        //              "\"p1kills\":" + p1kills + "," +
-        //              "\"p1deaths\":" + p1deaths + "," +
-        //              "\"p2kills\":" + p2kills + "," +
-        //              "\"p2deaths\":" + p2deaths +
-        //              "}";
-
         WWWForm form = new WWWForm();
         form.AddField("player1", player1);
         form.AddField("player2", player2);
@@ -131,31 +122,27 @@ public class APIManager : MonoBehaviour
         }
         callback(response); // Call the callback
     }
-    static public IEnumerator AddMusicLoot(string username, string musicKit, Action<Response> callback)
+    static public IEnumerator AddMusicLoot(string username, string musicKit)
     {
         string endpoint = $"/src/php/add_music_pack_to_player.php";
-        string jsonData = "{" +
-                "\"username\":\"" + username + "\"," +
-                "\"musicKit\":\"" + musicKit + "\"," +
-                "}";
-        UnityWebRequest uwr = UnityWebRequest.Post(baseUrl + endpoint, jsonData, "application/json");
+        WWWForm form = new WWWForm();
+        form.AddField("username", username);
+        form.AddField("musicKit", musicKit);
+        UnityWebRequest uwr = UnityWebRequest.Post(baseUrl + endpoint, form);
         yield return uwr.SendWebRequest();
         Response response = new Response(false, "", "");
         response.success = (uwr.result == UnityWebRequest.Result.Success);
-        callback?.Invoke(response);
     }
-    static public IEnumerator AddSkinLoot(string username, string skinName, Action<Response> callback)
+    static public IEnumerator AddSkinLoot(string username, string skinName)
     {
         string endpoint = $"/src/php/add_skin_to_player.php";
-        string jsonData = "{" +
-                "\"username\":\"" + username + "\"," +
-                "\"skinName\":\"" + skinName + "\"," +
-                "}";
-        UnityWebRequest uwr = UnityWebRequest.Post(baseUrl + endpoint, jsonData, "application/json");
+        WWWForm form = new WWWForm();
+        form.AddField("username", username);
+        form.AddField("skinName", skinName);
+        UnityWebRequest uwr = UnityWebRequest.Post(baseUrl + endpoint, form);
         yield return uwr.SendWebRequest();
         Response response = new Response(false, "", "");
         response.success = (uwr.result == UnityWebRequest.Result.Success);
-        callback?.Invoke(response);
     }
     static public IEnumerator GetOwnedMusic(string username, string player, Action<AssetResponse> callback)
     {

@@ -36,6 +36,7 @@ public class gameManager : MonoBehaviour
     public spawnPositions spawnPositions;
     public playerAssets playerAssets;
     public musicAssets musicAssets;
+    public lootGiver lootGiver;
 
     [Header("logs")]
     Scene activescene;
@@ -43,29 +44,63 @@ public class gameManager : MonoBehaviour
     public int p1Wins;//0,1,2
     public int p2Wins;//0,1,2
     public string winner;//"p1" or "p2"
+    public int timer = 0;
 
     public void RecordResult(APIManager.Response response)
     {
         Debug.Log("Result: " + response.success);
     }
-
-    public void rewards()
+    private void FixedUpdate()//timer + end checks
     {
-
-    }
-
-    private void FixedUpdate()//end checks
-    {
+        if (timer > 0) timer--;
         if (roundEnd())
         {
             resetFight();
         }
         if (fightEnd())
         {
-            //winner exists
+            //winner by fightEnd
             Debug.Log(passedData.p1Name + passedData.p2Name + p1Wins + p2Wins + p2Wins + p1Wins);
             StartCoroutine(APIManager.RecordGameResult(passedData.p1Name, passedData.p2Name, p1Wins, p2Wins, p2Wins, p1Wins, RecordResult));
-            SceneManager.LoadScene("menu");
+            Debug.Log("recorded game result");
+            string reward = null;
+            if (UnityEngine.Random.Range(0, 2) > 0)
+            {
+                reward = lootGiver.getSkinReward(winner, passedData.map);
+                if (reward != null)
+                {
+                    StartCoroutine(APIManager.AddSkinLoot(winner == "p1" ? passedData.p1Name : passedData.p2Name, reward));
+                }
+                else
+                {
+                    reward = lootGiver.getMusicReward(winner, passedData.map);
+                    if (reward != null)
+                    {
+                        StartCoroutine(APIManager.AddMusicLoot(winner == "p1" ? passedData.p1Name : passedData.p2Name, reward));
+                    }
+                }
+                //REACHING THIS PART MEANS NO SKIN IS AVAILABLE AS A REWARD
+            }
+            else
+            {
+                reward = lootGiver.getMusicReward(winner, passedData.map);
+                if (reward != null)
+                {
+                    StartCoroutine(APIManager.AddMusicLoot(winner == "p1" ? passedData.p1Name : passedData.p2Name, reward));
+                }
+                else
+                {
+                    reward = lootGiver.getSkinReward(winner, passedData.map);
+                    if (reward != null)
+                    {
+                        StartCoroutine(APIManager.AddSkinLoot(winner == "p1" ? passedData.p1Name : passedData.p2Name, reward));
+                    }
+                }
+                //REACHING THIS PART MEANS NO SKIN IS AVAILABLE AS A REWARD
+            }
+            timer = 5 * 60;//5 seconds
+            if (timer == 0) SceneManager.LoadScene("menu");
+
         }
     }
     public bool fightEnd()
@@ -136,7 +171,7 @@ public class gameManager : MonoBehaviour
                     Destroy(projectile);
                 }
                 Debug.Log("no activity, restarting");
-                
+
                 return true;
             }
         }
@@ -226,12 +261,10 @@ public class gameManager : MonoBehaviour
                 player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme("Gamepad");
 
             }
-
         }
         //player
         player1.GetComponent<playerController>().init(playerskins[0], spawnAt, health, playerAssets, new Vector2(1, 0));
         player2.GetComponent<playerController>().init(playerskins[1], spawnAt * new Vector3(-1, 1), health, playerAssets, new Vector2(-1, 0));
-
     }
     private void setRefs(string scene)//find called once
     {
