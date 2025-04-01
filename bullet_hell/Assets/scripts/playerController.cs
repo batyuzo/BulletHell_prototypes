@@ -79,6 +79,8 @@ public class playerController : MonoBehaviour
     }
     public void init(string skin, Vector3 pos, int health, playerAssets assetsRef, Vector2 initialDirection)
     {
+        shooting = false;
+        altShooting = false;
         aimDirection = initialDirection;
         //set scheme
         if (GetComponent<PlayerInput>().currentControlScheme.Contains("pad"))
@@ -218,6 +220,8 @@ public class playerController : MonoBehaviour
     {
         if (context.performed)
         {
+            shooting = false;
+            altShooting = false;
             gunHolder.Equip();
         }
     }
@@ -225,6 +229,8 @@ public class playerController : MonoBehaviour
     {
         if (context.performed)
         {
+            shooting = false;
+            altShooting = false;
             gameObject.GetComponentInChildren<gunHolder>().Drop();
         }
     }
