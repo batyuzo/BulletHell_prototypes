@@ -1705,6 +1705,7 @@ MonoBehaviour:
   laddered: 0
   facingRight: 0
   shooting: 0
+  altShooting: 0
 --- !u!114 &390778654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1903,7 +1904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
       propertyPath: map
-      value: prac
+      value: jap
       objectReference: {fileID: 0}
     - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
       propertyPath: p1Kit
@@ -4778,6 +4779,7 @@ MonoBehaviour:
   laddered: 0
   facingRight: 0
   shooting: 0
+  altShooting: 0
 --- !u!4 &1428454093
 Transform:
   m_ObjectHideFlags: 0

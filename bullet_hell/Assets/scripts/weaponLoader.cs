@@ -31,9 +31,9 @@ public class weaponLoader : MonoBehaviour
     //[SerializeField] GameObject molotov;//common
 
     //---PALACE OF THE SETTING SUN WEAPONS---
-    //[SerializeField] GameObject musket;//unique
+    [SerializeField] GameObject nobunaga;//unique
     //[SerializeField] GameObject bow;//rare
-    //[SerializeField] GameObject katana;//rare
+    [SerializeField] GameObject katana;//rare
     //[SerializeField] GameObject kusarigama;//rare
     //[SerializeField] GameObject kunai;//common
     //[SerializeField] GameObject dagger;//common
@@ -79,7 +79,7 @@ public class weaponLoader : MonoBehaviour
             //1 - unique
             //2 - rare
             //3 - common
-            spawnWeapons(new List<GameObject>() { shotgun, pistol }, new List<GameObject>() { shotgun }, new List<GameObject>() { pistol }, spawnPositions.jap_unique, spawnPositions.jap_rare, spawnPositions.jap_common1, spawnPositions.jap_common2);
+            spawnWeapons(new List<GameObject>() { nobunaga }, new List<GameObject>() { katana }, new List<GameObject>() { pistol }, spawnPositions.jap_unique, spawnPositions.jap_rare, spawnPositions.jap_common1, spawnPositions.jap_common2);
         }
         Debug.Log(mapname + "loaded");
     }

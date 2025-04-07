@@ -55,9 +55,7 @@ MonoBehaviour:
   player1: {fileID: 0}
   player2: {fileID: 0}
   fightUi: {fileID: 0}
-  musicShowFight: {fileID: 0}
   menuScript: {fileID: 0}
-  musicShowMenu: {fileID: 0}
   musicPlayer: {fileID: 0}
   passedData: {fileID: 0}
   mapLoader: {fileID: 3303334643435291021}
@@ -71,6 +69,7 @@ MonoBehaviour:
   p2Wins: 0
   winner: 
   timer: 0
+  ended: 0
 --- !u!114 &3303334643435291021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,6 +208,8 @@ MonoBehaviour:
   cyclops: {fileID: 4014257896013216826, guid: f416b74929f77ae46aa767b6bd99c986, type: 3}
   shotgun: {fileID: 4014257896013216826, guid: 76c4cb68833cef8489999582eb9e7e84, type: 3}
   pistol: {fileID: 4014257896013216826, guid: e7e92b5698970f54e8d4dd2409325a7d, type: 3}
+  nobunaga: {fileID: 4014257896013216826, guid: 3b57afd347c9ae842b30250b237f6b9f, type: 3}
+  katana: {fileID: 4014257896013216826, guid: 6f9082bf9adb36f4fb1c148bf12b237b, type: 3}
   spawnPositions: {fileID: 6816570369336166462}
   weaponsSpawned: 0
 --- !u!114 &6816570369336166462
@@ -375,3 +376,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   passedData: {fileID: 0}
+  allSkins:
+  - bull
+  - butcher
+  - knight
+  - entity
+  - rogue
+  - samurai
+  allMusic:
+  - Dusqk
+  - CRT_HEAD1
+  - CRT_HEAD2
+  - hellstar plus
+  - Mute City
+  available: []
