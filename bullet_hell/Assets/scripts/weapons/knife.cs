@@ -79,7 +79,6 @@ public class knife : weapon
         base.equip(parent);
         //don't cut yourself
         meleeCheck.ignore(parent);
-        projectileMode = false;
         animDuration = 0;
     }
     public override void flip(bool flip)

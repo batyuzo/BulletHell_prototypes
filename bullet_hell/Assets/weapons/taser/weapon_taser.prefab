@@ -301,6 +301,7 @@ MonoBehaviour:
   magazine: 1
   rarity: 1
   ranged: 0
+  showMag: 1
   damage: 30
   auto: 1
   recoil: 0

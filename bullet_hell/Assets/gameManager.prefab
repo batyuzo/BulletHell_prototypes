@@ -202,6 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   death: {fileID: 4014257896013216826, guid: f97f050f770190a4ca640b316a2e1cb0, type: 3}
   nailgun: {fileID: 4014257896013216826, guid: 795ba4e28b48df84bb43ee93e38c348b, type: 3}
+  chainsaw: {fileID: 4014257896013216826, guid: 3698ef201f7005048bbb6e5bcf2f541d, type: 3}
   cleaver: {fileID: 4014257896013216826, guid: d660ee3661a79644a824e5576f38b1dd, type: 3}
   knife: {fileID: 4014257896013216826, guid: 9c626a04d325343408c3bbb8243c28d7, type: 3}
   taser: {fileID: 4014257896013216826, guid: b877f5cab3cfc0f429b9f5227c3a8b66, type: 3}

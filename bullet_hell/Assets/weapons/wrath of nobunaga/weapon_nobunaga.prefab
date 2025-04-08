@@ -131,7 +131,8 @@ MonoBehaviour:
   farLayer: 3
   magazine: 1
   rarity: 3
-  ranged: 0
+  ranged: 1
+  showMag: 1
   damage: 400
   auto: 0
   recoil: 60

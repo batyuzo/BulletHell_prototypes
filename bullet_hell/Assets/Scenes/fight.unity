@@ -1904,7 +1904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
       propertyPath: map
-      value: jap
+      value: prac
       objectReference: {fileID: 0}
     - target: {fileID: 1485610183553062650, guid: de8f8720e94368c4d854b0b656eaa35a, type: 3}
       propertyPath: p1Kit
@@ -2178,10 +2178,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.16054688
     y: 0
-    width: 1
-    height: 1
+    width: 0.44375
+    height: 0.44375002
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60

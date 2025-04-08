@@ -132,6 +132,7 @@ MonoBehaviour:
   magazine: 13
   rarity: 2
   ranged: 1
+  showMag: 1
   damage: 20
   auto: 1
   recoil: 10

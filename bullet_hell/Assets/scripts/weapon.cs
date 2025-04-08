@@ -30,6 +30,7 @@ public class weapon : MonoBehaviour
     public int magazine;//single magazine cap
     public int rarity;//unique, rare, common
     public bool ranged;//ranged or melee
+    public bool showMag;
     public int damage;//per projectile
     public bool auto;//semi or automatic
     public float recoil;

@@ -110,7 +110,10 @@ MonoBehaviour:
   weaponAnim: []
   weaponAnimCurrent: {x: 0, y: 0, z: 0}
   shootingPointObj: {fileID: 7027401682490116231}
+  spOffset: {x: 0, y: 0}
   flipped: 0
+  shooting: 0
+  altShooting: 0
   handCloseOffset:
   - 0
   - 0
@@ -129,6 +132,7 @@ MonoBehaviour:
   magazine: 2
   rarity: 2
   ranged: 1
+  showMag: 1
   damage: 15
   auto: 0
   recoil: 40

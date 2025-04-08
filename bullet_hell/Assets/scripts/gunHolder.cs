@@ -49,7 +49,7 @@ public class gunHolder : MonoBehaviour
     }
     private void updateMaginfo()
     {
-        if (equipped != null && weaponScript.ranged)
+        if (equipped != null && weaponScript.showMag)
         {
             magInfo.transform.position = player.transform.position + offset;
             magInfoText.SetText(weaponScript.magazine.ToString());

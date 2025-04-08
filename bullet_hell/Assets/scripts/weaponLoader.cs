@@ -9,7 +9,7 @@ public class weaponLoader : MonoBehaviour
     //---SLAUGHTERHOUSE WEAPONS---
     [SerializeField] GameObject death;//ham, unique
     [SerializeField] GameObject nailgun;//ham, rare
-    //[SerializeField] GameObject chainsaw;//ham, rare
+    [SerializeField] GameObject chainsaw;//ham, rare
     [SerializeField] GameObject cleaver;//ham, common
     [SerializeField] GameObject knife;//ham, common
     [SerializeField] GameObject taser;//ham, common
@@ -59,7 +59,7 @@ public class weaponLoader : MonoBehaviour
             //1 - unique
             //2 - rare
             //3 - common
-            spawnWeapons(new List<GameObject>() { death }, new List<GameObject>() { nailgun }, new List<GameObject>() { cleaver, knife, taser }, spawnPositions.ham_unique, spawnPositions.ham_rare, spawnPositions.ham_common1, spawnPositions.ham_common2);
+            spawnWeapons(new List<GameObject>() { death }, new List<GameObject>() { nailgun, chainsaw }, new List<GameObject>() { cleaver, knife, taser }, spawnPositions.ham_unique, spawnPositions.ham_rare, spawnPositions.ham_common1, spawnPositions.ham_common2);
         }
         else if (mapname == "prac")
         {
@@ -68,10 +68,10 @@ public class weaponLoader : MonoBehaviour
             //1 - unique
             //2 - rare
             //3 - common
-            //spawnWeapons(new List<GameObject>() { cyclops, death }, new List<GameObject>() { shotgun }, new List<GameObject>() { pistol, nailgun, cleaver, knife, taser }, spawnPositions.prac_unique, spawnPositions.prac_rare, spawnPositions.prac_common1, spawnPositions.prac_common2);
+            //spawnWeapons(new List<GameObject>() { cyclops, death, nobunaga }, new List<GameObject>() { shotgun, chainsaw, katana }, new List<GameObject>() { pistol, nailgun, cleaver, knife, taser }, spawnPositions.prac_unique, spawnPositions.prac_rare, spawnPositions.prac_common1, spawnPositions.prac_common2);
 
             //debug version
-            spawnWeapons(new List<GameObject>() { cyclops }, new List<GameObject>() { pistol }, new List<GameObject>() { cyclops }, spawnPositions.prac_unique, spawnPositions.prac_rare, spawnPositions.prac_common1, spawnPositions.prac_common2);
+            spawnWeapons(new List<GameObject>() { knife }, new List<GameObject>() { chainsaw }, new List<GameObject>() { nobunaga }, spawnPositions.prac_unique, spawnPositions.prac_rare, spawnPositions.prac_common1, spawnPositions.prac_common2);
         }
         else if (mapname == "jap")
         {
