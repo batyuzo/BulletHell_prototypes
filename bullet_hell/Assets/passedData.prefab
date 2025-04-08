@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5959631276143613185}
   - component: {fileID: 1485610183553062650}
+  - component: {fileID: 9039546581167963118}
   m_Layer: 0
   m_Name: passedData
   m_TagString: passedData
@@ -62,3 +63,16 @@ MonoBehaviour:
   p1Controls: {fileID: -944628639613478452, guid: 96f3f9c890664df47b16e8457b4ead7a, type: 3}
   p2Controls: {fileID: -944628639613478452, guid: 5d17dd6d8781cb34d86e1c5535250ddf, type: 3}
   firstLoad: 1
+  drops: []
+--- !u!114 &9039546581167963118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830887547692488601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c84c87fa6f134f1458a55cdeb648a36d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

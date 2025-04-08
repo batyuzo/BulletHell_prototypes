@@ -36,7 +36,7 @@ public class weaponLoader : MonoBehaviour
     [SerializeField] GameObject katana;//rare
     //[SerializeField] GameObject kusarigama;//rare
     //[SerializeField] GameObject kunai;//common
-    //[SerializeField] GameObject dagger;//common
+    [SerializeField] GameObject dagger;//common
 
     [Header("script refs")]
     public spawnPositions spawnPositions;
@@ -71,7 +71,7 @@ public class weaponLoader : MonoBehaviour
             //spawnWeapons(new List<GameObject>() { cyclops, death, nobunaga }, new List<GameObject>() { shotgun, chainsaw, katana }, new List<GameObject>() { pistol, nailgun, cleaver, knife, taser }, spawnPositions.prac_unique, spawnPositions.prac_rare, spawnPositions.prac_common1, spawnPositions.prac_common2);
 
             //debug version
-            spawnWeapons(new List<GameObject>() { knife }, new List<GameObject>() { chainsaw }, new List<GameObject>() { nobunaga }, spawnPositions.prac_unique, spawnPositions.prac_rare, spawnPositions.prac_common1, spawnPositions.prac_common2);
+            spawnWeapons(new List<GameObject>() { knife }, new List<GameObject>() { chainsaw }, new List<GameObject>() { dagger }, spawnPositions.prac_unique, spawnPositions.prac_rare, spawnPositions.prac_common1, spawnPositions.prac_common2);
         }
         else if (mapname == "jap")
         {
@@ -79,7 +79,7 @@ public class weaponLoader : MonoBehaviour
             //1 - unique
             //2 - rare
             //3 - common
-            spawnWeapons(new List<GameObject>() { nobunaga }, new List<GameObject>() { katana }, new List<GameObject>() { pistol }, spawnPositions.jap_unique, spawnPositions.jap_rare, spawnPositions.jap_common1, spawnPositions.jap_common2);
+            spawnWeapons(new List<GameObject>() { nobunaga }, new List<GameObject>() { katana }, new List<GameObject>() { dagger }, spawnPositions.jap_unique, spawnPositions.jap_rare, spawnPositions.jap_common1, spawnPositions.jap_common2);
         }
         Debug.Log(mapname + "loaded");
     }

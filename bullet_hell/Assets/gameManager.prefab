@@ -211,6 +211,7 @@ MonoBehaviour:
   pistol: {fileID: 4014257896013216826, guid: e7e92b5698970f54e8d4dd2409325a7d, type: 3}
   nobunaga: {fileID: 4014257896013216826, guid: 3b57afd347c9ae842b30250b237f6b9f, type: 3}
   katana: {fileID: 4014257896013216826, guid: 6f9082bf9adb36f4fb1c148bf12b237b, type: 3}
+  dagger: {fileID: 4014257896013216826, guid: 17088191d83ea054ca0acef6c854d4aa, type: 3}
   spawnPositions: {fileID: 6816570369336166462}
   weaponsSpawned: 0
 --- !u!114 &6816570369336166462

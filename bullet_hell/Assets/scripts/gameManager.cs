@@ -66,7 +66,6 @@ public class gameManager : MonoBehaviour
 
         }
     }
-
     public void giveReward()
     {
         string reward = null;
@@ -85,11 +84,11 @@ public class gameManager : MonoBehaviour
                     StartCoroutine(APIManager.AddMusicLoot(winner == "p1" ? passedData.p1Name : passedData.p2Name, reward));
                 }
             }
-            //REACHING THIS PART MEANS NO SKIN IS AVAILABLE AS A REWARD
         }
         else
         {
             reward = lootGiver.getMusicReward(winner, passedData.map, passedData);
+
             if (reward != null)
             {
                 StartCoroutine(APIManager.AddMusicLoot(winner == "p1" ? passedData.p1Name : passedData.p2Name, reward));
@@ -102,7 +101,7 @@ public class gameManager : MonoBehaviour
                     StartCoroutine(APIManager.AddSkinLoot(winner == "p1" ? passedData.p1Name : passedData.p2Name, reward));
                 }
             }
-            //REACHING THIS PART MEANS NO SKIN IS AVAILABLE AS A REWARD
+
         }
         timer = 5 * 60;//5 seconds
     }
