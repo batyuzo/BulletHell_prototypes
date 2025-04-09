@@ -71,7 +71,7 @@ public class weaponLoader : MonoBehaviour
             //spawnWeapons(new List<GameObject>() { cyclops, death, nobunaga }, new List<GameObject>() { shotgun, chainsaw, katana }, new List<GameObject>() { pistol, nailgun, cleaver, knife, taser }, spawnPositions.prac_unique, spawnPositions.prac_rare, spawnPositions.prac_common1, spawnPositions.prac_common2);
 
             //debug version
-            spawnWeapons(new List<GameObject>() { knife }, new List<GameObject>() { chainsaw }, new List<GameObject>() { dagger }, spawnPositions.prac_unique, spawnPositions.prac_rare, spawnPositions.prac_common1, spawnPositions.prac_common2);
+            spawnWeapons(new List<GameObject>() { cyclops }, new List<GameObject>() { chainsaw }, new List<GameObject>() { dagger }, spawnPositions.prac_unique, spawnPositions.prac_rare, spawnPositions.prac_common1, spawnPositions.prac_common2);
         }
         else if (mapname == "jap")
         {

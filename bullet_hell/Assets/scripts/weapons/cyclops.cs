@@ -136,10 +136,11 @@ public class cyclops : weapon
     public override void equip(GameObject parent)
     {
         base.equip(parent);
-        baseSpeed = GetComponentInParent<playerController>().speed;
+
         if (parent != null)
         {
             owned = true;
+            baseSpeed = GetComponentInParent<playerController>().speed;
         }
         else
         {

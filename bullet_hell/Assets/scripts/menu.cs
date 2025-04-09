@@ -67,15 +67,6 @@ public class menu : MonoBehaviour
         musicAssets = musicAssetsRef;
         playerAssets = playerAssetsRef;
         menuScreen();
-        if (Mouse.current != null)
-        {
-            passedData.p2Device = new List<InputDevice> { Keyboard.current, Mouse.current };
-        }
-        if (Gamepad.current != null)
-        {
-            passedData.p1Device = new List<InputDevice> { Gamepad.current };
-        }
-        else { passedData.p1Device = new List<InputDevice> { Keyboard.current, Mouse.current }; }
     }
 
     //home screen
