@@ -42,7 +42,6 @@ public class gameManager : MonoBehaviour
     public int p1Wins;//0,1,2
     public int p2Wins;//0,1,2
     public string winner;//"p1" or "p2"
-    public int timer = 0;
     public bool ended = false;
 
     public void RecordResult(APIManager.Response response)
@@ -51,7 +50,6 @@ public class gameManager : MonoBehaviour
     }
     private void FixedUpdate()//timer + end checks
     {
-        if (timer > 0) timer--;
         if (roundEnd())
         {
             resetFight();
@@ -62,7 +60,8 @@ public class gameManager : MonoBehaviour
             //winner by fightEnd
             StartCoroutine(APIManager.RecordGameResult(passedData.p1Name, passedData.p2Name, p1Wins, p2Wins, p2Wins, p1Wins, RecordResult));
             giveReward();
-            if (timer == 0) SceneManager.LoadScene("menu");
+            
+            SceneManager.LoadScene("menu");
 
         }
     }
@@ -103,7 +102,6 @@ public class gameManager : MonoBehaviour
             }
 
         }
-        timer = 5 * 60;//5 seconds
     }
     public bool fightEnd()
     {

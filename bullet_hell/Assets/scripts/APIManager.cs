@@ -63,7 +63,6 @@ public class APIManager : MonoBehaviour
         yield return uwr.SendWebRequest();
         Response response = new Response(false, "", "");
         response.success = (uwr.result == UnityWebRequest.Result.Success);
-        Debug.Log(uwr.error);
         callback?.Invoke(response);
     }
     static public IEnumerator GetOwnedCharacters(string username, string player, Action<AssetResponse> callback)
