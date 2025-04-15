@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,12 +57,22 @@ public class menu : MonoBehaviour
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI itemDesc;
 
+    [Header("Settings refs")]
+    public UnityEngine.UI.Slider volumeSlider;
+
+    //mouses
+    public UnityEngine.UI.Button btn_p1Mouse;
+    public UnityEngine.UI.Button btn_p2Mouse;
+    public List<Sprite> clickerSprites; //1: on 2: off
+
+    //listen
+
+
     [Header("some help")]
     public string activePlayer;
 
     public void init(passedData passedDataRef, musicPlayer musicPlayerRef, musicAssets musicAssetsRef, playerAssets playerAssetsRef)
     {
-
         passedData = passedDataRef;
         musicPlayer = musicPlayerRef;
         musicAssets = musicAssetsRef;
@@ -80,7 +91,7 @@ public class menu : MonoBehaviour
     }
     public void fight()//btn_fight
     {
-        passedData.map = maps[Random.Range(0, maps.Count)];
+        passedData.map = maps[UnityEngine.Random.Range(0, maps.Count)];
         SceneManager.LoadScene("fight");
     }
     public void LoadOwnedMusic(APIManager.AssetResponse response)
@@ -454,8 +465,38 @@ public class menu : MonoBehaviour
         uiCustomize.SetActive(false);
         uiSettings.SetActive(true);
         //update buttons n things here
-
-        passedData.p1Device = new List<InputDevice> { Keyboard.current, Mouse.current };
-        passedData.p2Device = new List<InputDevice> { Gamepad.current };
+    }
+    public void setVolume()
+    {
+        passedData.musicVolume = volumeSlider.value;
+        musicPlayer.changeVolume(passedData.musicVolume);
+    }
+    public void p1Mouse()
+    {
+        passedData.p1MouseUser = true;
+        passedData.p2MouseUser = false;
+        btn_p1Mouse.image.sprite = clickerSprites[0];
+        btn_p2Mouse.image.sprite = clickerSprites[1];
+        passedData.p2Device = passedData.p1Device;
+        passedData.p1Device = new List<InputDevice> { Mouse.current, Keyboard.current };
+    }
+    public void p2Mouse()
+    {
+        passedData.p1MouseUser = false;
+        passedData.p2MouseUser = true;
+        btn_p1Mouse.image.sprite = clickerSprites[1];
+        btn_p2Mouse.image.sprite = clickerSprites[0];
+        passedData.p1Device = passedData.p2Device;
+        passedData.p2Device = new List<InputDevice> { Mouse.current, Keyboard.current };
+    }
+    public void p1Listen()
+    {
+        if (Gamepad.current != null) { passedData.p1Device = new List<InputDevice> { Gamepad.current }; }
+        else { passedData.p1Device = null; }
+    }
+    public void p2Listen()
+    {
+        if (Gamepad.current != null) { passedData.p2Device = new List<InputDevice> { Gamepad.current }; }
+        else { passedData.p2Device = null; }
     }
 }

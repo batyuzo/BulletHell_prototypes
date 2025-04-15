@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class passedData : MonoBehaviour
 {
@@ -24,10 +25,13 @@ public class passedData : MonoBehaviour
     public List<musicKit> p2Kits;
     public InputActionAsset p1Controls;
     public InputActionAsset p2Controls;
-    public List<InputDevice> p1Device= new List<InputDevice>();
-    public List<InputDevice> p2Device= new List<InputDevice>();
+    public List<InputDevice> p1Device = new List<InputDevice>();
+    public bool p1MouseUser;
+    public List<InputDevice> p2Device = new List<InputDevice>();
+    public bool p2MouseUser;
     public bool firstLoad;
     public List<string> drops;//playerID, itemname
+    public float musicVolume;
 
     void Awake()
     {
@@ -38,7 +42,6 @@ public class passedData : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
     }
-
     public void defaults(musicKit defaultKit, string defaultSkin, string defaultSkinDesc, string defaultKitDefs, string defaultMap)
     {
         p1Login = false;

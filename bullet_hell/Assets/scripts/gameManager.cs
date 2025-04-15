@@ -9,8 +9,6 @@ using UnityEngine.UIElements;
 using System;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
-using Unity.VisualScripting;
-using System.Linq;
 public class gameManager : MonoBehaviour
 {
     [Header("fight refs")]//fetched on initFight
@@ -60,9 +58,8 @@ public class gameManager : MonoBehaviour
             //winner by fightEnd
             StartCoroutine(APIManager.RecordGameResult(passedData.p1Name, passedData.p2Name, p1Wins, p2Wins, p2Wins, p1Wins, RecordResult));
             giveReward();
-            
-            SceneManager.LoadScene("menu");
 
+            SceneManager.LoadScene("menu");
         }
     }
     public void giveReward()
@@ -200,7 +197,7 @@ public class gameManager : MonoBehaviour
             passedData.defaults(musicAssets.crt1Kit, "knight", playerAssets.knight_desc, musicAssets.crt1Kit.desc, "prac");
         }
         menuScript.init(passedData, musicPlayer, musicAssets, playerAssets);
-        musicPlayer.init(passedData.p1Kit, passedData.p2Kit, 0.5f, "menu");
+        musicPlayer.init(passedData.p1Kit, passedData.p2Kit, "menu", passedData.musicVolume);
     }
     public void initFight()
     {
@@ -217,7 +214,7 @@ public class gameManager : MonoBehaviour
     private void resetFight()
     {
         fightUi.set(passedData, p1Wins, p2Wins, 60);
-        musicPlayer.init(passedData.p1Kit, passedData.p2Kit, 0.5f, "fight");
+        musicPlayer.init(passedData.p1Kit, passedData.p2Kit, "fight", passedData.musicVolume);
         healthbarP1.set("p1", passedData.map);
         healthbarP2.set("p2", passedData.map);
         if (passedData.map == "prac")
@@ -237,31 +234,11 @@ public class gameManager : MonoBehaviour
     private void initPlayers(string[] playerskins, Vector2 spawnAt, int health)
     {
         //p1Device assign
-        if (passedData.p1Device.Count() > 0)
-        {
-            player1.GetComponent<PlayerInput>().SwitchCurrentControlScheme(passedData.p1Device.ToArray());
-        }
-        else
-        {
-            player1.GetComponent<PlayerInput>().SwitchCurrentControlScheme(Mouse.current, Keyboard.current);
-        }
-        //p2Device assign
-        if (passedData.p2Device.Count() > 0)
-        {
-            player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme(passedData.p2Device.ToArray());
-        }
-        else
-        {
-            if (Gamepad.current != null)
-            {
-                player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme(Gamepad.current);
-            }
-            else
-            {
-                player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme("Gamepad");
+        player1.GetComponent<PlayerInput>().SwitchCurrentControlScheme(passedData.p1Device.ToArray());
 
-            }
-        }
+        //p2Device assign
+        player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme(passedData.p2Device.ToArray());
+
         //player
         player1.GetComponent<playerController>().init(playerskins[0], spawnAt, health, playerAssets, new Vector2(1, 0));
         player2.GetComponent<playerController>().init(playerskins[1], spawnAt * new Vector3(-1, 1), health, playerAssets, new Vector2(-1, 0));
