@@ -58,14 +58,12 @@ public class menu : MonoBehaviour
     public TextMeshProUGUI itemDesc;
 
     [Header("Settings refs")]
+    public List<Sprite> clickerSprites;
+
     public UnityEngine.UI.Slider volumeSlider;
-
-    //mouses
-    public UnityEngine.UI.Button btn_p1Mouse;
-    public UnityEngine.UI.Button btn_p2Mouse;
-    public List<Sprite> clickerSprites; //1: on 2: off
-
-    //listen
+    public UnityEngine.UI.Button btn_assign;
+    public UnityEngine.UI.Button btn_devMode;
+    public GameObject txt_warning;
 
 
     [Header("some help")]
@@ -78,6 +76,7 @@ public class menu : MonoBehaviour
         musicAssets = musicAssetsRef;
         playerAssets = playerAssetsRef;
         menuScreen();
+        assign();
     }
 
     //home screen
@@ -254,8 +253,6 @@ public class menu : MonoBehaviour
     }
     public void loginSuccess(APIManager.LoginResponse response)
     {
-
-
         if (!response.success)
             return;
 
@@ -307,7 +304,7 @@ public class menu : MonoBehaviour
         if (username != passedData.p1Name && username != passedData.p2Name)
         {
             //Getting hold of username and password
-            if (false)
+            if (passedData.devMode)
             {
                 loginSuccess(new APIManager.LoginResponse(true, username, 50, activePlayer));
             }
@@ -465,38 +462,85 @@ public class menu : MonoBehaviour
         uiCustomize.SetActive(false);
         uiSettings.SetActive(true);
         //update buttons n things here
+        updateSettings();
     }
     public void setVolume()
     {
         passedData.musicVolume = volumeSlider.value;
         musicPlayer.changeVolume(passedData.musicVolume);
     }
-    public void p1Mouse()
+    public void assign()//inputDevices for players (gamepad or mouse)
     {
-        passedData.p1MouseUser = true;
-        passedData.p2MouseUser = false;
-        btn_p1Mouse.image.sprite = clickerSprites[0];
-        btn_p2Mouse.image.sprite = clickerSprites[1];
-        passedData.p2Device = passedData.p1Device;
-        passedData.p1Device = new List<InputDevice> { Mouse.current, Keyboard.current };
+        Debug.Log("----ASSIGNING DEVICES----");
+        List<InputDevice> devices = new List<InputDevice>();
+        //devices fill
+        foreach (InputDevice device in Gamepad.all)
+        {
+            Debug.Log("gamepad found");
+            devices.Add(device);
+        }
+
+        if (devices.Count == 0)
+        {
+            //fallback -> mouse for p1
+            passedData.p1Gamepad = null;
+            passedData.p2Gamepad = null;
+            Debug.Log("no gamepads detected");
+        }
+        else if (devices.Count == 1)
+        {
+            //mouse for p1, gamepad for p2
+            passedData.p1Gamepad = null;
+            passedData.p2Gamepad = devices[0];
+            Debug.Log("gamepad for p2");
+        }
+        else if (devices.Count > 1)
+        {
+            //gamepad[0] for p1, gamepad[1] for p2
+            passedData.p1Gamepad = devices[0];
+            passedData.p2Gamepad = devices[1];
+            Debug.Log("gamepads for both");
+        }
+        Debug.Log("-------------------------");
+        updateSettings();
     }
-    public void p2Mouse()
+
+    private void updateSettings()
     {
-        passedData.p1MouseUser = false;
-        passedData.p2MouseUser = true;
-        btn_p1Mouse.image.sprite = clickerSprites[1];
-        btn_p2Mouse.image.sprite = clickerSprites[0];
-        passedData.p1Device = passedData.p2Device;
-        passedData.p2Device = new List<InputDevice> { Mouse.current, Keyboard.current };
+        if (passedData.devMode)
+        {
+            btn_devMode.image.sprite = clickerSprites[0];
+        }
+        else
+        {
+            btn_devMode.image.sprite = clickerSprites[1];
+        }
+
+        if (passedData.p2Gamepad == null)
+        {
+            txt_warning.GetComponent<TextMeshProUGUI>().text = "p1: mouse+keyboard, p2: nothing";
+        }
+        else if (passedData.p1Gamepad == null)
+        {
+            txt_warning.GetComponent<TextMeshProUGUI>().text = "p1: mouse+keyboard, p2: gamepad";
+        }
+        else
+        {
+            txt_warning.GetComponent<TextMeshProUGUI>().text = "p1: gamepad, p2: gamepad";
+        }
     }
-    public void p1Listen()
+    public void devMode()
     {
-        if (Gamepad.current != null) { passedData.p1Device = new List<InputDevice> { Gamepad.current }; }
-        else { passedData.p1Device = null; }
-    }
-    public void p2Listen()
-    {
-        if (Gamepad.current != null) { passedData.p2Device = new List<InputDevice> { Gamepad.current }; }
-        else { passedData.p2Device = null; }
+        if (passedData.devMode)
+        {
+            //turn off
+            passedData.devMode = false;
+        }
+        else
+        {
+            //turn on
+            passedData.devMode = true;
+        }
+        updateSettings();
     }
 }
