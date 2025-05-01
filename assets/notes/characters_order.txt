@@ -1,0 +1,6 @@
+bull
+butcher
+knight
+entity
+rogue
+samurai
