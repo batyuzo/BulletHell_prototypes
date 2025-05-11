@@ -307,6 +307,29 @@ public class menu : MonoBehaviour
             if (passedData.devMode)
             {
                 loginSuccess(new APIManager.LoginResponse(true, username, 50, activePlayer));
+                if (activePlayer == "p1")
+                {
+                    foreach (string skin in new List<string> { "knight", "bull", "butcher", "entity", "rogue", "samurai" })
+                    {
+                        passedData.p1Skins.Add(skin);
+                    }
+                    foreach (string kit in new List<string> { "CRT_HEAD1", "CRT_HEAD2", "hellstar plus", "Mute City" })
+                    {
+                        passedData.p1Kits.Add(musicAssets.GetAssetByName(kit));
+                    }
+                }
+                else
+                {
+                    foreach (string skin in new List<string> { "knight", "bull", "butcher", "entity", "rogue", "samurai" })
+                    {
+                        passedData.p2Skins.Add(skin);
+                    }
+                    foreach (string kit in new List<string> { "CRT_HEAD1", "CRT_HEAD2", "hellstar plus", "Mute City" })
+                    {
+                        passedData.p2Kits.Add(musicAssets.GetAssetByName(kit));
+                    }
+                }
+
             }
             else
             {

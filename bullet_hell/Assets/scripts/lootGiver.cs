@@ -9,7 +9,7 @@ public class lootGiver : MonoBehaviour
     public passedData passedData;
 
     public List<string> allSkins = new List<string> { "bull", "butcher", "knight", "entity", "rogue", "samurai" };
-    public List<string> allMusic = new List<string> { "Dusqk", "CRT_HEAD1", "CRT_HEAD2", "hellstar plus", "Mute City" };
+    public List<string> allMusic = new List<string> { "CRT_HEAD1", "CRT_HEAD2", "hellstar plus", "Mute City" };
     public List<string> available = new List<string>();
 
     //called by gameManager
